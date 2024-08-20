@@ -1,0 +1,49 @@
+.searchContainer {
+  position: absolute;
+  top: 65vh;
+  left: calc(50% - 75vw / 2);
+  width: 75vw;
+  height: 10vh;
+  padding: 1em 1em;
+  border-radius: 10px;
+  background-color: #FFF;
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  margin: 0 auto;
+  font-family: "Work Sans";
+  box-shadow: 2px 10px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.searchField {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.searchField label {
+  font-family: "Caveat", cursive;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.searchField input {
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  height: 4vh;
+  width: 15vw;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.searchButton {
+  background-color: #FC5056;
+  color: #FFF;
+  border: none;
+  border-radius: 10px;
+  padding: 1em 2.3em;
+}

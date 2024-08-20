@@ -1,0 +1,47 @@
+.titleBarContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.title1 {
+  color: #FC5056;
+  font-size: 2.5em;
+  font-family: "Caveat", cursive;
+  margin: 0;
+}
+
+.title2 {
+  color: #051036;  
+  font-weight: 900;
+  font-size: 3em;
+  font-family: "Work Sans";
+  margin: 0;
+}
+
+.lineAround {
+  position: relative;
+  display: inline-block; 
+  padding: 0 10px; 
+}
+
+.lineAround::before,
+.lineAround::after {
+  content: '';
+  position: absolute;
+  top: 50%; 
+  width: 8%;
+  height: 1px; 
+  background-color: #e0e0e0;
+}
+
+.lineAround::before {
+  left: 39%;
+  transform: translateY(-50%); 
+}
+
+.lineAround::after {
+  right: 39%;
+  transform: translateY(-50%);
+}

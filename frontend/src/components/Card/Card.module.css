@@ -1,0 +1,67 @@
+.cardContainer {
+  width: 16vw;
+  height: 50vh;
+  background-color: #f7f8fa;
+  font-family: "Work Sans";
+  color: #6b7087; 
+}
+
+.cardImage {
+  height: 50%;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cardInfo {
+  height: 50%;
+  padding: 1em 1em; 
+  display: flex;
+  flex-direction: column;
+  gap: 1em; 
+}
+
+.cardLocation {
+  font-size: 1em;   
+}
+
+.cardTitle {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: #051036;
+}
+
+.cardReview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em;
+}
+
+.cardPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #6b7087;
+  padding-top: 1em;
+  letter-spacing: 0.px;
+  font-size: 0.8em;
+
+}
+
+.price {
+  font-style: italic;
+  font-weight: 600;
+  color: #051036; 
+  font-size: 1.5em; 
+}
