@@ -1,0 +1,24 @@
+.InfoNumbersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80vw;
+  height: 20vh;
+  margin: 0 auto;
+  
+  border-top: 1px solid #e0e0e0;
+}
+
+.fontNumber {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "Caveat", cursive;
+}
+
+.fontText {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Work Sans";
+  color: #6b7087;
+
+}
