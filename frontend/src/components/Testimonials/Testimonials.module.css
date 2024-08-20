@@ -1,0 +1,64 @@
+.testimonialsContainer {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  font-family: "Work Sans";
+  border-bottom: 1px solid #f7f8fa;
+  background-color: #f3f3f5;
+}
+
+.containerImage {
+  width: 40%;
+  position: relative;
+}
+
+.image1 {
+  width: 25vw;
+  height: 30vh;
+  object-fit: cover;
+  border: 8px solid #FFF;
+  position: absolute;
+  left: 15vw;
+  top: 35vh;
+  transform: rotate(-10deg);
+}
+
+.image2 {
+  width: 16vw;
+  height: 19vh;
+  object-fit: cover;
+  border: 8px solid #FFF;
+  position: absolute;
+  left: 19vw;
+  top: 17vh;
+  transform: rotate(6deg);
+}
+
+.image3 {
+  width: 14vw;
+  height: 16vh;
+  object-fit: cover;
+  border: 8px solid #FFF;
+  position: absolute;
+  left: 20vw;
+  top: 62vh;
+  transform: rotate(5deg);
+}
+
+.containerInfo {
+  width: 60%;
+  display: flex;
+  text-align: center;
+}
+
+.containerText {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.text {
+  margin-top: 5em;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}

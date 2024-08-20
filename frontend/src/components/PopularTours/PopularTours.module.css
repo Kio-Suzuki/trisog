@@ -1,0 +1,11 @@
+.popularToursContainer{
+  width: 100vw;
+  height: 80vh;
+  margin-top: 20vh;
+}
+
+.carousel {
+  width: 80vw;
+  display: flex;
+  margin: 4em auto;
+}

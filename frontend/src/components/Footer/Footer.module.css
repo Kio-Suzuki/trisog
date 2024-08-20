@@ -1,0 +1,32 @@
+.footerContainer {
+  width: 100vw;
+  height: 45vh;
+  background-color: #000000;
+  color: #fdfdfd;
+  font-family: 'Work Sans';
+  display: flex;
+  flex-direction: row;
+  padding: 5em;
+}
+
+.footerInfo {
+  width: 20%;
+  border-right: 1px solid #fdfdfd;
+}
+
+.footerList {
+  width: 40%;
+  border-right: 1px solid #fdfdfd;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.footerList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footerNewsletter {
+  width: 20%;
+}

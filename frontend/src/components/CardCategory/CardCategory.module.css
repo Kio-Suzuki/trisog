@@ -1,0 +1,58 @@
+.cardCategorieContainer {
+  display: flex;
+  flex-direction: column;
+  width: 7vw;
+  height: 18vh;
+  border: 1px solid #e0e0e0;
+  color: #6b7087;
+  font-family: 'work sans';
+  padding: 1em 1em;
+}
+
+.iconBackground {
+  content: '';
+  border-radius: 50%;
+  width: 0.6em;
+  height: 0.6em;
+  background-color: #FC5056;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.cardIcon {
+  font-size: 2em;
+  padding-bottom: 0.8em;
+  position: relative;
+  color: #051036
+  
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: #051036;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.tours {
+  font-size: 1.1em;  
+}
+
+.cardPrice {
+  display: flex;
+  margin-top: 1em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceNumber {
+  color: #FC5056;  
+  font-family: "Caveat", cursive;
+  font-size: 2em;
+}
+  

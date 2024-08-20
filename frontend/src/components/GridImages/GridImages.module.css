@@ -1,0 +1,8 @@
+.gridImages {
+  background-color: #f3f3f5;
+  width: 100vw;
+  height: 80vh;
+  display: grid;
+  margin-top: 10vh;
+
+}
