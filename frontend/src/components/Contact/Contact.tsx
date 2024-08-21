@@ -6,7 +6,6 @@ import Experience2 from '../../assets/Experiences2.jpg';
 function Contact() {
   return (
     <div className={style.contactContainer}>
-
       <div className={style.contactImage}>
         <img className={style.image1} src={Experience1} alt="contact" />
         <img className={style.image2} src={Experience2} alt="contact" />
@@ -24,7 +23,9 @@ function Contact() {
         </ul>
         <button className={style.contactButton}>Contact Us</button>
       </div>
+      
     </div>
+    
   )
 }
 

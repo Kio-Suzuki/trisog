@@ -1,11 +1,12 @@
 .footerContainer {
-  height: 30vh;
+  height: 32vh;
   background-color: #000000;
   color: #fdfdfd;
   font-family: 'Work Sans';
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  overflow-x: hidden;
 }
 
 .footer {
@@ -17,6 +18,12 @@
 .footerInfo {
   border-right: 1px solid #fdfdfd;
   padding-right: 6vw;
+}
+
+.footerInfo img {
+  width: 120px;
+  
+  margin-bottom: 0.1em;
 }
 
 .footerList {
@@ -52,7 +59,8 @@
 .footerIcon {
   font-size: 1.em;
   display: flex;
-  gap: 1em
+  gap: 1em;
+  margin-top: 1.5em;
 }
 
 .footerNewsletter {
@@ -89,4 +97,9 @@
 
 .footerList2 {
   margin-left: 5vw;
+}
+
+.footerFontMargin {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
 }

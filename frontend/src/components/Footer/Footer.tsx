@@ -2,16 +2,18 @@ import style from './Footer.module.css';
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import logo from '../../assets/logo-footer.svg';
 
 function Footer() {
   return (
     <div className={style.footerContainer}>
       <div className={style.footer}>
         <div className={style.footerInfo}>
+          <img src={logo} alt="logo" />
           <p className={style.footerFont}>Need any help?</p>
           <p className={style.footerFontStyle}>Call Us: <span className={style.footerFontColor}>(888)1234 5678</span></p>
-          <p>Love Street, Muscat, Oman</p>
-          <p>example@trisog.com</p>
+          <p className={style.footerFontMargin}>Love Street, Muscat, Oman</p>
+          <p className={style.footerFontMargin}>example@trisog.com</p>
           <div className={style.footerIcon}>
             <FaFacebookSquare />
             <FaTwitter />

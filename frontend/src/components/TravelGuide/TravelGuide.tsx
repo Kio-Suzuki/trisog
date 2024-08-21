@@ -10,16 +10,40 @@ function TravelGuide() {
       </div>
       <div className={style.gridContainer}>
         <div className={style.gridItem}>
-          <img src={Card1} alt="" />
+          <div className={style.gridImage}>
+            <img src={Card1} alt="card1" />
+          </div>
+          <div className={style.gridInfo}>
+            <span className={style.gridDate}>July 13, 2023 Admin</span>
+            <span className={style.gridText}>The impact of Covid-19 on travel & tourism industry</span>
+          </div>    
         </div>
         <div className={style.gridItem}>
-
+          <div className={style.gridImage}>
+            <img src={Card1} alt="card1" />
+          </div>
+          <div className={style.gridInfo}>
+            <span className={style.gridDate}>July 13, 2023 Admin</span>
+            <span className={style.gridText}>The impact of Covid-19 on travel & tourism industry</span>
+          </div>    
         </div>
         <div className={style.gridItem}>
-
+          <div className={style.gridImage}>
+            <img src={Card1} alt="card1" />
+          </div>
+          <div className={style.gridInfo}>
+            <span className={style.gridDate}>July 13, 2023 Admin</span>
+            <span className={style.gridText}>The impact of Covid-19 on travel & tourism industry</span>
+          </div>    
         </div>
         <div className={style.gridItem}>
-
+          <div className={style.gridImage}>
+            <img src={Card1} alt="card1" />
+          </div>
+          <div className={style.gridInfo}>
+            <span className={style.gridDate}>July 13, 2023 Admin</span>
+            <span className={style.gridText}>The impact of Covid-19 on travel & tourism industry</span>
+          </div>    
         </div>
       </div>
       

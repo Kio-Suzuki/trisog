@@ -1,23 +1,51 @@
 .travelGuideContainer {
-  width: 100vw;
-  height: 60vh;
+  height: 90vh;
+  font-family: 'Work Sans';
+  overflow-x: hidden;
 }
 
 .gridContainer {
+  width: 80vw;
+  height: 40vh;
+  margin: 5vh auto;
   display: grid;
-  grid-template-columns: (2, 1fr);
-  grid-gap: 10px;
-  padding: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3em; 
 }
 
-.gridItem {
+.gridItem { 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-  width: 20vw;
-  overflow: hidden;
+  width: 30vw
+}
+
+.gridImage {
+  flex-shrink: 0; 
+  width: 200px; 
+  height: 200px;
+  overflow: hidden; 
+}
+
+.gridImage img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+}
+
+.gridInfo {
+  padding: 2em;
+  display: flex;
+  flex-direction: column; 
+}
+
+.gridDate {
+  color: #6b7087;
+  margin-bottom: 1em;
+  font-size: 1.3em;
+}
+
+.gridText {
+  color: #051036;
+  font-weight: 800;
+  font-size: 1.3em;
 }

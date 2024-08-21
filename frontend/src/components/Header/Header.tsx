@@ -3,9 +3,10 @@ import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
-import { GiAirplaneDeparture } from "react-icons/gi";
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
+import logo1 from '../../assets/logo1.svg';
+import { Link } from 'react-router-dom';	
 
 function Header() {
 
@@ -25,14 +26,13 @@ function Header() {
       </div>
       <div className={style.header2}>
         <div className={style.logo}>
-          <GiAirplaneDeparture />
-          <span className={style.logoTitle}>Trisog</span>
+          <img src={logo1} alt="logo" /> 
         </div>
         <div className={style.headerMenu}>
           <ul>
-            <li>Home</li>
+            <Link to='/'><li>Home</li></Link>
             <li>About</li>
-            <li>Tours</li>
+            <Link to='/tour'><li>Tours</li></Link>
             <li>Destination</li>
             <li>Blog</li>
             <li>Pages</li>

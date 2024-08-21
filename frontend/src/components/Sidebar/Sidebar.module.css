@@ -1,0 +1,76 @@
+.sidebarContainer {
+  width: 14vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  font-family: 'Work Sans';
+  
+}
+
+.sidebarContainer h3 {
+  font-weight: 800;
+  color: #051036;
+  margin-bottom: 1em;
+}
+
+.sidebarSearch {
+  background-color: #f3f3f5;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarSearch input {
+  border: none;
+  border-radius: 5px;
+  height: 3em;
+  padding-left: 1em;
+}
+
+.sidebarFilter {
+  background-color: #f3f3f5;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarFilter input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px; /* Tamanho da bolinha */
+  height: 20px;
+  background: #FC5056; /* Cor da bolinha */
+  cursor: pointer;
+  border-radius: 50%; /* Deixar a bolinha redonda */
+  border: 2px solid #fff; /* Borda branca ao redor da bolinha */
+}
+
+.sidebarFilter button {
+  background-color: #FC5056;
+  color: #FFF;
+  border: none;
+  border-radius: 10px;
+  width: 50%;
+  height: 3em;
+}
+
+.sidebarCategories {
+  background-color: #f3f3f5;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarDestinations {
+  background-color: #f3f3f5;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarReviews {
+  background-color: #f3f3f5;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
