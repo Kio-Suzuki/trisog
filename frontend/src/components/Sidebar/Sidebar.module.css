@@ -4,7 +4,8 @@
   flex-direction: column;
   gap: 2em;
   font-family: 'Work Sans';
-  
+  position: relative;
+  left: 10vw;
 }
 
 .sidebarContainer h3 {
@@ -25,6 +26,7 @@
   border-radius: 5px;
   height: 3em;
   padding-left: 1em;
+  outline: none;
 }
 
 .sidebarFilter {
@@ -37,12 +39,12 @@
 .sidebarFilter input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 50px; /* Tamanho da bolinha */
+  width: 50px; 
   height: 20px;
-  background: #FC5056; /* Cor da bolinha */
+  background: #FC5056; 
   cursor: pointer;
-  border-radius: 50%; /* Deixar a bolinha redonda */
-  border: 2px solid #fff; /* Borda branca ao redor da bolinha */
+  border-radius: 50%; 
+  border: 2px solid #fff; 
 }
 
 .sidebarFilter button {

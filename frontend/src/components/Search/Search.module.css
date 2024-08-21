@@ -1,5 +1,5 @@
 .searchContainer {
-  width: 75vw;
+  width: 80vw;
   height: 10vh;
   padding: 1em 1em;
   border-radius: 10px;
@@ -33,6 +33,7 @@
   height: 4vh;
   width: 15vw;
   padding-left: 1em;
+  outline: none;
 }
 
 .buttonContainer {
@@ -47,4 +48,9 @@
   border: none;
   border-radius: 10px;
   padding: 1em 2.3em;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.searchButton:hover {
+  background-color: #ff393f;
 }

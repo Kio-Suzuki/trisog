@@ -1,0 +1,28 @@
+.averageReviewContainer {
+  background-color: #f3f3f5;
+  width: 50vw;
+  height: 30vh;
+  margin-left: 0;
+  top: 0;
+  font-family: 'Work Sans';
+  padding: 2em;
+}
+
+.score {
+  background-color: #FC5056;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+}
+
+.score h1 {
+  font-size: 4em;
+}
+
+.score p {
+  font-size: 1.2em;
+}

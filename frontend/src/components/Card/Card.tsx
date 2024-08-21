@@ -2,10 +2,12 @@ import style from './Card.module.css';
 import Card1Img from '../../assets/card1.jpg';
 import { GoClock } from "react-icons/go";
 import ReviewGrade from '../ReviewGrade/ReviewGrade';
+import { Link } from 'react-router-dom';
 
 
 function Card() {
   return (
+    <Link to='/demo'>
     <div className={style.cardContainer}>
       <div className={style.cardImage}>
         <img src={Card1Img} alt="" />
@@ -30,6 +32,7 @@ function Card() {
         </div>
       </div>
     </div>
+    </Link>
   )
 }
 

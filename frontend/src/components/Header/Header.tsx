@@ -17,10 +17,10 @@ function Header() {
           <p>(000)999-898-999 | info@trisog.com</p>
         </div>
         <div className={style.headerIcon}>
-          <FaTwitter />
-          <FaLinkedinIn />
-          <FaGoogle />
-          <FaPinterestP />
+          <a href="https://br.linkedin.com/" target='blank'><FaLinkedinIn /></a>
+          <a href="https://x.com/" target='blank'><FaTwitter /></a>
+          <a href="https://www.google.com.br/?hl=pt-BR" target='blank'><FaGoogle /></a>
+          <a href="https://br.pinterest.com/" target='blank'><FaPinterestP /></a>
           <span>| EUR </span>
         </div>
       </div>
@@ -33,7 +33,7 @@ function Header() {
             <Link to='/'><li>Home</li></Link>
             <li>About</li>
             <Link to='/tour'><li>Tours</li></Link>
-            <li>Destination</li>
+            <Link to='/demo'><li>Destination</li></Link>
             <li>Blog</li>
             <li>Pages</li>
             <li>Contact</li>

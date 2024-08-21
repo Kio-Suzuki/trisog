@@ -1,0 +1,59 @@
+.addReviewContainer {
+  background-color: #f3f3f5;
+  width: 50vw;
+  height: 55vh;
+  margin-left: 0;
+  top: 0;
+  font-family: 'Work Sans';
+  padding: 2em;
+  margin-top: 2em;
+}
+
+.addReviewContainer h1 {
+  color: #051036;
+  font-size: 1.4em;
+}
+
+.formInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  margin: 2em 0;
+}
+
+.formInfo input {
+  width: 100%;
+  height: 5vh;
+  border: none;
+  border-radius: 10px;
+  padding-left: 1em;
+  outline: none;
+  font-size: 16px;
+}
+
+.formText textarea{
+  width: 100%;
+  height: 12vh;
+  border: none;
+  border-radius: 10px;
+  padding: 1em;
+  resize: none;
+  font-size: 16px;
+  font-family: 'Work Sans';
+  outline: none;
+  margin-bottom: 2em;
+}
+
+.formButton button{
+  background-color: #FC5056;
+  color: #FFF;
+  border: none;
+  border-radius: 10px;
+  padding: 1em 2.3em;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+  cursor: pointer;
+}
+
+.formButton button:hover {
+  background-color: #ff393f;
+}

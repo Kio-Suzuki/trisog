@@ -3,6 +3,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import logo from '../../assets/logo-footer.svg';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -15,14 +16,14 @@ function Footer() {
           <p className={style.footerFontMargin}>Love Street, Muscat, Oman</p>
           <p className={style.footerFontMargin}>example@trisog.com</p>
           <div className={style.footerIcon}>
-            <FaFacebookSquare />
-            <FaTwitter />
-            <FaLinkedinIn />
+            <a href="https://facebook.com" target='blank'><FaFacebookSquare /></a>
+            <a href="https://x.com/" target='blank'><FaTwitter /></a>
+            <a href="https://br.linkedin.com/" target='blank'><FaLinkedinIn /></a>
           </div>
         </div>
         <div className={style.footerList}>
           <div>
-            <span className={style.footerFont}>Company</span>
+            <p className={style.footerFont}>Company</p>
             <ul>
               <li>About Us</li>
               <li>Contact Us</li>
@@ -31,7 +32,7 @@ function Footer() {
             </ul>
           </div>
           <div className={style.footerList2}>
-            <span className={style.footerFont}>Top Destination</span>
+            <p className={style.footerFont}>Top Destination</p>
             <ul className={style.list}>
               <li>Las Vegas</li>
               <li>New York City</li>

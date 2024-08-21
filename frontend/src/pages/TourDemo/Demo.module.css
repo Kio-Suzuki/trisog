@@ -1,0 +1,11 @@
+.demoContainer {
+  height: 200vh;
+  margin: 0 auto;
+}
+
+.demoComponents {
+  width: 70vw;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 5vh;
+}

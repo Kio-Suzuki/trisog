@@ -1,0 +1,48 @@
+.tourInfoContainer {
+  width: 50vw;
+  height: 220vh;
+  margin-left: 0;
+  top: 0;
+  font-family: 'Work Sans';;
+}
+
+.tourImage {
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  margin-bottom: 2vh;
+}
+
+.tourImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tourTitle {
+  
+  margin-bottom: 1vh;
+  padding-bottom: 2vh;
+  border-bottom: 1px solid #f3f3f5;
+}
+
+.tourTitle h1 {
+  color: #051036;
+  font-weight: 900;
+  font-size: 2.5em;
+}
+
+.tourData {
+  display: flex;
+  gap: 5em
+}
+
+.tourOverview {
+  color: #6b7087;
+}
+
+.tourOverview h2 {
+  color: #051036;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
