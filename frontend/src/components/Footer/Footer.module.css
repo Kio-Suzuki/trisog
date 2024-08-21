@@ -1,25 +1,30 @@
 .footerContainer {
-  width: 100vw;
-  height: 45vh;
+  height: 30vh;
   background-color: #000000;
   color: #fdfdfd;
   font-family: 'Work Sans';
   display: flex;
   flex-direction: row;
-  padding: 5em;
+  justify-content: space-evenly;
+}
+
+.footer {
+  padding: 3em;
+  display: flex;
+  width: 80vw;
 }
 
 .footerInfo {
-  width: 20%;
   border-right: 1px solid #fdfdfd;
+  padding-right: 6vw;
 }
 
 .footerList {
-  width: 40%;
   border-right: 1px solid #fdfdfd;
   display: flex;
   flex-direction: row;
-  
+  padding-left: 6vw;
+  padding-right: 6vw;
 }
 
 .footerList ul {
@@ -27,6 +32,61 @@
   padding: 0;
 }
 
+.footerList ul li {
+  margin-bottom: 1em;
+}
+
+.footerFont {
+  font-family: "Caveat", cursive;
+}
+
+.footerFontStyle {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.footerFontColor {
+  color: #FC5056;
+}
+
+.footerIcon {
+  font-size: 1.em;
+  display: flex;
+  gap: 1em
+}
+
 .footerNewsletter {
-  width: 20%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 6vw;
+}
+
+.footerNewsletter input {
+  height: 3.8vh;
+  width: 10vw;
+  border: none;
+  border-radius: 8px;
+}
+
+.footerNewsletter button {
+  height: 3.8vh;
+  width: 5vw;
+  border: none;
+  border-radius: 8px;
+  background-color: #FC5056;
+  color: #fdfdfd;
+  margin-top: 0.8em;
+  margin-bottom: 2em;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  list-style-type: none;
+  column-gap: 3vw;
+  padding: 0;
+}
+
+.footerList2 {
+  margin-left: 5vw;
 }

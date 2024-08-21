@@ -51,12 +51,16 @@
   display: flex;
   gap: 1.8em;
   list-style: none;
-  
+  cursor: pointer;
 }
 
 .headerMenu {
   padding-right: 50em;
   font-weight: 500;
+}
+
+.headerMenu li:hover{
+  color: #FC5056;
 }
 
 .user {
