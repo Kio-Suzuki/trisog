@@ -39,7 +39,7 @@ function TourInfo() {
           </div>
         </div>
         <div className={style.tourOverview}>
-          <h2>Overview</h2>
+          <h3>Overview</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsam eligendi dolorem alias itaque aperiam natus quo vitae quia totam! Quaerat consequuntur iusto quas. Necessitatibus similique aspernatur dolorem animi commodi!</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsam eligendi dolorem alias itaque aperiam natus quo vitae quia totam! Quaerat consequuntur iusto quas. Necessitatibus similique aspernatur dolorem animi commodi!</p>
         </div>

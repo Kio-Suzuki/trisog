@@ -5,7 +5,7 @@ function Search() {
     <div className={style.searchContainer}>
       <div className={style.searchField}>
         <label>Destination</label>
-        <input placeholder='Where to go?'></input>
+        <input type='text' placeholder='Where to go?'></input>
       </div>
       <div className={style.searchField}>
         <label>Type</label>
@@ -13,11 +13,11 @@ function Search() {
       </div>
       <div className={style.searchField}>
         <label>When</label>
-        <input placeholder='Date'></input>
+        <input type='date' placeholder='Date'></input>
       </div>
       <div className={style.searchField}>
         <label>Guests</label>
-        <input placeholder='0'></input>
+        <input type='number' placeholder='0'></input>
       </div>
       <div className={style.buttonContainer}>
         <button className={style.searchButton}>Search</button>

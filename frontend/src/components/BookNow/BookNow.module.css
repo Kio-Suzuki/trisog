@@ -1,5 +1,9 @@
 .bookNowContainer {
   width: 18vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: absolute;
   top: 0;
   right: 0;

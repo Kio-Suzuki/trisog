@@ -28,7 +28,7 @@ function Categories() {
       </div>
       <div className={style.carousel}>
         <Swiper
-          modules={[Navigation, Pagination, Scrollbar]}
+          modules={[ Pagination ]}
           slidesPerView={6}
           pagination={{ clickable: true }}
         >

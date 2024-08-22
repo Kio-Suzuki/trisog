@@ -7,7 +7,7 @@ function BannerLogin() {
     <div className={style.bannerContainer}>
       <div className={style.banner}>
         <img src={banner} alt="Hot Air Ballon" />
-        <LoginForm />
+        
       </div>
     </div>
   )

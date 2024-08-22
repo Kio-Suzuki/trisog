@@ -23,9 +23,6 @@ function PopularTours() {
 
   return (
     <div className={style.popularToursContainer}>
-      <div>
-        <TitleBar title1="Tours" title2="Most Popular Tours"/>
-      </div> 
       <div className={style.carousel}>
         <Swiper
           modules={[Navigation, Pagination, Scrollbar]}

@@ -1,4 +1,4 @@
-.loginContainer {
+.signUpContainer {
   width: 40vh;
   height: 60vh;
   background-color: #f3f3f5;
@@ -23,14 +23,21 @@
   height: 100px;
 }
 
-.loginForm {
+.signUpForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #d1d1d1;
+  padding-bottom: 1em;
 }
 
-.loginForm input {
+.formName {
+  display: flex;
+  gap: 1em;
+}
+
+.signUpForm input {
   width: 100%;
   height: 4.6vh;
   border: none;
@@ -40,7 +47,7 @@
   margin-bottom: 1.5em;
 }
 
-.loginForm button {
+.signUpForm button {
   width: 100%;
   height: 4.6vh;
   background-color: #FC5056;
@@ -51,7 +58,7 @@
   cursor: pointer;
 }
 
-.loginForm button:hover {
+.signUpForm button:hover {
   background-color: #ff393f;
 }
 
@@ -62,39 +69,16 @@
   border-bottom: 1px solid #d1d1d1;
 }
 
-.signup {
+.signin {
   font-weight: 600;
   text-align: center;
   padding: 0;
   color: #051036;
 }
 
-.signButton {
-  width: 100%;
-  background-color: #ffffff;
-  color: #051036;
-  border: 1px solid #d1d1d1;
-  border-radius: 10px;
-  height: 4.6vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  transition: background-color 0.5s ease, transform 0.5s ease;
-  cursor: pointer;
-}
-
-.facebookIcon {
-  color: #1877F2;
-  font-size: 1.5em;
-}
-
-.googleIcon {
-  font-size: 1.5em;
-}
-
-.signup a {
+.signin a {
   color: #FC5056;
   font-weight: 600;
   text-decoration: none;
 }
+

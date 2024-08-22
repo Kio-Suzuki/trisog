@@ -10,6 +10,7 @@ import Footer from '../../components/Footer/Footer';
 import TravelGuide from '../../components/TravelGuide/TravelGuide';
 import Testimonials from '../../components/Testimonials/Testimonials';
 import Logos from '../../components/Logos/Logos';
+import TitleBar from '../../components/TitleBar/TitleBar';
 
 function Home() {
 
@@ -17,6 +18,7 @@ function Home() {
     <div className={style.home}>
       <Header />
       <Banner />
+      <TitleBar title1="Tours" title2="Most Popular Tours"/>
       <PopularTours />
       <InfoNumbers />
       <Destination />
