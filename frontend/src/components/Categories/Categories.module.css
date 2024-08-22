@@ -7,4 +7,6 @@
 
 .carousel {
   margin-top: 10vh;
+  position: relative;
 }
+

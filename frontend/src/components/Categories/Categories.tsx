@@ -1,12 +1,12 @@
 import TitleBar from '../TitleBar/TitleBar';
-import style from './Categories.module.css';
 import CardCategory from '../CardCategory/CardCategory';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import style from './Categories.module.css';
 
 function Categories() {
 

@@ -57,3 +57,30 @@
 .formButton button:hover {
   background-color: #ff393f;
 }
+
+.grade {
+  display: flex;
+  justify-content: space-between;
+}
+
+.t {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5em;
+}
+
+.starContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  margin: 0.5em 0;
+}
+
+.star {
+  color: #C7CAD1; 
+}
+
+.clicked {
+  color: rgb(231, 205, 59);
+}
+

@@ -1,4 +1,4 @@
-import TitleBar from '../TitleBar/TitleBar';
+
 import style from './PopularTours.module.css';
 import Card from '../Card/Card';
 
@@ -7,6 +7,10 @@ import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+import { WiDayCloudy } from 'react-icons/wi';
 
 function PopularTours() {
 
@@ -24,17 +28,19 @@ function PopularTours() {
   return (
     <div className={style.popularToursContainer}>
       <div className={style.carousel}>
-        <Swiper
-          modules={[Navigation, Pagination, Scrollbar]}
-          slidesPerView={4}
-          pagination={{ clickable: true }}
+        <Splide
+          options={ {
+            width: '100%',
+            perPage: 4,
+            gap   : '1em',
+          } }
         >
           {data.map((card) => (
-            <SwiperSlide key={card.id}>
-              {card.image}
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              <SplideSlide key={card.id}>
+                {card.image}
+              </SplideSlide>
+            ))}
+        </Splide>
       </div>
     </div>
   )

@@ -44,7 +44,7 @@ function TourInfo() {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsam eligendi dolorem alias itaque aperiam natus quo vitae quia totam! Quaerat consequuntur iusto quas. Necessitatibus similique aspernatur dolorem animi commodi!</p>
         </div>
         <div className={style.tourMap}>
-          Map
+          <h3>Map</h3>
         </div>
         <div className={style.tourAverageReview}>
           <AverageReview />

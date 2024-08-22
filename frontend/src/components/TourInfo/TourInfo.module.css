@@ -20,7 +20,7 @@
 }
 
 .tourTitle {
-  
+  margin-top: 1vh;
   margin-bottom: 1vh;
   padding-bottom: 2vh;
   border-bottom: 1px solid #f3f3f5;
@@ -41,7 +41,7 @@
   color: #6b7087;
 }
 
-.tourOverview h3 {
+.tourOverview h3, .tourMap h3 {
   color: #051036;
   margin-top: 2vh;
   margin-bottom: 2vh;
