@@ -1,14 +1,12 @@
-import style from './Header.module.css';
+import style from './Header2.module.css';
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
-import { FiUser } from "react-icons/fi";
 import logo1 from '../../assets/logo1.svg';
 import { Link } from 'react-router-dom';	
 
-function Header() {
+function Header2() {
 
   return (
     <div className={style.headerContainer}>
@@ -26,27 +24,11 @@ function Header() {
       </div>
       <div className={style.header2}>
         <div className={style.logo}>
-          <Link to='/'><img src={logo1} alt="logo" /></Link> 
-        </div>
-        <div className={style.headerMenu}>
-          <ul>
-            <Link to='/'><li>Home</li></Link>
-            <li>About</li>
-            <Link to='/tour'><li>Tours</li></Link>
-            <Link to='/demo'><li>Destination</li></Link>
-            <li>Blog</li>
-            <li>Pages</li>
-            <li>Contact</li>
-          </ul>    
-        </div>
-        <div className={style.user}>
-          <CiSearch />
-          <FiUser />
-          <Link to='/login'><span className={style.login}>Login / Signup</span></Link>
+          <Link to='/'><img src={logo1} alt="logo" /></Link>
         </div>
       </div>
     </div>
   )
 }
 
-export default Header
+export default Header2
