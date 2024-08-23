@@ -1,12 +1,12 @@
 .categoriesContainer {
-  width: 70vw;
   height: 70vh;
-  margin: 0 auto;
   margin-top: 10vh;
 }
 
 .carousel {
-  margin-top: 10vh;
-  position: relative;
+  width: 70vw;
+  height: 32vh;
+  display: flex;
+  margin: 4em auto;
 }
 

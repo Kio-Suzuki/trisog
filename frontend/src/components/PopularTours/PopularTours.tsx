@@ -1,11 +1,11 @@
-import style from './PopularTours.module.css';
-import Card from '../Card/Card';
 
+import Card from '../Card/Card';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import style from './PopularTours.module.css';
+
 
 function PopularTours() {
 
@@ -24,9 +24,10 @@ function PopularTours() {
     <div className={style.popularToursContainer}> 
       <div className={style.carousel}>
         <Swiper
-          modules={[Navigation, Pagination, Scrollbar]}
+          modules={[Pagination]}
           slidesPerView={4}
           pagination={{ clickable: true }}
+          spaceBetween={38}
         >
           {data.map((card) => (
             <SwiperSlide key={card.id}>
