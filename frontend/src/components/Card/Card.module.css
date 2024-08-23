@@ -60,8 +60,8 @@
 }
 
 .price {
-  font-style: italic;
+  font-family: "Caveat", cursive;
   font-weight: 600;
   color: #051036; 
-  font-size: 1.5em; 
+  font-size: 2em; 
 }

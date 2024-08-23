@@ -28,6 +28,12 @@ function AddReview() {
     setPricesStars(starNumber);
   };
 
+  const [foodStars, setFoodStars] = useState<number>(0);
+
+  const handleFood = (starNumber: SetStateAction<number>) => {
+    setFoodStars(starNumber);
+  };
+
   const [roomsStars, setRoomsStars] = useState<number>(0);
 
   const handleRooms = (starNumber: SetStateAction<number>) => {
@@ -82,6 +88,18 @@ function AddReview() {
                 key={star}
                 className={pricesStars >= star ? `${style.star} ${style.clicked}` : style.star}
                 onClick={() => handlePrices(star)}
+              />
+            ))}
+          </div>
+        </div>
+        <div className={style.t}>
+          <p>Food</p>
+          <div className={style.starContainer}>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <IoStar
+                key={star}
+                className={foodStars >= star ? `${style.star} ${style.clicked}` : style.star}
+                onClick={() => handleFood(star)}
               />
             ))}
           </div>

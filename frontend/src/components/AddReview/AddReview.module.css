@@ -1,6 +1,5 @@
 .addReviewContainer {
   background-color: #f3f3f5;
-  width: 50vw;
   height: 55vh;
   margin-left: 0;
   top: 0;
@@ -72,7 +71,7 @@
 .starContainer {
   display: flex;
   flex-direction: row;
-  gap: 0.5em;
+  gap: 0.3em;
   margin: 0.5em 0;
 }
 

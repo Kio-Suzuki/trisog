@@ -8,11 +8,13 @@ import Logo6 from '../../assets/logo6.svg';
 function Logos() {
   return (
     <div className={style.logosContainer}>
-      <img src={Logo2} alt="Summer" />
-      <img src={Logo3} alt="Summer" />
-      <img src={Logo4} alt="Summer" />
-      <img src={Logo5} alt="Summer" />
-      <img src={Logo6} alt="Summer" />
+      <div className={style.logosContent}>
+        <img src={Logo2} alt="Summer" />
+        <img src={Logo3} alt="Summer" />
+        <img src={Logo4} alt="Summer" />
+        <img src={Logo5} alt="Summer" />
+        <img src={Logo6} alt="Summer" />
+      </div>
     </div>
   )
 }

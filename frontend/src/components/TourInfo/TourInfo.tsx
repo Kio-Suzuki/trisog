@@ -5,7 +5,15 @@ import AverageReview from '../AverageReview/AverageReview';
 import Review from '../Review/Review';
 import AddReview from '../AddReview/AddReview';
 
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+
 function TourInfo() {
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyBkYwyHygzVcR0PJdMSXj8gwZIPYqhCP0o"
+  })
+
   return (
     <div className={style.tourInfoContainer}>
       <div className={style.tourImage}>
@@ -45,6 +53,19 @@ function TourInfo() {
         </div>
         <div className={style.tourMap}>
           <h3>Map</h3>
+          <div className={style.mapContainer}> 
+            {isLoaded ? (
+              <GoogleMap
+                mapContainerStyle={{ width: '100%', height: '100%' }}
+                center={{
+                  lat: -17.501427930130827, 
+                  lng: 128.6004197398195, 
+                }}
+                zoom={5}
+              >
+              </GoogleMap>
+            ) : null}
+          </div>
         </div>
         <div className={style.tourAverageReview}>
           <AverageReview />

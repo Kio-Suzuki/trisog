@@ -13,7 +13,7 @@
 .img6 {grid-area: img6;}
 
 .gridContainer {
-  width: 80vw;
+  width: 70vw;
   margin: 10vh auto;
   display: grid;
   gap: 1.5em;
