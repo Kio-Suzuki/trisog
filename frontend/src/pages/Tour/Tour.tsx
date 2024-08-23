@@ -10,7 +10,7 @@ function Tour() {
   return (
     <div className={style.tourContainer}>
       <Header />
-      <Banner2 />
+      <Banner2 title1='Tour Package' title2='Home' title3='Tour Package'/>
       <div className={style.tourContent}>
         <Sidebar />
         <div className={style.toursCards}>

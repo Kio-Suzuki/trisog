@@ -4,6 +4,7 @@ import Tour from './pages/Tour/Tour';
 import Login from './pages/Login/Login';
 import Demo from './pages/TourDemo/Demo';
 import SignUp from './pages/SignUp/SignUp';
+import Destination from './pages/Destination/Destination';
 import './App.css'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path='/demo' element={ <Demo /> } />
       <Route path='/login' element={ <Login /> } />
       <Route path='/signup' element={ <SignUp /> } />
+      <Route path='/destination' element={ <Destination /> } />
     </Routes>
   )
 }

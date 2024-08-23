@@ -7,6 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import logo1 from '../../assets/logo1.svg';
 import { Link } from 'react-router-dom';	
+import { NavLink } from 'react-router-dom';
 
 function Header() {
 
@@ -30,10 +31,25 @@ function Header() {
         </div>
         <div className={style.headerMenu}>
           <ul>
-            <Link to='/'><li>Home</li></Link>
+            <NavLink 
+              to='/'
+              className={({ isActive }) => isActive ? style.active : ''}
+            >
+              <li>Home</li>
+            </NavLink>
             <li>About</li>
-            <Link to='/tour'><li>Tours</li></Link>
-            <Link to='/demo'><li>Destination</li></Link>
+            <NavLink 
+              to='/tour'
+              className={({ isActive }) => isActive ? style.active : ''}
+            >
+              <li>Tours</li>
+            </NavLink>
+            <NavLink 
+              to='/destination'
+              className={({ isActive }) => isActive ? style.active : ''}
+            >
+              <li>Destination</li>
+            </NavLink>
             <li>Blog</li>
             <li>Pages</li>
             <li>Contact</li>
