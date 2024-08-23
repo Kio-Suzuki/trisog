@@ -1,9 +1,14 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import { ListTourController } from './controllers/tour/ListTourControllers';
+import { ListCategoryController } from './controllers/category/ListCategoryController';
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-    return res.json({ ok: true })
-})
+//-- ROUTAS TOURS
+router.get('/tours', new ListTourController().handle);
+
+//-- ROUTAS TOURS
+router.get('/categories', new ListCategoryController().handle);
+
 
 export { router }

@@ -1,8 +1,8 @@
 import style from './CardCategory.module.css';
 import { BsSuitcase } from "react-icons/bs";
 
-
 function CardCategory() {
+
   return (
     <div className={style.cardCategorieContainer}>
       <div className={style.cardIcon}>

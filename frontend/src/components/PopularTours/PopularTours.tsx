@@ -1,24 +1,27 @@
-
-import Card from '../Card/Card';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Card, { Tour } from '../Card/Card';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import style from './PopularTours.module.css';
 
-
 function PopularTours() {
+  const [tours, setTours] = useState<Tour[]>([]);
 
-  const data = [
-    { id: '1', image: <Card /> },
-    { id: '2', image: <Card /> },
-    { id: '3', image: <Card /> },
-    { id: '4', image: <Card /> },
-    { id: '5', image: <Card /> },
-    { id: '6', image: <Card /> },
-    { id: '7', image: <Card /> },
-    { id: '8', image: <Card /> },
-  ]
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const response = await axios.get('http://localhost:3333/tours');
+        setTours(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching tours", error);
+      }
+    };
+    fetchTours();
+  }, []);
 
   return (
     <div className={style.popularToursContainer}> 
@@ -29,15 +32,15 @@ function PopularTours() {
           pagination={{ clickable: true }}
           spaceBetween={38}
         >
-          {data.map((card) => (
-            <SwiperSlide key={card.id}>
-              {card.image}
+          {tours.map((tour) => (
+            <SwiperSlide key={tour.id}>
+              <Card tour={tour} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
     </div>
-  )
+  );
 }
 
-export default PopularTours
+export default PopularTours;

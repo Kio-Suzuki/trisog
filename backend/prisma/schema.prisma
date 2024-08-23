@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Tour {
-  id        Int      @id @default(autoincrement())
+  id        Int          @id @default(autoincrement())
   location  String
   country   String
   title     String
@@ -16,6 +16,19 @@ model Tour {
   days      Int
   price     Float
   image     String
+  updatedAt DateTime?   @default(now())
+  createdAt DateTime?   @default(now())
 
-  @@map("Tours")
+  categories Category[] @relation("TourCategories")
+  @@map ("tours")
+}
+
+model Category {
+  id        Int          @id @default(autoincrement())
+  name      String
+  updatedAt DateTime?   @default(now())
+  createdAt DateTime?   @default(now())
+
+  tours     Tour[]      @relation("TourCategories")
+  @@map ("categories")
 }

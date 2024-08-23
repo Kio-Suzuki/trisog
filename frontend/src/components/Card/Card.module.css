@@ -1,6 +1,6 @@
 .cardContainer {
   width: 16vw;
-  height: 50vh;
+  height: 52vh;
   background-color: #f7f8fa;
   font-family: "Work Sans";
   color: #6b7087; 
@@ -33,6 +33,10 @@
   font-size: 1.5em;
   font-weight: 900;
   color: #051036;
+  height: 10vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 .cardReview {

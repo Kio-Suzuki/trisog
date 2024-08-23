@@ -18,15 +18,7 @@ function Tour() {
             <SortBar />
           </div>
           <div className={style.cards}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            
           </div>
         </div>
       </div>
