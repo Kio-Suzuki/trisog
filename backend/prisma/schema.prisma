@@ -16,19 +16,14 @@ model Tour {
   days      Int
   price     Float
   image     String
+  maxPeople Int
+  minAge    Int
+  type      String
+  overview  String
+  latitude  Float
+  longitude Float
   updatedAt DateTime?   @default(now())
   createdAt DateTime?   @default(now())
 
-  categories Category[] @relation("TourCategories")
   @@map ("tours")
-}
-
-model Category {
-  id        Int          @id @default(autoincrement())
-  name      String
-  updatedAt DateTime?   @default(now())
-  createdAt DateTime?   @default(now())
-
-  tours     Tour[]      @relation("TourCategories")
-  @@map ("categories")
 }

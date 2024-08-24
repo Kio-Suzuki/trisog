@@ -2,6 +2,7 @@ import { GoClock } from "react-icons/go";
 import ReviewGrade from '../ReviewGrade/ReviewGrade';
 import { Link } from 'react-router-dom';
 import style from './Card.module.css';
+import { IoStar } from "react-icons/io5";
 
 export type Tour = {
   id: number;
@@ -20,7 +21,7 @@ type CardProps = {
 
 function Card({ tour }: CardProps) {
   return (
-    <Link to='/demo'>
+<Link to={`/tours/${tour.id}`}>
       <div className={style.cardContainer}>
         <div className={style.cardImage}>
           <img src={tour.image} alt={tour.title} />
@@ -34,8 +35,7 @@ function Card({ tour }: CardProps) {
           </div>
           <div className={style.cardReview}>
             <div className={style.review}>
-              <ReviewGrade />
-              <span>{tour.review} reviews</span>
+              <span className={style.reviewGradeContainer}><IoStar /> 4.8</span><span>{tour.review} reviews</span>
             </div>
             <span><GoClock /> {tour.days} days</span>
           </div>

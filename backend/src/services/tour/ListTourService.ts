@@ -13,7 +13,6 @@ class ListTourService {
         days: true,
         price: true,
         image: true,
-        
       },
     })
     return tours;   

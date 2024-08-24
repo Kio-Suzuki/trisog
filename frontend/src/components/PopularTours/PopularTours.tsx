@@ -16,6 +16,7 @@ function PopularTours() {
         const response = await axios.get('http://localhost:3333/tours');
         setTours(response.data);
         console.log(response.data);
+        console.log('aqui');
       } catch (error) {
         console.error("Error fetching tours", error);
       }
