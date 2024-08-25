@@ -9,7 +9,6 @@
   gap: 1em;
   display: flex;
   flex-direction: column;
-  font-family: 'Work Sans';
 }
 
 .loginInfo {
