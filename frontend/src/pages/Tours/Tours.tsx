@@ -1,10 +1,10 @@
-import style from './Tour.module.css';
+import style from './Tours.module.css';
 import Header from '../../components/Header/Header';
 import Banner2 from '../../components/Banner2/Banner2';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Footer from '../../components/Footer/Footer';
-import Card from '../../components/Card/Card';
 import SortBar from '../../components/SortBar/SortBar';
+import CardGrid from '../../components/CardGrid/CardGrid';
 
 function Tour() {
   return (
@@ -18,7 +18,7 @@ function Tour() {
             <SortBar />
           </div>
           <div className={style.cards}>
-            
+            <CardGrid />
           </div>
         </div>
       </div>

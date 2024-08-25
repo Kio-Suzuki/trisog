@@ -8,9 +8,10 @@ datasource db {
 }
 
 model Tour {
-  id        Int          @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   location  String
   country   String
+  continent String
   title     String
   review    Int
   days      Int
@@ -22,8 +23,27 @@ model Tour {
   overview  String
   latitude  Float
   longitude Float
-  updatedAt DateTime?   @default(now())
-  createdAt DateTime?   @default(now())
+  updatedAt DateTime? @default(now())
+  createdAt DateTime? @default(now())
 
-  @@map ("tours")
+  @@map("tours")
+}
+
+model Destination {
+  id         Int       @id @default(autoincrement())
+  country    String
+  about      String
+  img        String
+  latitude   Float
+  longitude  Float
+  currency   String
+  language   String
+  area       Int
+  population Int
+  timezone   String
+  timetravel String
+  updatedAt  DateTime? @default(now())
+  createdAt  DateTime? @default(now())
+
+  @@map("destinations")
 }

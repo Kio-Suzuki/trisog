@@ -32,15 +32,13 @@ function Sidebar() {
          <span>$0.00</span>
         <span className={style.priceFilter}>${value.toFixed(2)}</span>
         </div>
-         
-
         <button>Submit</button>
       </div>
       <div className={style.sidebarCategories}>
         <h3>Categories</h3>
         <form className={style.checkCategories}>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" id="adventure"/>
             <label>Adventure</label>
           </div>
           <div>
@@ -72,7 +70,6 @@ function Sidebar() {
             <label>Museum Tours</label>
           </div>
         </form>
-        
       </div>
       <div className={style.sidebarDestinations}>
         <h3>Destinations</h3>

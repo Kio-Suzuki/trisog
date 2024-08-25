@@ -39,7 +39,7 @@ function Header() {
             </NavLink>
             <li>About</li>
             <NavLink 
-              to='/tour'
+              to='/tours'
               className={({ isActive }) => isActive ? style.active : ''}
             >
               <li>Tours</li>

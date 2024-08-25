@@ -1,22 +1,64 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import style from './DestinationGrid.module.css';
-import card1 from '../../assets/card1.jpg';
+
+export type Destination = {
+  id: number;
+  img: string;
+  latitude: number;
+  longitude: number;
+  about: string;
+  country: string;
+  language: string;
+  currency: string;
+  area: number;
+  population: number;
+  timezone: string;
+  timetravel: string;
+}
 
 function DestinationGrid() {
 
+  const [destinations, setDestinations] = useState<Destination | null>(null);
+
+  useEffect(() => {
+    const fetchTour = async () => {
+      try {
+        const response = await axios.get('http://localhost:3333/destinations');
+        console.log("Destination data:", response.data);
+        setDestinations(response.data); 
+      } catch (error) {
+        console.error("Error fetching tour", error);
+      }
+    };
+    fetchTour();
+
+    window.scrollTo(0, 0);
+  }, []);
+
+  if (!destinations) {
+    return <div>Loading...</div>; 
+  }
+
   return (
     <div className={style.destinationGridContainer}>
-      <img src={card1} alt="card1" className={style.img1}/>
-      <img src={card1} alt="card1" className={style.img2}/>
-      <img src={card1} alt="card1" className={style.img3}/>
-      <img src={card1} alt="card1" className={style.img4}/>
-      <img src={card1} alt="card1" className={style.img5}/>
-      <img src={card1} alt="card1" className={style.img6}/>
-      <img src={card1} alt="card1" className={style.img7}/>
-      <img src={card1} alt="card1" className={style.img8}/>
-      <img src={card1} alt="card1" className={style.img9}/>
-      <img src={card1} alt="card1" className={style.img10}/>
-      <img src={card1} alt="card1" className={style.img11}/>
-      <img src={card1} alt="card1" className={style.img12}/>
+      {destinations.map((destination, index) => (
+          <Link 
+            key={destination.id} 
+            to={`/destination/${destination.id}`}
+            className={`${style.imageBase} ${style[`img${(index % 12) + 1}`]}`}
+          >
+            <img 
+              src={destination.img}
+              alt={`image-${index + 1}`} 
+            />
+            <div className={style.destinationCountry}>
+              <p>{destination.population} Travelers</p>
+              <h2>{destination.country}</h2>
+            </div>
+          </Link>
+        ))}
     </div>
   )
 }

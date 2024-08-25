@@ -1,0 +1,77 @@
+.destinationInfoContainer {
+  width: 100vw;
+}
+
+.img1 {grid-area: img1;}
+.mapContainer {grid-area: img2;}
+.img3 {grid-area: img3;}
+.img4 {grid-area: img4;}
+.img5 {grid-area: img5;}
+.img6 {grid-area: img6;}
+.img7 {grid-area: img7;}
+
+.container {
+  width: 70vw;
+  height: 60vh;
+  margin: 2em auto;
+  display: grid;
+  gap: 1.5em;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas: 
+    'img1 img1 img1 img1 img2 img2'
+    'img1 img1 img1 img1 img2 img2'
+    'img1 img1 img1 img1 img3 img3'
+    'img4 img5 img6 img7 img3 img3';
+
+}
+
+.container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img1 {
+  width: 100%;
+  height: 100%;
+}
+
+.container2 {
+  width: 46.5vw;
+  height: 55vh;
+  margin-left: 15vw;
+  padding: 1em 0;
+}
+
+.container3 {
+  width: 46.5vw;
+  height: 55vh;
+  margin-left: 15vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.informationTitle {
+  margin-bottom: 1em;
+}
+
+.informationData {
+  background-color: #f3f3f5;
+  color: #6b7087;
+  padding: 2.5em;
+  display: flex;
+}
+
+.informationLabel {
+  margin-right: 10em;
+}
+
+.informationData p {
+  margin-bottom: 1em;
+}
+
+.information {
+  font-weight: 700;
+  color: #051036;
+}

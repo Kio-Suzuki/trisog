@@ -3,7 +3,7 @@
   height: 52vh;
   background-color: #f7f8fa;
   font-family: "Work Sans";
-  color: #6b7087; 
+  color: #6b7087;
 }
 
 .cardImage {
@@ -64,8 +64,8 @@
 }
 
 .price {
-  font-family: "Caveat", cursive;
-  font-weight: 600;
+  font-family: "Kaushan Script", cursive;
+  font-weight: 500;
   color: #051036; 
   font-size: 2em; 
 }
