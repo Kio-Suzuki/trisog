@@ -9,7 +9,6 @@ class ListTourService {
         location: true,
         country: true,
         title: true,
-        review: true,
         days: true,
         price: true,
         image: true,

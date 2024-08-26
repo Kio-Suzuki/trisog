@@ -13,7 +13,6 @@ model Tour {
   country   String
   continent String
   title     String
-  review    Int
   days      Int
   price     Float
   image     String
@@ -23,6 +22,7 @@ model Tour {
   overview  String
   latitude  Float
   longitude Float
+  reviews   Review[]
   updatedAt DateTime? @default(now())
   createdAt DateTime? @default(now())
 
@@ -46,4 +46,36 @@ model Destination {
   createdAt  DateTime? @default(now())
 
   @@map("destinations")
+}
+
+model User {
+  id        String    @id
+  email     String    @unique
+  firstname String?
+  lastname  String?
+  reviews   Review[]
+  updatedAt DateTime? @default(now())
+  createdAt DateTime? @default(now())
+
+  @@map("users")
+}
+
+model Review {
+  id        Int       @id @default(autoincrement())
+  comment   String
+  services  Int
+  locations Int
+  amenities Int
+  prices    Int
+  food      Int
+  rooms     Int
+  overall   Float
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  tour      Tour      @relation(fields: [tourId], references: [id])
+  tourId    Int
+  updatedAt DateTime? @default(now())
+  createdAt DateTime? @default(now())
+
+  @@map("reviews")
 }
