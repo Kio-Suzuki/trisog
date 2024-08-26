@@ -58,7 +58,7 @@ function Header() {
         <div className={style.user}>
           <CiSearch />
           <FiUser />
-          <Link to='/login'><span className={style.login}>Login / Signup</span></Link>
+          <Link to='/login'><span className={style.login}>Login</span></Link><span>/</span><Link to='/signup'><span className={style.signup}> Signup</span></Link>
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@ type CardProps = {
 }
 
 function Card({ tour }: CardProps) {
+  
   return (
     <Link to={`/tours/${tour.id}`}>
       <div className={style.cardContainer}>
@@ -36,7 +37,7 @@ function Card({ tour }: CardProps) {
             <div className={style.review}>
               <span className={style.reviewGradeContainer}><IoStar /> 4.8</span><span>{tour.review} reviews</span>
             </div>
-            <span><GoClock /> {tour.days} days</span>
+            <span className={style.iconPosition}><GoClock /> {tour.days} days</span>
           </div>
           <div className={style.cardPrice}>
             <span>Starting From</span>

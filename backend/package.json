@@ -19,6 +19,7 @@
   "dependencies": {
     "@prisma/client": "^5.18.0",
     "express": "^4.19.2",
-    "prisma": "^5.18.0"
+    "prisma": "^5.18.0",
+    "react-toastify": "^10.0.5"
   }
 }

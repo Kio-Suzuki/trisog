@@ -75,7 +75,7 @@
   font-size: 1.1em;
   font-weight: 600;
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
 }
 
 ul a {
@@ -89,6 +89,14 @@ ul a {
 }
 
 .login {
+  color: #6b7087;  
+}
+
+.login:hover, .signup:hover {
+  color: #FC5056;  
+}
+
+.signup {
   color: #6b7087;  
 }
 

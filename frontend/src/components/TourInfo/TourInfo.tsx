@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import style from './TourInfo.module.css';
-import card1 from '../../assets/card1.jpg';
 import { IoLocationOutline } from "react-icons/io5";
 import AverageReview from '../AverageReview/AverageReview';
 import Review from '../Review/Review';
 import AddReview from '../AddReview/AddReview';
 import { IoStar } from "react-icons/io5";
-
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from 'react-router-dom';
+import style from './TourInfo.module.css';
 
 export type Tour = {
   id: number;
@@ -34,72 +32,53 @@ type TourProps = {
 
 function TourInfo({ tour }: TourProps) {
 
-  const [tours, setTours] = useState<Tour | null>(null);
-  const { id } = useParams<{ id: string }>();
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyBkYwyHygzVcR0PJdMSXj8gwZIPYqhCP0o"
-  })
-
-  useEffect(() => {
-    const fetchTour = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3333/tours/${id}`);  
-        console.log("Tour data:", response.data);
-        setTours(response.data);
-      } catch (error) {
-        console.error("Error fetching tour", error);
-      }
-    };
-    fetchTour();
-
-    window.scrollTo(0, 0);
-  }, []);
+  });
 
   return (
     <div className={style.tourInfoContainer}>
        
-
       <div className={style.tourImage}>
-        <img src={tours?.image} alt="card1" />
+        <img src={tour?.image} alt="card1" />
       </div>
       <div className={style.tourInfo}>
       <div className={style.tourLocation}>
-          <span className={style.locationColor}><IoLocationOutline />{tours?.location}, {tours?.country}</span>
+          <span className={style.locationColor}><IoLocationOutline />{tour?.location}, {tour?.country}</span>
         </div>
         <div className={style.tourTitle}>
-          <h1>{tours?.title}</h1>
+          <h1>{tour?.title}</h1>
         </div>
         <div className={style.tourData}>
           <div className={style.tourPrice}>
             <h6>From</h6>
-            <p className={style.priceColor}>${tours?.price}</p>
+            <p className={style.priceColor}>${tour?.price}</p>
           </div>
           <div className={style.tourDuration}>
             <h6>Duration</h6>
-            <p>{tours?.days} days</p>
+            <p>{tour?.days} days</p>
           </div>
           <div className={style.tourPeople}>
             <h6>Max People</h6>
-            <p>{tours?.maxPeople}</p>
+            <p>{tour?.maxPeople}</p>
           </div>
           <div className={style.tourAge}>
             <h6>Min Age</h6>
-            <p>{tours?.minAge}+</p>
+            <p>{tour?.minAge}+</p>
           </div>
           <div className={style.tourType}>
             <h6>Tour Type</h6>
-            <p>{tours?.type}</p>
+            <p>{tour?.type}</p>
           </div>
           <div className={style.tourReview}>
             <h6>Reviews</h6>
-            <p><IoStar className={style.starColor}/> {tours?.review}</p>
+            <p><IoStar className={style.starColor}/> {tour?.review}</p>
           </div>
         </div>
         <div className={style.tourOverview}>
           <h3>Overview</h3>
-          <p>{tours?.overview}</p>
+          <p>{tour?.overview}</p>
         </div>
         <div className={style.tourMap}>
           <h3>Map</h3>
@@ -108,8 +87,8 @@ function TourInfo({ tour }: TourProps) {
               <GoogleMap
                 mapContainerStyle={{ width: '100%', height: '100%' }}
                 center={{
-                  lat: tours?.latitude,
-                  lng: tours?.longitude, 
+                  lat: tour?.latitude,
+                  lng: tour?.longitude, 
                 }}
                 zoom={10}
               >

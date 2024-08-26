@@ -16,7 +16,8 @@
   margin-bottom: 1em;
   padding-bottom: 1em;
   color: #051036;
-  border-bottom: 1px solid #6b7087;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 0.5em;
 }
 
 .option h4 {
@@ -45,7 +46,7 @@
 }
 
 .ticket {
-  border-bottom: 1px solid #6b7087;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .ticket h4{
@@ -78,8 +79,47 @@
   height: 3em;
 }
 
+.buttonContainer button:hover {
+  background-color: #ff393f;
+}
+
 .value {
   color: #FC5056;
   font-size: 1.5em;
   font-weight: 700;
+}
+
+.ticketContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  
+}
+
+.counter p {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  width: 1.7em;
+  height: 1.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #051036;
+}
+
+.ticketContainer button {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  width: 2em;
+  height: 2em;
+  font-weight: 700;
+  margin-bottom: 1em;
+  color: #051036;
 }
