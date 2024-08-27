@@ -1,44 +1,138 @@
+import { useState, useEffect, SetStateAction } from 'react';
+import axios, { get } from 'axios';
 import style from './AddReview.module.css';
 import { IoStar } from "react-icons/io5";
-import { SetStateAction, useState } from "react";
+import { getAuth } from 'firebase/auth';
+import { toast } from 'react-toastify';
+
+export type Review = {
+  id: number;
+  name: string;
+  email: string;
+  image: string;
+  comment: string;
+  services: number;
+  locations: number;
+  amenities: number;
+  prices: number;
+  food: number;
+  rooms: number;
+  overall: number;
+  tourId: number;
+  user: {
+    id: string;
+    firstname: string;
+    lastname: string;
+    email: string;
+  }
+}
+
+type ReviewProps = {
+  review: Review;
+}
 
 function AddReview() {
 
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [image, setImage] = useState<string>('');
+  const [comment, setComment] = useState<string>('');
+  const [services, setServices] = useState<number>(0);
+  const [locations, setLocations] = useState<number>(0);
+  const [amenities, setAmenities] = useState<number>(0);
+  const [prices, setPrices] = useState<number>(0);
+  const [food, setFood] = useState<number>(0);
+  const [rooms, setRooms] = useState<number>(0);
   const [servicesStars, setServicesStars] = useState<number>(0);
+  const [locationStars, setLocationStars] = useState<number>(0);
+  const [amenitiesStars, setAmenitiesStars] = useState<number>(0);
+  const [pricesStars, setPricesStars] = useState<number>(0);
+  const [foodStars, setFoodStars] = useState<number>(0);
+  const [roomsStars, setRoomsStars] = useState<number>(0);
 
   const handleServices = (starNumber: SetStateAction<number>) => {
     setServicesStars(starNumber);
+    setServices(starNumber);
   };
-
-  const [locationStars, setLocationStars] = useState<number>(0);
 
   const handleLocations = (starNumber: SetStateAction<number>) => {
     setLocationStars(starNumber);
+    setLocations(starNumber);
   };
-
-  const [amenitiesStars, setAmenitiesStars] = useState<number>(0);
 
   const handleAmenities = (starNumber: SetStateAction<number>) => {
     setAmenitiesStars(starNumber);
+    setAmenities(starNumber);
   };
-
-  const [pricesStars, setPricesStars] = useState<number>(0);
 
   const handlePrices = (starNumber: SetStateAction<number>) => {
     setPricesStars(starNumber);
+    setPrices(starNumber);
   };
-
-  const [foodStars, setFoodStars] = useState<number>(0);
 
   const handleFood = (starNumber: SetStateAction<number>) => {
     setFoodStars(starNumber);
+    setFood(starNumber);
   };
-
-  const [roomsStars, setRoomsStars] = useState<number>(0);
 
   const handleRooms = (starNumber: SetStateAction<number>) => {
     setRoomsStars(starNumber);
+    setRooms(starNumber);
   };
+
+  async function getTokenId() {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+        const token = await user.getIdToken();
+        return user;
+      }
+    } catch (error) {
+      console.error("Error getting token:", error);
+    }
+    
+  }
+  getTokenId();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const token = await getTokenId();
+
+    const urlSegments = window.location.pathname.split('/');
+    const tourId = parseInt(urlSegments[urlSegments.length - 1]); 
+
+    console.log(tourId);
+
+    const review = {
+      name,
+      email,
+      image,
+      comment,
+      services,
+      locations,
+      amenities,
+      prices,
+      food,
+      rooms,
+      tourId: tourId,
+      userId: token?.uid
+    };
+
+    console.log(review);
+
+    try {
+      const response = await axios.post('http://localhost:3333/reviews', review);
+      console.log(response);
+      toast.success('Review added successfully');
+      setName('');
+      setEmail('');
+      setComment('');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className={style.addReviewContainer}>
@@ -117,13 +211,13 @@ function AddReview() {
           </div>
         </div>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={style.formInfo}>
-          <input type="text" placeholder='Your name' />
-          <input type="email" placeholder='Email address' />
+          <input type="text" placeholder='Your name' onChange={(e) => setName(e.target.value)}/>
+          <input type="email" placeholder='Email address' onChange={(e) => setEmail(e.target.value)}/>
         </div>
         <div className={style.formText}>
-          <textarea placeholder='Write your comment'></textarea>
+          <textarea placeholder='Write your comment' onChange={(e) => setComment(e.target.value)}></textarea>
         </div>
         <div className={style.formButton}>
           <button type="submit">Submit review</button>

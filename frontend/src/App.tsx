@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Tours from './pages/Tours/Tours';
 import Login from './pages/Login/Login';
-import Demo from './pages/TourDemo/Demo';
+import TourInfo from './pages/TourInfo/TourInfo';
 import SignUp from './pages/SignUp/SignUp';
 import Destination from './pages/Destination/Destination';
 import DestinationInfo from './pages/DestinationInfo/DestinationInfo';
@@ -14,7 +14,7 @@ function App() {
     <Routes>
       <Route path='/' element={ <Home /> } />
       <Route path='/tours' element={ <Tours /> } />
-      <Route path='/tours/:id' element={ <Demo /> } />
+      <Route path='/tours/:id' element={ <TourInfo /> } />
       <Route path='/login' element={ <Login /> } />
       <Route path='/signup' element={ <SignUp /> } />
       <Route path='/destination' element={ <Destination /> } />

@@ -53,6 +53,7 @@ model User {
   email     String    @unique
   firstname String?
   lastname  String?
+  image     String?
   reviews   Review[]
   updatedAt DateTime? @default(now())
   createdAt DateTime? @default(now())
@@ -62,6 +63,9 @@ model User {
 
 model Review {
   id        Int       @id @default(autoincrement())
+  name      String?
+  email     String?
+  image     String?
   comment   String
   services  Int
   locations Int

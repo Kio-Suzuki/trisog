@@ -1,21 +1,42 @@
-import ReviewGrade from '../ReviewGrade/ReviewGrade';
 import style from './Review.module.css';
 import photo from '../../assets/photo.jpg';
+import { IoStar } from "react-icons/io5";
+import { format } from 'date-fns';
 
-function Review() {
+export type Review = {
+  id: number;
+  comment: string;
+  overall: number;
+  createdAt: string;
+  user: {
+    id: string;
+    firstname: string;
+    lastname: string;
+    email: string;
+  };
+};
+
+const Review: FC<ReviewProps> = ({ comment, overall, user, createdAt }) => {
+
+  const dateFormatted = format(new Date(createdAt), 'MMMM d, yyyy');
+  
   return (
     <div className={style.reviewContainer}>
       <div className={style.reviewImage}>
         <img src={photo} alt="" />
       </div>
       <div className={style.reviewData}>
-        <span className={style.reviewDate}>March 20, 2022</span>
-        <h1 className={style.reviewUser}>Sindy Simmons</h1> 
-        <span><ReviewGrade /></span>	
-        <p className={style.reviewText}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit ut iure provident, nihil odio ipsam earum explicabo porro laborum, saepe possimus obcaecati. Odio sed ipsam molestias maiores nemo numquam? Voluptate?</p>
+        <span className={style.reviewDate}>{dateFormatted}</span>
+        <h1 className={style.reviewUser}>
+          {user.firstname} {user.lastname}
+        </h1>
+        <div className={style.reviewGradeContainer}>
+          <IoStar /><span> {overall}</span>
+        </div>
+        <p className={style.reviewText}>{comment}</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Review
+export default Review;

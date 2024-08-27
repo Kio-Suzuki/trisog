@@ -1,8 +1,8 @@
 .tourInfoContainer {
   width: 50vw;
-  height: 270vh;
   margin-left: 0;
   top: 0;
+  margin-bottom: 8em;
 }
 
 .tourImage {
@@ -33,15 +33,18 @@
 
 .tourData {
   display: flex;
-  gap: 5em
+  justify-content: space-between;
 }
 
 .tourData p {
   font-weight: 600;
+  
 }
 
 .tourData h6 {
   color: #6b7087;
+  display: flex;
+;
 }
 
 .priceColor {
@@ -70,4 +73,18 @@
 
 .locationColor {
   color: #6b7087;  
+}
+
+.tourReviewContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.noReview {
+  text-align: left;
+  padding: 2em;
+  border: 1px solid #f3f3f5;
+  margin-top: 2em;
+  font-weight: 600;
 }

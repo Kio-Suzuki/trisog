@@ -100,7 +100,6 @@
   justify-content: center;
   align-items: center;
   gap: 1em;
-  
 }
 
 .counter p {
@@ -112,6 +111,7 @@
   justify-content: center;
   align-items: center;
   color: #051036;
+  margin-top: 2px;
 }
 
 .ticketContainer button {

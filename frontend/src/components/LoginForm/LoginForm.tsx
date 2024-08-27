@@ -54,7 +54,7 @@ function LoginForm() {
             email: user.email,
             firstname: name || "",
             lastname: last_name || "",
-            photoURL: userPhoto || "",
+            image: userPhoto || "",
             accessToken: accessToken || "",
         };
 
@@ -90,6 +90,7 @@ function LoginForm() {
         email: user.email,
         firstname: name || "",
         lastname: last_name || "",
+        image: userPhoto || "",
       };
 
       console.log('UserObj:', userObj);

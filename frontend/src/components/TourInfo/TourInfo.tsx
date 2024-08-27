@@ -37,6 +37,25 @@ function TourInfo({ tour }: TourProps) {
     googleMapsApiKey: "AIzaSyBkYwyHygzVcR0PJdMSXj8gwZIPYqhCP0o"
   });
 
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3333/reviews/tour/${id}`);
+        console.log("Review data:", response.data);
+  
+        if (response.data && response.data.length > 0) {
+          setReviews(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching reviews", error);
+      }
+    };
+    fetchReviews();
+  }, [id]);
+
   return (
     <div className={style.tourInfoContainer}>
        
@@ -99,11 +118,16 @@ function TourInfo({ tour }: TourProps) {
         <div className={style.tourAverageReview}>
           <AverageReview />
         </div>
-        <div className={style.tourReview}>
-          <Review />
-          <AddReview />
+        <div className={style.tourReviewContainer}>
+          {reviews.length > 0 ? (
+            reviews.map((review) => (
+              <Review key={review.id} {...review} />
+            ))
+          ) : (
+            <p className={style.noReview}>No reviews available for this tour.</p>
+          )}
         </div>
-
+        <AddReview />
       </div>
     </div>
   )

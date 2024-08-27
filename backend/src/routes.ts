@@ -22,8 +22,8 @@ router.get('/destinations/:id', new DestinationInfoController().handle);
 
 //-- ROTAS REVIEWS
 
-router.get('/reviews', new ListReviewController().handle);
-router.put('/reviews', new AddReviewController().handle);
+router.get('/reviews/tour/:tourId', new ListReviewController().handle);
+router.post('/reviews', new AddReviewController().handle);
 
 //-- ROTAS USERS
 
