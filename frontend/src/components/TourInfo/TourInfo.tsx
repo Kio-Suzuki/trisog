@@ -38,23 +38,33 @@ function TourInfo({ tour }: TourProps) {
   });
 
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [overallAverage, setOverallAverage] = useState<number>(0);
+  const [reviewsCount, setReviewsCount] = useState<number>(0);
   const { id } = useParams<{ id: string }>();
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3333/reviews/tour/${id}`);
-        console.log("Review data:", response.data);
   
-        if (response.data && response.data.length > 0) {
-          setReviews(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching reviews", error);
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3333/reviews/tour/${id}`);
+      console.log("Review data:", response.data);
+
+      if (response.data) {
+        setReviews(response.data.reviews);
+        setOverallAverage((response.data.overallAverage).toFixed(1));
+        setReviewsCount(response.data.reviewsCount);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching reviews", error);
+    }
+  };
+
+  useEffect(() => {
     fetchReviews();
   }, [id]);
+
+  const handleReviewAdded = async () => {
+    await fetchReviews();  
+  };
 
   return (
     <div className={style.tourInfoContainer}>
@@ -92,7 +102,7 @@ function TourInfo({ tour }: TourProps) {
           </div>
           <div className={style.tourReview}>
             <h6>Reviews</h6>
-            <p><IoStar className={style.starColor}/> {tour?.review}</p>
+            <p><IoStar className={style.starColor}/> {overallAverage} <span className={style.reviewCounter}>({reviewsCount} reviews)</span></p>
           </div>
         </div>
         <div className={style.tourOverview}>
@@ -116,7 +126,7 @@ function TourInfo({ tour }: TourProps) {
           </div>
         </div>
         <div className={style.tourAverageReview}>
-          <AverageReview />
+          <AverageReview average={overallAverage} />
         </div>
         <div className={style.tourReviewContainer}>
           {reviews.length > 0 ? (
@@ -127,7 +137,7 @@ function TourInfo({ tour }: TourProps) {
             <p className={style.noReview}>No reviews available for this tour.</p>
           )}
         </div>
-        <AddReview />
+        <AddReview onReviewAdded={handleReviewAdded}/>
       </div>
     </div>
   )

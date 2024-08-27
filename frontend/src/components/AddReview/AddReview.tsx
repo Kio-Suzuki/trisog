@@ -1,5 +1,5 @@
 import { useState, useEffect, SetStateAction } from 'react';
-import axios, { get } from 'axios';
+import axios from 'axios';
 import style from './AddReview.module.css';
 import { IoStar } from "react-icons/io5";
 import { getAuth } from 'firebase/auth';
@@ -25,17 +25,16 @@ export type Review = {
     lastname: string;
     email: string;
   }
+  overallAverage: number;
+  reviewsCount: number;
 }
 
-type ReviewProps = {
-  review: Review;
-}
-
-function AddReview() {
+function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [image, setImage] = useState<string>('');
+
   const [comment, setComment] = useState<string>('');
   const [services, setServices] = useState<number>(0);
   const [locations, setLocations] = useState<number>(0);
@@ -43,12 +42,15 @@ function AddReview() {
   const [prices, setPrices] = useState<number>(0);
   const [food, setFood] = useState<number>(0);
   const [rooms, setRooms] = useState<number>(0);
+
   const [servicesStars, setServicesStars] = useState<number>(0);
   const [locationStars, setLocationStars] = useState<number>(0);
   const [amenitiesStars, setAmenitiesStars] = useState<number>(0);
   const [pricesStars, setPricesStars] = useState<number>(0);
   const [foodStars, setFoodStars] = useState<number>(0);
   const [roomsStars, setRoomsStars] = useState<number>(0);
+
+  // const [reviews, setReviews] = useState<Review[]>([]);
 
   const handleServices = (starNumber: SetStateAction<number>) => {
     setServicesStars(starNumber);
@@ -103,11 +105,9 @@ function AddReview() {
     const urlSegments = window.location.pathname.split('/');
     const tourId = parseInt(urlSegments[urlSegments.length - 1]); 
 
-    console.log(tourId);
-
     const review = {
-      name,
-      email,
+      name: name,
+      email: email,
       image,
       comment,
       services,
@@ -120,18 +120,38 @@ function AddReview() {
       userId: token?.uid
     };
 
-    console.log(review);
+    if (services === 0 || locations === 0 || amenities === 0 || prices === 0 || food === 0 || rooms === 0) {
+      toast.error('Please select a rating for each category, at least 1 star');
+      return;
+    }
 
     try {
       const response = await axios.post('http://localhost:3333/reviews', review);
-      console.log(response);
       toast.success('Review added successfully');
+      onReviewAdded();
       setName('');
       setEmail('');
       setComment('');
+
+      setServicesStars(0);
+      setLocationStars(0);
+      setAmenitiesStars(0);
+      setPricesStars(0);
+      setFoodStars(0);
+      setRoomsStars(0);
+      
+      setServices(0);
+      setLocations(0);
+      setAmenities(0);
+      setPrices(0);
+      setFood(0);
+      setRooms(0);
+      console.log('Name:', name)
     } catch (error) {
+      toast.error('Error adding review');
       console.log(error);
-    }
+    } 
+    
   }
 
   return (
@@ -146,6 +166,7 @@ function AddReview() {
                 key={star}
                 className={servicesStars >= star ? `${style.star} ${style.clicked}` : style.star}
                 onClick={() => handleServices(star)}
+                values='services'
               />
             ))}
           </div>
@@ -213,11 +234,30 @@ function AddReview() {
       </div>
       <form onSubmit={handleSubmit}>
         <div className={style.formInfo}>
-          <input type="text" placeholder='Your name' onChange={(e) => setName(e.target.value)}/>
-          <input type="email" placeholder='Email address' onChange={(e) => setEmail(e.target.value)}/>
+          <input 
+            type="text" 
+            placeholder='Your name' 
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            required
+          />
+          <input 
+            type="email" 
+            placeholder='Email address' 
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
+          />
         </div>
         <div className={style.formText}>
-          <textarea placeholder='Write your comment' onChange={(e) => setComment(e.target.value)}></textarea>
+          <textarea 
+            typeof='text'
+            placeholder='Write your comment' 
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
+            required
+          >
+          </textarea>
         </div>
         <div className={style.formButton}>
           <button type="submit">Submit review</button>

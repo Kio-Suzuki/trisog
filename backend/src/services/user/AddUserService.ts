@@ -5,7 +5,7 @@ interface UserRequest {
   email: string;
   firstname: string;
   lastname: string;
-  image?: string;
+  image: string;
 }
 
 class AddUserService {

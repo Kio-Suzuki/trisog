@@ -12,6 +12,7 @@ const SignUpForm = () => {
   const [lastname, setLastname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [image, setImage] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +25,7 @@ const SignUpForm = () => {
           email: user.email,
           firstname: firstname,
           lastname: lastname,
+          image: 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png',
         };
 
         console.log(userCredential);

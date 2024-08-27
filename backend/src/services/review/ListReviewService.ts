@@ -6,6 +6,7 @@ class ListReviewService {
       where: { tourId },
       select: {
         id: true,
+        name: true,
         overall: true,
         comment: true,
         services: true,
@@ -22,11 +23,18 @@ class ListReviewService {
             firstname: true,
             lastname: true,
             email: true,
+            image: true,
           },
         },
       },
     });
-    return reviews;
+
+    const reviewsCount = reviews.length;
+    const overallAverage = reviewsCount > 0 
+      ? reviews.reduce((sum, review) => sum + review.overall, 0) / reviewsCount : 0;
+
+    return { reviews, overallAverage, reviewsCount };
+
   }
 }
 
