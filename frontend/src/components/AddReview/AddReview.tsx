@@ -146,12 +146,10 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
       setPrices(0);
       setFood(0);
       setRooms(0);
-      console.log('Name:', name)
     } catch (error) {
       toast.error('Error adding review');
       console.log(error);
     } 
-    
   }
 
   return (

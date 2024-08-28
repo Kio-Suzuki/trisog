@@ -41,6 +41,7 @@ function LoginForm() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        toast.error("Failed to sign in");
       });
   }
 
@@ -50,29 +51,42 @@ function LoginForm() {
     provider.addScope('email');
 
     try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential?.accessToken;
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const accessToken = credential?.accessToken;
 
-        console.log('User:', user);
-        console.log('Credential:', credential);
+      console.log('User:', user);
+      console.log('Credential:', credential);
 
-        const [name, last_name] = user.displayName?.split(" ", 2) || [];
-        const userPhoto = user.photoURL;
+      const [name, last_name] = user.displayName?.split(" ", 2) || [];
+      const userPhoto = user.photoURL;
+      const userObj = {
+          id: user.uid,
+          email: user.email,
+          firstname: name || "",
+          lastname: last_name || "",
+          image: userPhoto || "",
+          accessToken: accessToken || "",
+      };
 
-        const userObj = {
-            id: user.uid,
-            email: user.email,
-            firstname: name || "",
-            lastname: last_name || "",
-            image: userPhoto || "",
-            accessToken: accessToken || "",
-        };
+      try {
+        const response = await axios.get(`http://localhost:3333/user/${user.uid}`);
 
-        console.log('UserObj:', userObj);
-
-        try {
+        if (response.data) {
+          console.log('User already exists in the database:', response.data);
+          toast.success("Signed in successfully", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          } );
+          setTimeout(() => navigate('/'), 2000);
+        } else {
             await axios.post("http://localhost:3333/user", userObj);
             toast.success("Signed in successfully", {
               position: "top-center",
@@ -84,10 +98,12 @@ function LoginForm() {
               progress: undefined,
               theme: "light",
             });
-        } catch (error) {
-            console.log(error);
-            toast.error("Signed in, but failed to save user to database");
+            setTimeout(() => navigate('/'), 2000);
         }
+      } catch (error) {
+          console.log(error);
+          toast.error("Signed in, but failed to save user to database");
+      }
     } catch (error) {
         console.log(error);
         toast.error("Failed to sign in");
@@ -103,9 +119,6 @@ function LoginForm() {
       const user = result.user;
       const [name, last_name] = user.displayName!.split(" ", 2);
       const userPhoto = user.photoURL;
-  
-      console.log('User:', user);
-  
       const userObj = {
         id: user.uid,
         email: user.email,
@@ -131,8 +144,8 @@ function LoginForm() {
           } );
           setTimeout(() => navigate('/'), 2000);
         } else {
-
           await axios.post("http://localhost:3333/user", userObj);
+          console.log('User save in database:', response.data);
           toast.success("Signed in successfully", {
             position: "top-center",
             autoClose: 1000,
@@ -143,6 +156,7 @@ function LoginForm() {
             progress: undefined,
             theme: "light",
           });
+          setTimeout(() => navigate('/'), 2000);
         }
       } catch (error) {
         console.log('Error fetching user from database:', error);

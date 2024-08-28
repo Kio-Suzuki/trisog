@@ -29,6 +29,23 @@ class ListReviewService {
       },
     });
 
+    const userReviewCounts = await Promise.all(
+      reviews.map(async (review) => {
+        const count = await prisma.review.count({
+          where: { userId: review.user.id },
+        });
+        return { userId: review.user.id, reviewCount: count };
+      })
+    );
+
+    const reviewsWithCount = reviews.map(review => {
+      const userCount = userReviewCounts.find(count => count.userId === review.user.id);
+      return {
+        ...review,
+        userReviewCount: userCount ? userCount.reviewCount : 0,
+      };
+    });
+
     const reviewsCount = reviews.length;
     const overallAverage = reviewsCount > 0 
       ? reviews.reduce((sum, review) => sum + review.overall, 0) / reviewsCount : 0;
@@ -51,8 +68,7 @@ class ListReviewService {
     const overallRooms = reviewsCount > 0
       ? reviews.reduce((sum, review) => sum + review.rooms, 0) / reviewsCount : 0;
 
-    return { reviews, overallAverage, reviewsCount, overallService, overallLocation, overallAmenities, overallPrices, overallFood, overallRooms };
-
+    return { reviews: reviewsWithCount, overallAverage, reviewsCount, overallService, overallLocation, overallAmenities, overallPrices, overallFood, overallRooms };
   }
 }
 

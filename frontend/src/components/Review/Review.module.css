@@ -36,6 +36,13 @@
   color: #051036;
 }
 
+.gradeContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1em;
+}
+
 .reviewGradeContainer {
   width: 2.8vw;
   height: 3.6vh;
