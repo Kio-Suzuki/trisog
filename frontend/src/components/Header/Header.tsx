@@ -8,8 +8,58 @@ import { FiUser } from "react-icons/fi";
 import logo1 from '../../assets/logo1.svg';
 import { Link } from 'react-router-dom';	
 import { NavLink } from 'react-router-dom';
+import { signOut, getAuth } from 'firebase/auth';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Header() {
+  const [userName, setUserName] = useState<string>('');
+  const [userImage, setUserImage] = useState<string>('');
+  const auth = getAuth();
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    console.log(user);
+    if (user) {
+      if (user.displayName === null) {
+        (async function fetchUserData() {
+          try {
+            const response = await axios.get(`http://localhost:3333/user/${user.uid}`);
+            if (response.data) {
+              setUserName(response.data.firstname);
+              setUserImage(response.data.image);
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        })();
+      } else {
+        setUserName(user.displayName);
+        setUserImage(user.photoURL);
+      }
+    }
+  }, [auth]);
+
+  async function handleSignOut() {
+    try {
+      await signOut(auth);
+      toast.info('You have been signed out', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setUserName('');
+      setUserImage('');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className={style.headerContainer}>
@@ -57,8 +107,24 @@ function Header() {
         </div>
         <div className={style.user}>
           <CiSearch />
-          <FiUser />
-          <Link to='/login'><span className={style.login}>Login</span></Link><span>/</span><Link to='/signup'><span className={style.signup}> Signup</span></Link>
+          {userName ? (
+            <>
+              <img 
+                src={userImage} 
+                alt="user" 
+                className={style.userImage}
+              />
+              <p className={style.userName}>{userName}</p>
+              <button onClick={handleSignOut}>Sign Out</button>
+            </>
+          ) : (
+            <>
+              <FiUser />
+              <Link to='/login'><span className={style.login}>Login</span></Link>
+              <span>/</span>
+              <Link to='/signup'><span className={style.signup}>Signup</span></Link>
+            </>
+          )}
         </div>
       </div>
     </div>

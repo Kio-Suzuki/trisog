@@ -6,21 +6,33 @@ import TourInfo from './pages/TourInfo/TourInfo';
 import SignUp from './pages/SignUp/SignUp';
 import Destination from './pages/Destination/Destination';
 import DestinationInfo from './pages/DestinationInfo/DestinationInfo';
+import { Protected } from './pages/ProtectedRoute/ProtectedRoute';
+
 
 import './App.css'
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   
   return (
+    <>
     <Routes>
       <Route path='/' element={ <Home /> } />
-      <Route path='/tours' element={ <Tours /> } />
-      <Route path='/tours/:id' element={ <TourInfo /> } />
+      <Route 
+        path='/tours' 
+        element={ <Protected><Tours /></Protected>}
+      />
+      <Route 
+        path='/tours/:id' 
+        element={ <Protected><TourInfo /></Protected>}
+      />
       <Route path='/login' element={ <Login /> } />
       <Route path='/signup' element={ <SignUp /> } />
       <Route path='/destination' element={ <Destination /> } />
       <Route path='/destination/:id' element={ <DestinationInfo /> } />
     </Routes>
+    <ToastContainer />
+    </>
   )
 }
 

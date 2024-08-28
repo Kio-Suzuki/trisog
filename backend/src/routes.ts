@@ -7,6 +7,7 @@ import { ListReviewController } from './controllers/review/ListReviewControllers
 import { AddUserController } from './controllers/user/AddUserControllers';
 import { AddReviewController } from './controllers/review/AddReviewController';
 import { TypesTourController } from './controllers/tour/TypesTourController';
+import { UserIdController } from './controllers/user/UserIdController';
 
 const router = Router();
 
@@ -29,5 +30,6 @@ router.get('/reviews/:userId', new ListReviewController().handle);
 //-- ROTAS USERS
 
 router.post('/user', new AddUserController().handle);
+router.get('/user/:id', new UserIdController().handle);
 
 export { router }

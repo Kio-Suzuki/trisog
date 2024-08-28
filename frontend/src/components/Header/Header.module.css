@@ -75,6 +75,8 @@
   font-size: 1.1em;
   font-weight: 600;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5em;
 }
 
@@ -103,3 +105,27 @@ ul a {
 .headerMenu .active {
   color: #FC5056;  
 }
+
+.userImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.userName {
+  font-size: 0.9em;
+}
+
+.user button {
+  background-color: #FC5056;
+  color: #FFF;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4em 1em;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+  cursor: pointer;
+}
+
+.user button:hover {
+  background-color: #ff393f;
+} 

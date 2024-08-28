@@ -11,6 +11,7 @@ import TravelGuide from '../../components/TravelGuide/TravelGuide';
 import Testimonials from '../../components/Testimonials/Testimonials';
 import Logos from '../../components/Logos/Logos';
 import TitleBar from '../../components/TitleBar/TitleBar';
+import { ToastContainer } from 'react-toastify';
 
 function Home() {
 
@@ -28,6 +29,7 @@ function Home() {
       <TravelGuide />
       <Logos />
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

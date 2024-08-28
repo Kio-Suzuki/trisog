@@ -11,12 +11,14 @@ import { FacebookAuthProvider } from "firebase/auth";
 import { auth } from '../../services/firebase';
 import style from './LoginForm.module.css';
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
 function LoginForm() {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +26,17 @@ function LoginForm() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        toast.success("Signed in successfully", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => navigate('/'), 2000);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -62,7 +74,16 @@ function LoginForm() {
 
         try {
             await axios.post("http://localhost:3333/user", userObj);
-            toast.success("Signed in successfully");
+            toast.success("Signed in successfully", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
         } catch (error) {
             console.log(error);
             toast.error("Signed in, but failed to save user to database");
@@ -71,20 +92,20 @@ function LoginForm() {
         console.log(error);
         toast.error("Failed to sign in");
     }
-}
+  }
 
-  const handleGogle = async (e: React.FormEvent) => {
+  const handleGoogle = async (e: React.FormEvent) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
-
+  
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       const [name, last_name] = user.displayName!.split(" ", 2);
       const userPhoto = user.photoURL;
-
+  
       console.log('User:', user);
-
+  
       const userObj = {
         id: user.uid,
         email: user.email,
@@ -92,23 +113,48 @@ function LoginForm() {
         lastname: last_name || "",
         image: userPhoto || "",
       };
-
-      console.log('UserObj:', userObj);
-
+  
       try {
-        await axios.post("http://localhost:3333/user", userObj);
+        const response = await axios.get(`http://localhost:3333/user/${user.uid}`);
+        
+        if (response.data) {
+          console.log('User already exists in the database:', response.data);
+          toast.success("Signed in successfully", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          } );
+          setTimeout(() => navigate('/'), 2000);
+        } else {
 
-        toast.success("Signed in successfully");
+          await axios.post("http://localhost:3333/user", userObj);
+          toast.success("Signed in successfully", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
       } catch (error) {
-        console.log(error);
-        toast.error("Signed in, but failed to save user to database");
+        console.log('Error fetching user from database:', error);
+        toast.error("Failed to check user in database");
       }
+  
     } catch (error) {
-        console.log(error);
-        toast.error("Failed to sign in");
-      }
-}   
-
+      console.log(error);
+      toast.error("Failed to sign in");
+    }
+  }
+  
   return (
     <div className={style.loginContainer}>
       <div className={style.loginInfo}>
@@ -141,7 +187,7 @@ function LoginForm() {
           Facebook
         </button>
         <button 
-          onClick={handleGogle}
+          onClick={handleGoogle}
           className={style.signButton}
         >
           <FcGoogle className={style.googleIcon}/>
