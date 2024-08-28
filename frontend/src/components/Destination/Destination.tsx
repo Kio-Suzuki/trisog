@@ -17,10 +17,11 @@ export type Destination = {
   population: number;
   timezone: string;
   timetravel: string;
+  travelers: number;
 }
 function Destination() {
 
-  const [destinations, setDestinations] = useState<Destination | null>(null);
+  const [destinations, setDestinations] = useState<Destination[] | null>(null);
 
   useEffect(() => {
     const fetchTour = async () => {
@@ -58,7 +59,7 @@ function Destination() {
               alt={`image-${index + 1}`} 
             />
             <div className={style.destinationCountry}>
-              <p>{destination.population} Travelers</p>
+              <p>{new Intl.NumberFormat('en-US').format(destination.travelers)} Travelers</p>
               <h2>{destination.country}</h2>
             </div>
           </Link>

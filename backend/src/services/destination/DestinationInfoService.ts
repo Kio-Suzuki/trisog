@@ -17,6 +17,7 @@ class DestinationInfoService {
         population: true,
         timezone: true,
         timetravel: true,
+        capital: true
       },
     });
     return destination;

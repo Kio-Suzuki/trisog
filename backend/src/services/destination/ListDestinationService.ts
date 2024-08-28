@@ -16,6 +16,8 @@ class ListDestinationService {
         population: true,
         timezone: true,
         timetravel: true,
+        travelers: true,
+        capital: true
       },
     });
     return destinations;

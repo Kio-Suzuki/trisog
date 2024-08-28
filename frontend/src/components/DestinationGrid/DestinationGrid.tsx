@@ -20,7 +20,7 @@ export type Destination = {
 
 function DestinationGrid() {
 
-  const [destinations, setDestinations] = useState<Destination | null>(null);
+  const [destinations, setDestinations] = useState<Destination[] | null>(null);
 
   useEffect(() => {
     const fetchTour = async () => {
@@ -54,7 +54,7 @@ function DestinationGrid() {
               alt={`image-${index + 1}`} 
             />
             <div className={style.destinationCountry}>
-              <p>{destination.population} Travelers</p>
+              <p>{new Intl.NumberFormat('en-US').format(destination.travelers)} Travelers</p>
               <h2>{destination.country}</h2>
             </div>
           </Link>
