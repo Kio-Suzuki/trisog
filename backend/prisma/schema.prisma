@@ -50,7 +50,7 @@ model Destination {
 
 model User {
   id        String    @id
-  email     String    @unique
+  email     String    
   firstname String?
   lastname  String?
   image     String?

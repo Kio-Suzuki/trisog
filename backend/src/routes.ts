@@ -6,24 +6,25 @@ import { DestinationInfoController } from './controllers/destination/Destination
 import { ListReviewController } from './controllers/review/ListReviewControllers';
 import { AddUserController } from './controllers/user/AddUserControllers';
 import { AddReviewController } from './controllers/review/AddReviewController';
+import { TypesTourController } from './controllers/tour/TypesTourController';
 
 const router = Router();
 
 //-- ROTAS TOURS
 router.get('/tours', new ListTourController().handle);
-
 router.get('/tours/:id', new TourInfoController().handle);
+router.get('/tourstypes', new TypesTourController().handle);
 
 //-- ROTAS DESTINATIONS
 
 router.get('/destinations', new ListDestinationController().handle);
-
 router.get('/destinations/:id', new DestinationInfoController().handle);
 
 //-- ROTAS REVIEWS
 
 router.get('/reviews/tour/:tourId', new ListReviewController().handle);
 router.post('/reviews', new AddReviewController().handle);
+router.get('/reviews/:userId', new ListReviewController().handle);
 
 //-- ROTAS USERS
 

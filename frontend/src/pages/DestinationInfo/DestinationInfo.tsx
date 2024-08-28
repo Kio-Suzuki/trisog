@@ -77,11 +77,10 @@ function DestinationInfo() {
         <img src={destination.img} className={style.img6}/>
         <img src={destination.img} className={style.img7}/>
       </div>
-      <div className={style.container2}>
-        <h2>About</h2>
+      <div className={style.containerAbout}>
+        <h2>About {destination.country}</h2>
         <p>{destination.about}</p>
       </div>
-      
       <div className={style.container3}>
         <div className={style.informationTitle}>
           <h2>Basic Information</h2>

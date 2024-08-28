@@ -37,12 +37,17 @@
   height: 100%;
 }
 
-.container2 {
+.containerAbout {
   width: 46.5vw;
-  height: 55vh;
   margin-left: 15vw;
   padding: 1em 0;
 }
+
+.containerAbout h2 {
+  margin-bottom: 1em;
+}
+
+
 
 .container3 {
   width: 46.5vw;

@@ -5,19 +5,25 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import style from './Categories.module.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Categories() {
 
-  const data = [
-    { id: '1', image: <CardCategory /> },
-    { id: '2', image: <CardCategory /> },
-    { id: '3', image: <CardCategory /> },
-    { id: '4', image: <CardCategory /> },
-    { id: '5', image: <CardCategory /> },
-    { id: '6', image: <CardCategory /> },
-    { id: '7', image: <CardCategory /> },
-    { id: '8', image: <CardCategory /> },
-  ]
+  const [tours, setTours] = useState<Tour[]>([]);
+
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const response = await axios.get('http://localhost:3333/tourstypes');
+        setTours(response.data);
+        console.log(response.data); 
+      } catch (error) {
+        console.error("Error fetching tours", error);
+      }
+    };
+    fetchTours();
+  }, []);
 
   return (
     <div className={style.categoriesContainer}>
@@ -30,9 +36,9 @@ function Categories() {
           slidesPerView={6}
           pagination={{ clickable: true }}
         >
-          {data.map((card) => (
-            <SwiperSlide key={card.id}>
-              {card.image}
+          {tours.map((tour) => (
+            <SwiperSlide key={tour.id}>
+              <CardCategory tour={tour} />
             </SwiperSlide>
           ))}
         </Swiper>

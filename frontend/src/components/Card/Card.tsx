@@ -1,7 +1,8 @@
 import { GoClock } from "react-icons/go";
 import { Link } from 'react-router-dom';
-import style from './Card.module.css';
 import { IoStar } from "react-icons/io5";
+import { GrFavorite } from "react-icons/gr";
+import style from './Card.module.css';
 
 export type Tour = {
   id: number;
@@ -24,6 +25,9 @@ function Card({ tour }: CardProps) {
     <Link to={`/tours/${tour.id}`}>
       <div className={style.cardContainer}>
         <div className={style.cardImage}>
+          <div className={style.iconFavorite}>
+            <GrFavorite className={style.favorite} />
+          </div>
           <img src={tour.image} alt={tour.title} />
         </div>
         <div className={style.cardInfo}>

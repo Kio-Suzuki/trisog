@@ -6,6 +6,7 @@ import TourInfo from './pages/TourInfo/TourInfo';
 import SignUp from './pages/SignUp/SignUp';
 import Destination from './pages/Destination/Destination';
 import DestinationInfo from './pages/DestinationInfo/DestinationInfo';
+
 import './App.css'
 
 function App() {

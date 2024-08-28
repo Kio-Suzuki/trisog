@@ -39,6 +39,12 @@ function TourInfo({ tour }: TourProps) {
 
   const [reviews, setReviews] = useState<Review[]>([]);
   const [overallAverage, setOverallAverage] = useState<number>(0);
+  const [overallService, setOverallService] = useState<number>(0);
+  const [overallLocation, setOverallLocation] = useState<number>(0);
+  const [overallAmenities, setOverallAmenities] = useState<number>(0);
+  const [overallPrices, setOverallPrices] = useState<number>(0);
+  const [overallFood, setOverallFood] = useState<number>(0);
+  const [overallRooms, setOverallRooms] = useState<number>(0);
   const [reviewsCount, setReviewsCount] = useState<number>(0);
   const { id } = useParams<{ id: string }>();
 
@@ -51,6 +57,12 @@ function TourInfo({ tour }: TourProps) {
       if (response.data) {
         setReviews(response.data.reviews);
         setOverallAverage((response.data.overallAverage).toFixed(1));
+        setOverallService((response.data.overallService).toFixed(1));
+        setOverallLocation((response.data.overallLocation).toFixed(1));
+        setOverallAmenities((response.data.overallAmenities).toFixed(1));
+        setOverallPrices((response.data.overallPrices).toFixed(1));
+        setOverallFood((response.data.overallFood).toFixed(1));
+        setOverallRooms((response.data.overallRooms).toFixed(1));
         setReviewsCount(response.data.reviewsCount);
       }
     } catch (error) {
@@ -126,11 +138,19 @@ function TourInfo({ tour }: TourProps) {
           </div>
         </div>
         <div className={style.tourAverageReview}>
-          <AverageReview average={overallAverage} />
+          <AverageReview 
+            overallAverage={overallAverage}
+            overallLocation={overallLocation}
+            overallService={overallService}
+            overallAmenities={overallAmenities}
+            overallPrices={overallPrices}
+            overallFood={overallFood}
+            overallRooms={overallRooms}
+          />
         </div>
+        {reviews.length > 0 ? <h4 className={style.showReviewCount}>Showing {reviewsCount} review</h4> : null }
         <div className={style.tourReviewContainer}>
-          {reviews.length > 0 ? (
-            reviews.map((review) => (
+          {reviews.length > 0 ? (reviews.map((review) => (
               <Review key={review.id} {...review} />
             ))
           ) : (

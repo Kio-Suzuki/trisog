@@ -33,7 +33,25 @@ class ListReviewService {
     const overallAverage = reviewsCount > 0 
       ? reviews.reduce((sum, review) => sum + review.overall, 0) / reviewsCount : 0;
 
-    return { reviews, overallAverage, reviewsCount };
+    const overallService = reviewsCount > 0
+      ? reviews.reduce((sum, review) => sum + review.services, 0) / reviewsCount : 0;
+
+    const overallLocation = reviewsCount > 0
+      ? reviews.reduce((sum, review) => sum + review.locations, 0) / reviewsCount : 0;
+    
+    const overallAmenities = reviewsCount > 0
+      ? reviews.reduce((sum, review) => sum + review.amenities, 0) / reviewsCount : 0;
+    
+    const overallPrices = reviewsCount > 0
+      ? reviews.reduce((sum, review) => sum + review.prices, 0) / reviewsCount : 0;
+    
+    const overallFood = reviewsCount > 0
+      ? reviews.reduce((sum, review) => sum + review.food, 0) / reviewsCount : 0;
+
+    const overallRooms = reviewsCount > 0
+      ? reviews.reduce((sum, review) => sum + review.rooms, 0) / reviewsCount : 0;
+
+    return { reviews, overallAverage, reviewsCount, overallService, overallLocation, overallAmenities, overallPrices, overallFood, overallRooms };
 
   }
 }

@@ -8,6 +8,7 @@ class ListTourService {
         id: true,
         location: true,
         country: true,
+        continent: true,
         title: true,
         days: true,
         price: true,

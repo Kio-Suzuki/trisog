@@ -1,7 +1,13 @@
 import style from './CardCategory.module.css';
 import { BsSuitcase } from "react-icons/bs";
 
-function CardCategory() {
+export type TourType = {
+  id: number;
+  type: string;
+  count: number;
+}
+
+function CardCategory({ tour }: { tour: TourType }) {
 
   return (
     <div className={style.cardCategorieContainer}>
@@ -10,8 +16,8 @@ function CardCategory() {
         <div className={style.iconBackground}></div>
       </div>
       <div className={style.cardInfo}>
-        <span className={style.title}>Adventure</span>
-        <span className={style.tours}>10 Tours+</span>
+        <span className={style.title}>{tour.type}</span>
+        <span className={style.tours}>{tour.count} Tours+</span>
         <div className={style.cardPrice}>
           <span className={style.priceText}>From</span> 
           <span className={style.priceNumber}>$250</span>
