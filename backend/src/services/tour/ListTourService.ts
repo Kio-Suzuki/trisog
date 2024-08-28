@@ -15,7 +15,10 @@ class ListTourService {
         image: true,
       },
     })
-    return tours;   
+
+    const toursCount = await prisma.tour.count();
+
+    return { tours, toursCount };   
   }
 }
 

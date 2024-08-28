@@ -30,10 +30,10 @@ function TourInfo() {
   }, []);
 
   return (
-    <div className={style.demoContainer}>
+    <div className={style.tourInfoContainer}>
       <ToastContainer />
       <Header />
-      <div className={style.demoComponents}>
+      <div className={style.tourInfoComponents}>
         <TourInfoComponent tour={tours} />
         <BookNow tour={tours} />
       </div>

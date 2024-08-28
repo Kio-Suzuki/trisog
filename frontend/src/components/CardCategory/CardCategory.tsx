@@ -4,6 +4,7 @@ import { BsSuitcase } from "react-icons/bs";
 export type TourType = {
   id: number;
   type: string;
+  minPrice: number;
   count: number;
 }
 
@@ -20,7 +21,7 @@ function CardCategory({ tour }: { tour: TourType }) {
         <span className={style.tours}>{tour.count} Tours+</span>
         <div className={style.cardPrice}>
           <span className={style.priceText}>From</span> 
-          <span className={style.priceNumber}>$250</span>
+          <span className={style.priceNumber}>${tour.minPrice}</span>
         </div>
       </div>
     </div>

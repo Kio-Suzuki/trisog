@@ -109,23 +109,22 @@
 
 
 
-
+/* 
 input[type="checkbox"] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
-/* Estilo do label que funciona como o "checkbox" visual */
 input[type="checkbox"] + label {
   position: relative;
-  padding-left: 30px; /* Ajuste conforme necessário */
+  padding-left: 30px;
   cursor: pointer;
   display: inline-block;
   line-height: 20px;
 }
 
-/* Estilo do "checkbox" customizado */
+
 input[type="checkbox"] + label::before {
   content: '';
   position: absolute;
@@ -134,24 +133,25 @@ input[type="checkbox"] + label::before {
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  background-color: #f1f1f1; /* Cor padrão */
+  background-color: #f1f1f1; 
   border-radius: 3px;
   border: 1px solid #999;
 }
 
-/* Estilo do "checkbox" quando marcado */
+
 input[type="checkbox"]:checked + label::before {
-  background-color: #FC5056; /* Cor quando marcado */
+  background-color: #FC5056; 
   border: 1px solid #FC5056;
 }
 
-/* Estilo do checkmark */
+
 input[type="checkbox"]:checked + label::after {
-  content: '✔'; /* Pode usar outros caracteres ou imagens */
+  content: '✔'; 
   position: absolute;
   left: 6px;
   top: 50%;
   transform: translateY(-50%);
-  color: white; /* Cor do checkmark */
+  color: white; 
   font-size: 16px;
-}
+} 
+*/

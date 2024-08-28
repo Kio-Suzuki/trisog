@@ -1,24 +1,31 @@
 .tourContainer {
-  font-family: 'Work Sans';
+  display: flex;
+  flex-direction: column;
 }
 
 .tourContent {
   width: 70vw;
   margin: 2em auto;
   display: flex;
+  
 }
 
 .toursCards {
   display: flex;
   flex-wrap: wrap;
   padding: 0 0 0 3.9em;
+  
 }
 
 .sortBar {
   display: flex;
+  height: 4vh;
   margin-bottom: 2em;
 }
 
 .cards {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }

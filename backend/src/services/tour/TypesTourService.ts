@@ -7,11 +7,15 @@ class TypesTourService {
       _count: {
         type: true,
       },
+      _min: {
+        price: true,
+      },
     });
 
     return types.map(t => ({
       type: t.type,
-      count: t._count.type
+      count: t._count.type,
+      minPrice: t._min.price
     }));
   }
 }

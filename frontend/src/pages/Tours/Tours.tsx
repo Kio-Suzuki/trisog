@@ -32,10 +32,8 @@ function Tour() {
       <div className={style.tourContent}>
         <Sidebar tour={tours} />
         <div className={style.toursCards}>
-          <div className={style.sortBar}>
-            <SortBar />
-          </div>
           <div className={style.cards}>
+            <SortBar />
             <CardGrid />
           </div>
         </div>

@@ -15,7 +15,7 @@ function CardGrid() {
     const fetchTours = async () => {
       try {
         const response = await axios.get('http://localhost:3333/tours');
-        setTours(response.data);
+        setTours(response.data.tours);
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching tours", error);

@@ -43,7 +43,7 @@ function Sidebar({ tour }: { tour: TourType }) {
     const fetchTours = async () => {
       try {
         const response = await axios.get('http://localhost:3333/tours');
-        setTours(response.data);
+        setTours(response.data.tours);
       } catch (error) {
         console.error("Error fetching tours", error);
       }

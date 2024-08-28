@@ -1,10 +1,9 @@
-.demoContainer {
-  height: 250vh;
+.tourInfoContainer {
   margin: 0 auto;
   font-family: 'Work Sans';
 }
 
-.demoComponents {
+.tourInfoComponents {
   width: 70vw;
   margin: 0 auto;
   position: relative;

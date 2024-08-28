@@ -1,11 +1,30 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import style from './SortBar.module.css';
 import { AiOutlineSortAscending } from "react-icons/ai";
 
 function SortBar() {
+
+  const [toursCount, setToursCount] = useState<number>(0);
+
+  useEffect(() => {
+
+    const fetchTours = async () => {
+      try {
+        const response = await axios.get('http://localhost:3333/tours');
+        setToursCount(response.data.toursCount);
+        console.log("Tours count: ", toursCount);
+      } catch (error) {
+        console.error("Error fetching tours", error);
+      }
+    };
+    fetchTours();
+  }, []);
+
   return (
     <div className={style.sortContainer}>
       <div>
-        <span>16 Tours</span>
+        <span>{toursCount} Tours</span>
       </div>
       <div>
         <span>Sort by</span> <span className={style.iconSort}><AiOutlineSortAscending /></span>
