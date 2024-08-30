@@ -26,6 +26,7 @@ function Header() {
           try {
             const response = await axios.get(`http://localhost:3333/user/${user.uid}`);
             if (response.data) {
+              console.log(response.data);
               setUserName(response.data.firstname);
               setUserImage(response.data.image);
             }

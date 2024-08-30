@@ -20,6 +20,9 @@ function Tours() {
   
   const query = new URLSearchParams(location.search);
   const search = query.get('search') || '';
+  const type = query.get('type') || '';
+  const date = query.get('date') || '';
+  const guests = query.get('guests') || '';
   const page = query.get('page') || '1';
 
   useEffect(() => {
@@ -28,6 +31,9 @@ function Tours() {
         const response = await axios.get('http://localhost:3333/tours', {
           params: {
             search,
+            type,
+            date,
+            guests,
             page,
             take: itemsPerPage
           }
@@ -43,14 +49,14 @@ function Tours() {
     };
 
     fetchTours();
-  }, [search, page]);
+  }, [search, type, date, guests, page]);
 
   const handleSearch = (search: string) => {
     navigate(`/tours?search=${search}&page=1`);
   };
 
   const handlePageClick = (e: { selected: number }) => {
-    const newPage = e.selected + 1; // Page numbers start from 1
+    const newPage = e.selected + 1;
     navigate(`/tours?search=${search}&page=${newPage}`);
   };
 

@@ -26,7 +26,13 @@ export interface TourContextType {
   tours: Tour[];
   toursCount: number;
   searchQuery: string;
+  typeQuery: string | null;
+  dateQuery: string | null;
+  guestsQuery: number | null;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  setTypeQuery: React.Dispatch<React.SetStateAction<string | null>>;
+  setDateQuery: React.Dispatch<React.SetStateAction<string | null>>;
+  setGuestsQuery: React.Dispatch<React.SetStateAction<number | null>>;
   fetchTours: () => Promise<void>;
 }
 
@@ -36,11 +42,19 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
   const [tours, setTours] = useState<Tour[]>([]);
   const [toursCount, setToursCount] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [typeQuery, setTypeQuery] = useState<string | null>(null);
+  const [dateQuery, setDateQuery] = useState<string | null>(null);
+  const [guestsQuery, setGuestsQuery] = useState<number | null>(null);
 
   const fetchTours = async () => {
     try {
       const response = await axios.get('http://localhost:3333/tours', {
-        params: { search: searchQuery }
+        params: { 
+          search: searchQuery,
+          type: typeQuery,
+          date: dateQuery,
+          guests: guestsQuery,
+        }
       });
       setTours(response.data.tours);
       setToursCount(response.data.toursCount);
@@ -50,7 +64,20 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <TourContext.Provider value={{ tours, toursCount, fetchTours, searchQuery, setSearchQuery }}>
+    <TourContext.Provider 
+      value={{ 
+        tours, 
+        toursCount, 
+        fetchTours, 
+        searchQuery, 
+        setSearchQuery,
+        typeQuery,
+        setTypeQuery,
+        dateQuery,
+        setDateQuery,
+        guestsQuery,
+        setGuestsQuery
+      }}>
       {children}
     </TourContext.Provider>
   );

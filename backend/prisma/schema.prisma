@@ -13,6 +13,8 @@ model Tour {
   country   String
   continent String
   title     String
+  startDate String
+  endDate   String
   days      Int
   price     Float
   image     String
