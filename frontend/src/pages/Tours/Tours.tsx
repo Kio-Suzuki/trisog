@@ -9,6 +9,8 @@ import Footer from '../../components/Footer/Footer';
 import style from './Tours.module.css';
 import ReactPaginate from 'react-paginate';
 import { AiOutlineSortAscending } from "react-icons/ai";
+import { useTourContext } from '../../context/TourContext';
+import { set } from 'date-fns';
 
 function Tours() {
   const [tours, setTours] = useState<Tour[]>([]);
@@ -17,6 +19,7 @@ function Tours() {
   const location = useLocation();
   const navigate = useNavigate();
   const [toursCount, setToursCount] = useState<number>(0);
+  const { orderQuery, setOrderQuery, fetchTours } = useTourContext();
   
   const query = new URLSearchParams(location.search);
   const search = query.get('search') || '';
@@ -24,6 +27,8 @@ function Tours() {
   const date = query.get('date') || '';
   const guests = query.get('guests') || '';
   const page = query.get('page') || '1';
+  const price = query.get('price') || '';
+  const order = orderQuery || 'asc';
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -34,22 +39,22 @@ function Tours() {
             type,
             date,
             guests,
+            price,
             page,
+            order,
             take: itemsPerPage
           }
         });
         setTours(response.data.tours);
         setToursCount(response.data.toursCount);
         setPageCount(Math.ceil(response.data.toursCount / itemsPerPage));
-        console.log(tours);
-        console.log(response.data.toursCount)
       } catch (error) {
         console.error("Error fetching tours", error);
       }
     };
 
     fetchTours();
-  }, [search, type, date, guests, page]);
+  }, [search, type, date, guests, page, price, order]);
 
   const handleSearch = (search: string) => {
     navigate(`/tours?search=${search}&page=1`);
@@ -59,6 +64,10 @@ function Tours() {
     const newPage = e.selected + 1;
     navigate(`/tours?search=${search}&page=${newPage}`);
   };
+
+  useEffect(() => {
+    fetchTours();
+  }, [orderQuery]);
 
   return (
     <div className={style.tourContainer}>
@@ -71,11 +80,11 @@ function Tours() {
             <div><p>{toursCount} Tours</p></div>
             <div>
               <span>Sort by</span> <span className={style.iconSort}><AiOutlineSortAscending /></span>
-              <select>
-                <option value="2">Price: Low to High</option>
-                <option value="3">Price: High to Low</option>
-                <option value="3">Title: A to Z</option>
-                <option value="4">Title: Z to A</option>
+              <select value={orderQuery} onChange={(e) => setOrderQuery(e.target.value)}>
+                <option value="lowPrice">Price: Low to High</option>
+                <option value="highPrice">Price: High to Low</option>
+                <option value="titleAZ">Country: A to Z</option>
+                <option value="titleZA">Country: Z to A</option>
               </select>
             </div>
            

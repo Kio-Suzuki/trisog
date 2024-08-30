@@ -29,10 +29,14 @@ export interface TourContextType {
   typeQuery: string | null;
   dateQuery: string | null;
   guestsQuery: number | null;
+  priceQuery: number | null;
+  orderQuery: string | null;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   setTypeQuery: React.Dispatch<React.SetStateAction<string | null>>;
   setDateQuery: React.Dispatch<React.SetStateAction<string | null>>;
   setGuestsQuery: React.Dispatch<React.SetStateAction<number | null>>;
+  setOrderQuery: React.Dispatch<React.SetStateAction<string>>;
+  setPriceQuery: React.Dispatch<React.SetStateAction<number | null>>;
   fetchTours: () => Promise<void>;
 }
 
@@ -45,6 +49,8 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
   const [typeQuery, setTypeQuery] = useState<string | null>(null);
   const [dateQuery, setDateQuery] = useState<string | null>(null);
   const [guestsQuery, setGuestsQuery] = useState<number | null>(null);
+  const [priceQuery, setPriceQuery] = useState<number | null>(null);
+  const [orderQuery, setOrderQuery] = useState<string>('asc');
 
   const fetchTours = async () => {
     try {
@@ -54,6 +60,8 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
           type: typeQuery,
           date: dateQuery,
           guests: guestsQuery,
+          price: priceQuery,
+          order: orderQuery,
         }
       });
       setTours(response.data.tours);
@@ -76,7 +84,11 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
         dateQuery,
         setDateQuery,
         guestsQuery,
-        setGuestsQuery
+        setGuestsQuery,
+        priceQuery,
+        setPriceQuery,
+        orderQuery,
+        setOrderQuery
       }}>
       {children}
     </TourContext.Provider>

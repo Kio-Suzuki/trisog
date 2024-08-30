@@ -3,8 +3,10 @@ import { FindToursService } from '../../services/tour/FindToursService';
 
 class FindToursController {
   async handle(request: Request, response: Response) {
-    const { search, type, date, guests, page = '1', limit = '9' } = request.query;
+    const { search, type, date, guests, page = '1', limit = '9', price, order } = request.query;
     
+    console.log(request.query);
+
     const findToursService = new FindToursService();
 
     const pageNumber = parseInt(page as string, 10);
@@ -16,8 +18,10 @@ class FindToursController {
       type: type as string | undefined,
       date: date as string | undefined,
       guests: guests ? parseInt(guests as string, 10) : undefined,
+      price: price ? parseFloat(price as string) : undefined,
       skip,
-      take: limitNumber
+      take: limitNumber,
+      order: order as string | undefined,
     });
 
     return response.json(result);

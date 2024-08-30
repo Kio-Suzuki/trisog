@@ -1,16 +1,18 @@
 import prisma from "../../prisma/prismaClient";
 
 interface FindToursParams {
-  search: string;      
+  search?: string;      
   type?: string;    
   date?: string;    
   guests?: number;   
   skip: number;         
-  take: number;         
+  take: number;  
+  price?: number;
+  order?: string;       
 }
 
 class FindToursService {
-  async execute({ search, type, date, guests, skip, take }: FindToursParams) {
+  async execute({ search, type, date, guests, skip, take, price, order }: FindToursParams) {
 
     const filters: any = {
       country: {
@@ -41,16 +43,42 @@ class FindToursService {
       };
     }
 
+    if (price) {
+      filters.price = {
+        lte: price,
+      };
+    }
+
+    const orderBy: any = {};
+
+    switch (order) {
+      case 'lowPrice':
+        orderBy.price = 'asc';
+        break;
+      case 'highPrice':
+        orderBy.price = 'desc';
+        break;
+      case 'titleAZ':
+        orderBy.country = 'asc';
+        break;
+      case 'titleZA':
+        orderBy.country = 'desc';
+        break;
+      default:
+        break;
+    }
+
     const tours = await prisma.tour.findMany({
       where: filters,
       skip: skip,
       take: take,
+      orderBy: orderBy,
     });
 
     const toursCount = await prisma.tour.count({
       where: filters,
     });
-    
+
     return { tours, toursCount };
   }
 }

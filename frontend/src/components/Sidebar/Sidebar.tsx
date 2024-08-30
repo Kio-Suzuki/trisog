@@ -11,29 +11,41 @@ export type TourType = {
 
 function Sidebar() {
 
-  const [min, setMin] = useState<number>(0.00);
-  const [max, setMax] = useState<number>(1000.00);
-  const [value, setValue] = useState<number>(0.00);
-  const [toursTypes, setToursTypes] = useState<Tour[]>([]);
-  const [tours, setTours] = useState<Tour[]>([]);
-  const [search, setSearch] = useState<string>('');
   const [africaTours, setAfricaTours] = useState<Tour[]>([]);
   const [asiaTours, setAsiaTours] = useState<Tour[]>([]);
   const [europeTours, setEuropeTours] = useState<Tour[]>([]);
   const [northAmericaTours, setNorthAmericaTours] = useState<Tour[]>([]);
   const [oceaniaTours, setOceaniaTours] = useState<Tour[]>([]);
   const [southAmericaTours, setSouthAmericaTours] = useState<Tour[]>([]);
+
+  const [toursTypes, setToursTypes] = useState<Tour[]>([]);
+  const [tours, setTours] = useState<Tour[]>([]);
+
+  const [search, setSearch] = useState<string>('');
+  const [price, setPrice] = useState<number>(0.00);
+  
+  const [min, setMin] = useState<number>(0.00);
+  const [max, setMax] = useState<number>(3000.00);
+  const [value, setValue] = useState<number>(0.00);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+
+  const handleTypeChange = (type: string) => {
+    setSelectedTypes(prev => 
+      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+    );
+  };
+  
+  
+ 
   const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
+  
+  
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
 
   }, [])  
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(parseFloat(e.target.value));
-  }
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -46,10 +58,6 @@ function Sidebar() {
     };
     fetchTours();
   }, []);
-
-  useEffect(() => {
-    setFilteredTours(tours.filter((tour) => tour.title.includes(search)));
-  }, [search]);
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -77,6 +85,20 @@ function Sidebar() {
       }
     }
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(parseFloat(e.target.value));
+  }
+
+  const handlePrice = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(price);
+    const query = new URLSearchParams({
+      price: price.toString()
+    }).toString();
+    navigate(`/tours?${query}`);
+    setPrice(0.00);
+  }
   
   return (
     <div className={style.sidebarContainer}>
@@ -90,6 +112,8 @@ function Sidebar() {
           onKeyDown={handleKeyDown}
         />
       </div>
+
+
       <div className={style.sidebarFilter}>
         <h3>Filter By</h3> 
         <input 
@@ -97,16 +121,19 @@ function Sidebar() {
           min={min} 
           max={max}
           onChange={handleChange}
-          value={value}
-          step={10}
+          value={price}
+          step={50}
           className={style.inputRange}
         />
         <div className={style.priceField}>
          <span>$0.00</span>
-        <span className={style.priceFilter}>${value.toFixed(2)}</span>
+        <span className={style.priceFilter}>${price.toFixed(2)}</span>
         </div>
-        <button>Submit</button>
+        <button onClick={handlePrice}>Submit</button>
       </div>
+
+
+
       <div className={style.sidebarCategories}>
         <h3>Categories</h3>
         <form className={style.checkCategories}>
