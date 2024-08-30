@@ -36,7 +36,7 @@ function Categories() {
           pagination={{ clickable: true }}
         >
           {tours.map((tour) => (
-            <SwiperSlide key={tour.id}>
+            <SwiperSlide key={tour.type}>
               <CardCategory tour={tour} />
             </SwiperSlide>
           ))}

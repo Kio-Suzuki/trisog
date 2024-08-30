@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IoStar } from "react-icons/io5";
 import { GrFavorite } from "react-icons/gr";
 import style from './Card.module.css';
+import { useTourContext } from '../../context/TourContext';
 
 export type Tour = {
   id: number;
@@ -13,6 +14,8 @@ export type Tour = {
   days: number;
   price: number;
   image: string;
+  average: number | null;
+  reviewsCount: number;
 }
 
 type CardProps = {
@@ -20,6 +23,8 @@ type CardProps = {
 }
 
 function Card({ tour }: CardProps) {
+
+  const { tours } = useTourContext();
   
   return (
     <Link to={`/tours/${tour.id}`}>
@@ -39,7 +44,12 @@ function Card({ tour }: CardProps) {
           </div>
           <div className={style.cardReview}>
             <div className={style.review}>
-              <span className={style.reviewGradeContainer}><IoStar /> 4.8</span><span>{tour.review} reviews</span>
+              <span className={style.reviewGradeContainer}><IoStar />
+                {tour.average !== null && tour.average !== undefined
+                  ? tour.average.toFixed(1)
+                  : "N/A"}
+              </span>
+              <span>{tour.reviewsCount} reviews</span>
             </div>
             <span className={style.iconPosition}><GoClock /> {tour.days} days</span>
           </div>

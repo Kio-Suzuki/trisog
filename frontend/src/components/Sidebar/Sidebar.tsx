@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import style from './Sidebar.module.css';
-import { useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export type TourType = {
   id: number;
   type: string;
 }
 
-function Sidebar({ tour }: { tour: TourType }) {
+function Sidebar() {
 
   const [min, setMin] = useState<number>(0.00);
   const [max, setMax] = useState<number>(1000.00);
@@ -16,7 +17,19 @@ function Sidebar({ tour }: { tour: TourType }) {
   const [toursTypes, setToursTypes] = useState<Tour[]>([]);
   const [tours, setTours] = useState<Tour[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [africaTours, setAfricaTours] = useState<Tour[]>([]);
+  const [asiaTours, setAsiaTours] = useState<Tour[]>([]);
+  const [europeTours, setEuropeTours] = useState<Tour[]>([]);
+  const [northAmericaTours, setNorthAmericaTours] = useState<Tour[]>([]);
+  const [oceaniaTours, setOceaniaTours] = useState<Tour[]>([]);
+  const [southAmericaTours, setSouthAmericaTours] = useState<Tour[]>([]);
   const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+
+  }, [])  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(parseFloat(e.target.value));
@@ -27,7 +40,6 @@ function Sidebar({ tour }: { tour: TourType }) {
       try {
         const response = await axios.get('http://localhost:3333/tourstypes');
         setToursTypes(response.data);
-        console.log(response.data); 
       } catch (error) {
         console.error("Error fetching tours", error);
       }
@@ -42,16 +54,30 @@ function Sidebar({ tour }: { tour: TourType }) {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/tours');
-        setTours(response.data.tours);
+        const response = await axios.get('http://localhost:3333/toursgroup');
+        setAfricaTours(response.data.africaTours);
+        setAsiaTours(response.data.asiaTours);
+        setEuropeTours(response.data.europeTours);
+        setNorthAmericaTours(response.data.northAmericaTours);
+        setOceaniaTours(response.data.oceaniaTours);
+        setSouthAmericaTours(response.data.southAmericaTours);
       } catch (error) {
         console.error("Error fetching tours", error);
       }
     };
     fetchTours();
   }, []);
-   
 
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (search.trim()) {
+        navigate(`/tours?search=${encodeURIComponent(search.trim())}`);
+      }
+    }
+  };
+  
   return (
     <div className={style.sidebarContainer}>
       <div className={style.sidebarSearch}>
@@ -61,6 +87,7 @@ function Sidebar({ tour }: { tour: TourType }) {
           placeholder='Type anything...'
           onChange={(e) => setSearch(e.target.value)}
           value={search}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <div className={style.sidebarFilter}>
@@ -72,7 +99,7 @@ function Sidebar({ tour }: { tour: TourType }) {
           onChange={handleChange}
           value={value}
           step={10}
-          className={style.priceRange}
+          className={style.inputRange}
         />
         <div className={style.priceField}>
          <span>$0.00</span>
@@ -84,48 +111,95 @@ function Sidebar({ tour }: { tour: TourType }) {
         <h3>Categories</h3>
         <form className={style.checkCategories}>
           {toursTypes.map((tour) => (
-            <div key={tour.id}>
-              <input type="checkbox"/>
-              <label>{tour.type}</label>
-            </div>
+            <label key={tour.type} className={style.crwrapper}>
+              <input type="checkbox" />
+              <div className={style.crinput}></div>
+              <span>{tour.type}</span>
+            </label>
           ))}
         </form>
       </div>
       <div className={style.sidebarDestinations}>
         <h3>Destinations</h3>
         <form className={style.checkCategories}>
-          {tours.map((tour) => (
-            <div key={tour.id}>
-              <h4>{tour.continent}</h4>
-              <input type="checkbox"/>
-              <label>{tour.country}</label>
-            </div>
+          <h4>Africa</h4>
+          {africaTours.map((tour) => (
+            <label key={tour.id} className={style.crwrapper}>
+              <input type="checkbox" />
+              <div className={style.crinput}></div>
+              <span>{tour.country}</span>
+            </label>
+          ))}
+          <h4>Asia</h4>
+          {asiaTours.map((tour) => (
+            <label key={tour.id} className={style.crwrapper}>
+              <input type="checkbox" />
+              <div className={style.crinput}></div>
+              <span>{tour.country}</span>
+            </label>
+          ))}
+          <h4>Europe</h4>
+          {europeTours.map((tour) => (
+            <label key={tour.id} className={style.crwrapper}>
+              <input type="checkbox" />
+              <div className={style.crinput}></div>
+              <span>{tour.country}</span>
+            </label>
+          ))}
+          <h4>North America</h4>
+          {northAmericaTours.map((tour) => (
+            <label key={tour.id} className={style.crwrapper}>
+              <input type="checkbox" />
+              <div className={style.crinput}></div>
+              <span>{tour.country}</span>
+            </label>
+          ))}
+          <h4>Oceania</h4>
+          {oceaniaTours.map((tour) => (
+            <label key={tour.id} className={style.crwrapper}>
+              <input type="checkbox" />
+              <div className={style.crinput}></div>
+              <span>{tour.country}</span>
+            </label>
+          ))}
+          <h4>South America</h4>
+          {southAmericaTours.map((tour) => (
+            <label key={tour.id} className={style.crwrapper}>
+              <input type="checkbox" />
+              <div className={style.crinput}></div>
+              <span>{tour.country}</span>
+            </label>
           ))}
         </form>
       </div>
       <div className={style.sidebarReviews}>
         <h3>Reviews</h3>
         <form className={style.checkStar}>
-          <div>
+          <label className={style.crwrapper}>
             <input type="checkbox" />
-            <label>5 Stars</label>
-          </div>
-          <div>
-            <input type="checkbox"/>
-            <label>4 Stars & Up</label>
-          </div>
-          <div>
-            <input type="checkbox"/>
-            <label>3 Stars & Up</label>
-          </div>
-          <div>
-            <input type="checkbox"/>
-            <label>2 Stars & Up</label>
-          </div>
-          <div>
-            <input type="checkbox"/>
-            <label>1 Star & Up</label>
-          </div>
+            <div className={style.crinput}></div>
+            <span>5 Stars</span>
+          </label>
+          <label className={style.crwrapper}>
+            <input type="checkbox" />
+            <div className={style.crinput}></div>
+            <span>4 Stars & Up</span>
+          </label>
+          <label className={style.crwrapper}>
+            <input type="checkbox" />
+            <div className={style.crinput}></div>
+            <span>3 Stars & Up</span>
+          </label>
+          <label className={style.crwrapper}>
+            <input type="checkbox" />
+            <div className={style.crinput}></div>
+            <span>2 Stars & Up</span>
+          </label>
+          <label className={style.crwrapper}>
+            <input type="checkbox" />
+            <div className={style.crinput}></div>
+            <span>1 Star & Up</span>
+          </label>
         </form>
       </div>  
     </div>

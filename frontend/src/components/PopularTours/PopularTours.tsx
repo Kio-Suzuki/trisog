@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import style from './PopularTours.module.css';
 
 function PopularTours() {
@@ -30,8 +31,9 @@ function PopularTours() {
         <Swiper
           modules={[Pagination]}
           slidesPerView={4}
-          pagination={{ clickable: true }}
           spaceBetween={38}
+          pagination={{ clickable: true }}
+          loop={true}
         >
           {tours.map((tour) => (
             <SwiperSlide key={tour.id}>

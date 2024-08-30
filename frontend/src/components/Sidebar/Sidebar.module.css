@@ -35,17 +35,6 @@
   flex-direction: column;
 }
 
-.sidebarFilter input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50px; 
-  height: 20px;
-  background: #FC5056; 
-  cursor: pointer;
-  border-radius: 50%; 
-  border: 2px solid #fff; 
-}
-
 .sidebarFilter button {
   background-color: #FC5056;
   color: #FFF;
@@ -107,51 +96,164 @@
   color: #6b7087;
 }
 
+.crwrapper *,
+.crwrapper *::before,
+.crwrapper *::after {
+	box-sizing: content-box !important;
+}
 
+.crwrapper input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
 
-/* 
-input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
+.crwrapper span {
+	font-size: 16px;
+}
+
+.crwrapper {
+	display: table;
+	position: relative;
+	padding-left: 30px;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.crwrapper input[type="checkbox"] ~ .crinput {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 16px;
+	width: 16px;
+	background: #F3F3F5;
+	transition: background 250ms;
+	border: 1px solid #A9A9A9;
+	border-radius: 3px;
+	transform: translate(0, -50%);
+}
+
+.crwrapper input[type="radio"] ~ .crinput {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 16px;
+	width: 16px;
+	background: #F3F3F5;
+	transition: background 250ms;
+	border: 1px solid #A9A9A9;
+	border-radius: 20px;
+	transform: translate(0, -50%);
+}
+
+.crwrapper input[type="checkbox"] ~ .crinput::after {
+	content: "";
+	position: absolute;
+	display: none;
+	left: 3px;
+	top: 2px;
+	width: 12px;
+	height: 12px;
+	transition: background 250ms;
+	background-color: #FFFFFF;
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.crwrapper input[type="radio"] ~ .crinput::after {
+	content: "";
+	position: absolute;
+	display: none;
+	left: 4px;
+	top: 4px;
+	width: 12px;
+	height: 12px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	transition: background 250ms;
+}
+
+.crwrapper input:checked ~ .crinput::after {
+	display: block;
+}
+
+.crwrapper:hover input[type="checkbox"]:not([disabled]) ~ .crinput,
+.crwrapper input[type="checkbox"]:focus ~ .crinput {
+	background: #F3F3F5;
+	border-color: #A9A9A9;
+}
+
+.crwrapper:hover input[type="radio"]:not([disabled]) ~ .crinput,
+.crwrapper input[type="radio"]:focus ~ .crinput {
+	background: #F3F3F5;
+	border-color: #A9A9A9;
+}
+
+.crwrapper input[type="checkbox"]:checked ~ .crinput {
+	background: #FC5056;
+	border-color: #A9A9A9;
+}
+
+.crwrapper input[type="radio"]:checked ~ .crinput {
+	background: #FC5056;
+	border-color: #A9A9A9;
+}
+
+.crwrapper input[type="checkbox"]:disabled ~ .crinput,
+.crwrapper input[type="radio"]:disabled ~ .crinput {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.crwrapper input[type="checkbox"]:disabled ~ span,
+.crwrapper input[type="radio"]:disabled ~ span {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.crwrapper input[type="checkbox"]:disabled ~ .crinput::after {
+	background: #FFFFFF;
+}
+
+.crwrapper input[type="radio"]:disabled ~ .crinput::after {
+	background: #FFFFFF;
+}
+
+.crwrapper:hover input[type="checkbox"]:not([disabled]):checked ~ .crinput,
+.crwrapper input[type="checkbox"]:checked:focus ~ .crinput {
+	background: #FC5056;
+	border-color: #A9A9A9;
+}
+
+.crwrapper:hover input[type="radio"]:not([disabled]):checked ~ .crinput,
+.crwrapper input[type="radio"]:checked:focus ~ .crinput {
+	background: #FC5056;
+	border-color: #A9A9A9;
+}
+
+.inputRange {
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #fc5056 0%, #e0e1e6 0%)  !important;
   cursor: pointer;
 }
 
-input[type="checkbox"] + label {
-  position: relative;
-  padding-left: 30px;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 20px;
+.inputRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #fc5056;
+  box-shadow: none;
 }
 
-
-input[type="checkbox"] + label::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  background-color: #f1f1f1; 
-  border-radius: 3px;
-  border: 1px solid #999;
+.inputRange::-moz-range-thumb {
+  border: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #fc5056;
+  box-shadow: none;
 }
-
-
-input[type="checkbox"]:checked + label::before {
-  background-color: #FC5056; 
-  border: 1px solid #FC5056;
-}
-
-
-input[type="checkbox"]:checked + label::after {
-  content: '✔'; 
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: white; 
-  font-size: 16px;
-} 
-*/

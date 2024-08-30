@@ -90,5 +90,58 @@
 
 .weatherContainer {
   background-color: #f3f3f5;
-  padding: 2em 1.5em;
+  padding: 1.7em 1.5em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.weatherTitle {
+  margin-bottom: 1em;
+}
+
+.weatherForecast {
+  display: flex;
+  align-items: center;
+  height: 4vh;
+}
+
+.date {
+  font-weight: 600;
+  width: 70%;
+}
+
+.tempMin {
+  width: 10%; 
+}
+
+.split {
+  width: 8%;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.tempMax {
+  justify-content: end;
+  width: 10%;
+}
+
+.popularContainer {
+  width: 70vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popularContainer button {
+  border: none;
+  background-color: #FFF;
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.buttonPadding {
+  padding-left: 0.8em;
 }

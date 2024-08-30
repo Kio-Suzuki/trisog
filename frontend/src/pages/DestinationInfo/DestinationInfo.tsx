@@ -6,8 +6,10 @@ import style from './DestinationInfo.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
+import PopularTours from '../../components/PopularTours/PopularTours';
+import { FaArrowRight } from "react-icons/fa6";
 
 export type Destination = {
   id: number;
@@ -53,40 +55,44 @@ function DestinationInfo() {
     window.scrollTo(0, 0);
   }, [id]);
 
-  // useEffect(() => {
-  //   if (destination) {
-  //     const getWeatherData = async (destination: Destination, apiWeatherKey: string) => {
-  //       try {
-  //         const apiWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${destination.capital}&units=metric&appid=${apiWeatherKey}`;
-  //         const response = await axios.get(apiWeatherURL);
-  //         const data = response.data;
-
-  //         // Process weather data to get daily temperatures
-  //         const dailyTemperatures = data.list.reduce((acc: any, forecast: any) => {
-  //           const date = format(new Date(forecast.dt * 1000), 'eeee dd', { locale: enGB }); // Get day and date
-  //           if (!acc[date]) {
-  //             acc[date] = [];
-  //           }
-  //           acc[date].push(forecast.main.temp);
-  //           return acc;
-  //         }, {});
-
-  //         // Calculate the average temperature for each day
-  //         const dailyAvgTemperatures = Object.keys(dailyTemperatures).map(date => {
-  //           const temps = dailyTemperatures[date];
-  //           const avgTemp = temps.reduce((sum: number, temp: number) => sum + temp, 0) / temps.length;
-  //           return { date, avgTemp };
-  //         });
-
-  //         // Limit to the next 5 days
-  //         setWeather(dailyAvgTemperatures.slice(0, 5));
-  //       } catch (error) {
-  //         console.error("Error fetching weather data", error);
-  //       }
-  //     }
-  //     getWeatherData(destination, apiWeatherKey);
-  //   }
-  // }, [destination]);
+  useEffect(() => {
+    if (destination) {
+      const getWeatherData = async (destination: Destination, apiWeatherKey: string) => {
+        try {
+          const apiWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${destination.capital}&units=metric&appid=${apiWeatherKey}`;
+          const response = await axios.get(apiWeatherURL);
+          const data = response.data;
+          console.log('Weather data:', data);
+  
+          const dailyData = data.list.reduce((acc: any, forecast: any) => {
+            const date = format(new Date(forecast.dt * 1000), 'eee dd, MMMM', { locale: enGB });
+            if (!acc[date]) {
+              acc[date] = {
+                temps: [],
+                icons: []
+              };
+            }
+            acc[date].temps.push(forecast.main.temp);
+            acc[date].icons.push(forecast.weather[0].icon);
+            return acc;
+          }, {});
+  
+          const dailyWeather = Object.keys(dailyData).map(date => {
+            const temps = dailyData[date].temps;
+            const minTemp = Math.min(...temps);
+            const maxTemp = Math.max(...temps);
+            const icon = `http://openweathermap.org/img/wn/${dailyData[date].icons[0]}.png`;
+            return { date, minTemp, maxTemp, icon };
+          });
+  
+          setWeather(dailyWeather.slice(0, 5));
+        } catch (error) {
+          console.error("Error fetching weather data", error);
+        }
+      }
+      getWeatherData(destination, apiWeatherKey);
+    }
+  }, [destination]);
 
   if (!destination) {
     return <div>Loading...</div>; 
@@ -115,13 +121,21 @@ function DestinationInfo() {
             ) : null}
         </div>
         <div className={style.weatherContainer}>
-          <h3>Weather Forecast</h3>
+          <div className={style.weatherTitle}>
+            <h3>Weather Forecast</h3>
+          </div>
           {weather ? (
             <ul>
-              {weather.map((entry: any) => (
-                <li key={entry.date}>
-                  {entry.date}: {entry.avgTemp.toFixed(1)}°C
-                </li>
+              {weather.map((data: any) => (
+                <div 
+                  key={data.date}
+                  className={style.weatherForecast}
+                >
+                  <div className={style.date}>{data.date}:</div>
+                  <div className={style.tempMin}>{data.minTemp.toFixed(0)}°C</div> 
+                  <div className={style.split}>|</div>
+                  <div className={style.tempMax}>{data.maxTemp.toFixed(0)}°C</div>
+                  </div>  
               ))}
             </ul>
           ) : (
@@ -162,6 +176,12 @@ function DestinationInfo() {
           </div>
         </div>
       </div>
+      <div className={style.popularContainer}>
+        <h1>Popular Tours in {destination.country}</h1>
+        <button>See All <span className={style.buttonPadding}><FaArrowRight /></span></button>
+      </div>
+      
+      <PopularTours />
       <Footer />
     </div>
   );

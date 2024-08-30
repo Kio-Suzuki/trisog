@@ -1,13 +1,9 @@
 import style from './Header.module.css';
-import { FaTwitter } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { FaPinterestP } from "react-icons/fa";
+import { FaTwitter, FaLinkedinIn, FaGoogle, FaPinterestP } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import logo1 from '../../assets/logo1.svg';
-import { Link } from 'react-router-dom';	
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { signOut, getAuth } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -16,11 +12,14 @@ import { toast } from 'react-toastify';
 function Header() {
   const [userName, setUserName] = useState<string>('');
   const [userImage, setUserImage] = useState<string>('');
+  const [showInput, setShowInput] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>('');
   const auth = getAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const user = auth.currentUser;
-    console.log(user);
     if (user) {
       if (user.displayName === null) {
         (async function fetchUserData() {
@@ -61,6 +60,19 @@ function Header() {
     }
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (search.trim()) {
+        navigate(`/tours?search=${encodeURIComponent(search.trim())}`);
+      }
+    }
+  };
+
+  const handleSearch = () => {
+    setShowInput(!showInput);
+  };
+
   return (
     <div className={style.headerContainer}>
       <div className={style.header1}>
@@ -68,10 +80,10 @@ function Header() {
           <p>(000)999-898-999 | info@trisog.com</p>
         </div>
         <div className={style.headerIcon}>
-          <a href="https://br.linkedin.com/" target='blank'><FaLinkedinIn /></a>
-          <a href="https://x.com/" target='blank'><FaTwitter /></a>
-          <a href="https://www.google.com.br/?hl=pt-BR" target='blank'><FaGoogle /></a>
-          <a href="https://br.pinterest.com/" target='blank'><FaPinterestP /></a>
+          <a href="https://br.linkedin.com/" target='_blank' rel='noopener noreferrer'><FaLinkedinIn /></a>
+          <a href="https://x.com/" target='_blank' rel='noopener noreferrer'><FaTwitter /></a>
+          <a href="https://www.google.com.br/?hl=pt-BR" target='_blank' rel='noopener noreferrer'><FaGoogle /></a>
+          <a href="https://br.pinterest.com/" target='_blank' rel='noopener noreferrer'><FaPinterestP /></a>
           <span>| EUR </span>
         </div>
       </div>
@@ -82,21 +94,21 @@ function Header() {
         <div className={style.headerMenu}>
           <ul>
             <NavLink 
-              to='/'
-              className={({ isActive }) => isActive ? style.active : ''}
+              to='/' 
+              className={({ isActive }) => (isActive ? style.active : '')}
             >
               <li>Home</li>
             </NavLink>
             <li>About</li>
             <NavLink 
-              to='/tours'
-              className={({ isActive }) => isActive ? style.active : ''}
+              to='/tours' 
+              className={({ isActive }) => (isActive ? style.active : '')}
             >
               <li>Tours</li>
             </NavLink>
             <NavLink 
-              to='/destination'
-              className={({ isActive }) => isActive ? style.active : ''}
+              to='/destination' 
+              className={({ isActive }) => (isActive ? style.active : '')}
             >
               <li>Destination</li>
             </NavLink>
@@ -106,14 +118,20 @@ function Header() {
           </ul>    
         </div>
         <div className={style.user}>
-          <CiSearch />
+          <div className={style.searchContainer}>
+            <CiSearch className={style.searchIcon} onClick={handleSearch} />
+            <input
+              type="text"
+              className={`${style.searchInput} ${showInput ? style.show : ''}`}
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </div>
           {userName ? (
             <>
-              <img 
-                src={userImage} 
-                alt="user" 
-                className={style.userImage}
-              />
+              <img src={userImage} alt="user" className={style.userImage} />
               <p className={style.userName}>{userName}</p>
               <button onClick={handleSignOut}>Sign Out</button>
             </>
@@ -128,7 +146,7 @@ function Header() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

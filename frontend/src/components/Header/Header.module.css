@@ -129,3 +129,32 @@ ul a {
 .user button:hover {
   background-color: #ff393f;
 } 
+
+.searchContainer {
+  position: relative;
+}
+
+.searchIcon {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.searchInput {
+  display: block;
+  position: absolute;
+  top: -5px;
+  right: 30px;
+  padding: 0.4em 0.3em;
+  font-size: 0.85em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 0;
+  opacity: 0;
+  transition: width 0.4s ease, opacity 0.4s ease;
+}
+
+.searchInput.show {
+  width: 8vw;
+  opacity: 1; 
+}

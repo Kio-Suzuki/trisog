@@ -17,8 +17,8 @@ function Contact() {
         <p className={style.text}>Holisticly optimize proactive strategic theme areas rather than effective manufactured products create.</p>
         <ul className={style.list}>
           <li><GiCheckMark /> <span className={style.listColor}>Travel Plan</span></li>
-          <li><GiCheckMark /> <span className={style.listColor}>Hand-picked Tour</span></li>
           <li><GiCheckMark /> <span className={style.listColor}>Cheap Rates</span></li>
+          <li><GiCheckMark /> <span className={style.listColor}>Hand-picked Tour</span></li>
           <li><GiCheckMark /> <span className={style.listColor}>Private Guide</span></li>
         </ul>
         <button className={style.contactButton}>Contact Us</button>
