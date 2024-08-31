@@ -1,9 +1,9 @@
-import { useState, useEffect, SetStateAction } from 'react';
+import { useState, SetStateAction } from 'react';
 import axios from 'axios';
-import style from './AddReview.module.css';
-import { IoStar } from "react-icons/io5";
 import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { IoStar } from "react-icons/io5";
+import style from './AddReview.module.css';
 
 export type Review = {
   id: number;
@@ -49,8 +49,6 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
   const [pricesStars, setPricesStars] = useState<number>(0);
   const [foodStars, setFoodStars] = useState<number>(0);
   const [roomsStars, setRoomsStars] = useState<number>(0);
-
-  // const [reviews, setReviews] = useState<Review[]>([]);
 
   const handleServices = (starNumber: SetStateAction<number>) => {
     setServicesStars(starNumber);

@@ -65,6 +65,7 @@ class FindToursService {
         orderBy.country = 'desc';
         break;
       default:
+        orderBy.country = 'asc';
         break;
     }
 

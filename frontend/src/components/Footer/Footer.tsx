@@ -1,16 +1,14 @@
-import style from './Footer.module.css';
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
-import logo from '../../assets/logo-footer.svg';
-import { Link } from 'react-router-dom';
+import style from './Footer.module.css';
 
 function Footer() {
   return (
     <div className={style.footerContainer}>
       <div className={style.footer}>
         <div className={style.footerInfo}>
-          <img src={logo} alt="logo" />
+          <img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Flogo-footer.svg?alt=media&token=afd3c9d2-56e4-47f6-ae34-369492b068da'} alt="logo" />
           <p className={style.footerFont}>Need any help?</p>
           <p className={style.footerFontStyle}>Call Us: <span className={style.footerFontColor}>(888)1234 5678</span></p>
           <p className={style.footerFontMargin}>Love Street, Muscat, Oman</p>

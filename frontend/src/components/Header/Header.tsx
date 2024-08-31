@@ -1,13 +1,12 @@
-import style from './Header.module.css';
+import { useState, useEffect } from 'react';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
+import { signOut, getAuth } from 'firebase/auth';
+import axios from 'axios';
 import { FaTwitter, FaLinkedinIn, FaGoogle, FaPinterestP } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
-import logo1 from '../../assets/logo1.svg';
-import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
-import { signOut, getAuth } from 'firebase/auth';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import style from './Header.module.css';
 
 function Header() {
   const [userName, setUserName] = useState<string>('');
@@ -90,7 +89,7 @@ function Header() {
       </div>
       <div className={style.header2}>
         <div className={style.logo}>
-          <Link to='/'><img src={logo1} alt="logo" /></Link> 
+          <Link to='/'><img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Flogo1.svg?alt=media&token=4a737a07-53b5-4778-8f70-4046f267dadd'} alt="logo" /></Link> 
         </div>
         <div className={style.headerMenu}>
           <ul>

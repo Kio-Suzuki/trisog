@@ -1,10 +1,9 @@
-import style from './Header2.module.css';
+import { Link } from 'react-router-dom';
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
-import logo1 from '../../assets/logo1.svg';
-import { Link } from 'react-router-dom';	
+	import style from './Header2.module.css';
 
 function Header2() {
 
@@ -24,7 +23,7 @@ function Header2() {
       </div>
       <div className={style.header2}>
         <div className={style.logo}>
-          <Link to='/'><img src={logo1} alt="logo" /></Link>
+          <Link to='/'><img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Flogo1.svg?alt=media&token=4a737a07-53b5-4778-8f70-4046f267dadd'} alt="logo" /></Link>
         </div>
       </div>
     </div>

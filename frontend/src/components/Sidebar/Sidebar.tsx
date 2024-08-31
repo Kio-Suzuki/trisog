@@ -35,8 +35,6 @@ function Sidebar() {
     );
   };
   
-  
- 
   const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
   
   
@@ -113,7 +111,6 @@ function Sidebar() {
         />
       </div>
 
-
       <div className={style.sidebarFilter}>
         <h3>Filter By</h3> 
         <input 
@@ -131,8 +128,6 @@ function Sidebar() {
         </div>
         <button onClick={handlePrice}>Submit</button>
       </div>
-
-
 
       <div className={style.sidebarCategories}>
         <h3>Categories</h3>

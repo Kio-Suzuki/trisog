@@ -1,18 +1,17 @@
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import TitleBar from '../TitleBar/TitleBar';
-import logo from '../../assets/logo-login.svg';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import axios from 'axios';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { FacebookAuthProvider } from "firebase/auth";
 import { auth } from '../../services/firebase';
-import style from './LoginForm.module.css';
 import { toast } from 'react-toastify';
-import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
+import style from './LoginForm.module.css';
 
 function LoginForm() {
 
@@ -172,7 +171,7 @@ function LoginForm() {
   return (
     <div className={style.loginContainer}>
       <div className={style.loginInfo}>
-        <img src={logo} alt="logo" />
+        <img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Flogo-login.svg?alt=media&token=8b4706da-84b1-4e61-bdd4-88b809d3eabf'} alt="logo" />
         <TitleBar title1="Be part" title2="Sign In"/>
       </div>
       <div className={style.loginForm}>

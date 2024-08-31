@@ -81,10 +81,11 @@ function Tours() {
             <div>
               <span>Sort by</span> <span className={style.iconSort}><AiOutlineSortAscending /></span>
               <select value={orderQuery} onChange={(e) => setOrderQuery(e.target.value)}>
-                <option value="lowPrice">Price: Low to High</option>
-                <option value="highPrice">Price: High to Low</option>
                 <option value="titleAZ">Country: A to Z</option>
                 <option value="titleZA">Country: Z to A</option>
+                <option value="lowPrice">Price: Low to High</option>
+                <option value="highPrice">Price: High to Low</option>
+               
               </select>
             </div>
            

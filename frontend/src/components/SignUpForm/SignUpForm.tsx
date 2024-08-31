@@ -1,5 +1,5 @@
 import TitleBar from '../TitleBar/TitleBar';
-import logo from '../../assets/logo-login.svg';
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
@@ -51,7 +51,7 @@ const SignUpForm = () => {
   return (
     <div className={style.signUpContainer}>
       <div className={style.loginInfo}>
-        <img src={logo} alt="logo" />
+        <img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Flogo-login.svg?alt=media&token=8b4706da-84b1-4e61-bdd4-88b809d3eabf'} alt="logo" />
         <TitleBar title1="Be part" title2="Sign Up" />
       </div>
       <div className={style.signUpForm}>

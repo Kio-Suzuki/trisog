@@ -1,16 +1,13 @@
-import style from './Contact.module.css';
 import { GiCheckMark } from "react-icons/gi";
-import Experience1 from '../../assets/Experiences1.jpg';
-import Experience2 from '../../assets/Experiences2.jpg';
+import style from './Contact.module.css';
 
 function Contact() {
   return (
     <div className={style.contactContainer}>
       <div className={style.contactImage}>
-        <img className={style.image1} src={Experience1} alt="contact" />
-        <img className={style.image2} src={Experience2} alt="contact" />
+        <img className={style.image1} src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2FExperiences4.jpeg?alt=media&token=1fff6df3-5066-4ec0-af71-f33fdaa8327d'} alt="contact" />
+        <img className={style.image2} src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2FExperiences2.jpg?alt=media&token=e11b7137-0f85-4a33-9d3e-dd423a313fa4'} alt="contact" />
       </div>
-
       <div className={style.contactInfo}>
         <h1 className={style.title1}>Why Choose Us</h1>
         <h2 className={style.title2}>Our Experiences Meet High Quality Standards</h2>

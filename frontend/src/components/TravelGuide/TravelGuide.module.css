@@ -1,5 +1,5 @@
 .travelGuideContainer {
-  height: 90vh;
+  height: 80vh;
   overflow-x: hidden;
   margin-top: 10vh;
 }
@@ -22,7 +22,7 @@
 .gridImage {
   flex-shrink: 0; 
   width: 200px; 
-  height: 200px;
+  height: 170px;
   overflow: hidden; 
 }
 

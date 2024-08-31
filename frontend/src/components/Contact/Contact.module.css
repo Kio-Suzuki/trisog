@@ -69,8 +69,8 @@
   height: 50vh;
   object-fit: cover;
   position: absolute;
-  top: 30%;
-  left: 50%;
+  top: 21vh;
+  left: 15vw;
   border: 6px solid #fff;
 }
 
@@ -79,9 +79,9 @@
   height: 50vh;
   object-fit: cover;
   position: absolute;
-  top: 20%;
-  left: 30%;
-  transform: rotate(-20deg);
+  top: 10vh;
+  left: 5vw;
+  transform: rotate(-12deg);
   z-index: -1;
   border: 6px solid #fff;
 }

@@ -1,6 +1,5 @@
-import style from './AverageReview.module.css';
 import { IoStar } from "react-icons/io5";
-
+import style from './AverageReview.module.css';
 
 export type AverageReviewProps = {
   overallAverage: number;

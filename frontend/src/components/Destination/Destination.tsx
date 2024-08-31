@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import TitleBar from '../TitleBar/TitleBar';
 import style from './Destination.module.css';
-import { Link } from 'react-router-dom';
 
 export type Destination = {
   id: number;
