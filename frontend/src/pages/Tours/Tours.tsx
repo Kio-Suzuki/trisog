@@ -10,7 +10,6 @@ import style from './Tours.module.css';
 import ReactPaginate from 'react-paginate';
 import { AiOutlineSortAscending } from "react-icons/ai";
 import { useTourContext } from '../../context/TourContext';
-import { set } from 'date-fns';
 
 function Tours() {
   const [tours, setTours] = useState<Tour[]>([]);
@@ -29,6 +28,7 @@ function Tours() {
   const page = query.get('page') || '1';
   const price = query.get('price') || '';
   const order = orderQuery || 'asc';
+  const rating = query.get('rating') || '';
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -40,6 +40,7 @@ function Tours() {
             date,
             guests,
             price,
+            rating,
             page,
             order,
             take: itemsPerPage
@@ -54,7 +55,7 @@ function Tours() {
     };
 
     fetchTours();
-  }, [search, type, date, guests, page, price, order]);
+  }, [search, type, date, guests, page, price, order, rating, orderQuery]);
 
   const handleSearch = (search: string) => {
     navigate(`/tours?search=${search}&page=1`);
@@ -64,10 +65,6 @@ function Tours() {
     const newPage = e.selected + 1;
     navigate(`/tours?search=${search}&page=${newPage}`);
   };
-
-  useEffect(() => {
-    fetchTours();
-  }, [orderQuery]);
 
   return (
     <div className={style.tourContainer}>

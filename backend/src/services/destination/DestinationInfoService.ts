@@ -20,6 +20,7 @@ class DestinationInfoService {
         capital: true
       },
     });
+    console.log("Countryyyyyyyyyyyyyyyy: ", destination);
     return destination;
   }
 }

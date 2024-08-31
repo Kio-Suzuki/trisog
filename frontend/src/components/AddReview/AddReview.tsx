@@ -125,7 +125,16 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
 
     try {
       const response = await axios.post('http://localhost:3333/reviews', review);
-      toast.success('Review added successfully');
+      toast.success("Review added successfully", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       onReviewAdded();
       setName('');
       setEmail('');

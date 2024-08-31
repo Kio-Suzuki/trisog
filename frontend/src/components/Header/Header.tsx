@@ -67,7 +67,9 @@ function Header() {
       if (search.trim()) {
         navigate(`/tours?search=${encodeURIComponent(search.trim())}`);
       }
+      setSearch('');
     }
+    
   };
 
   const handleSearch = () => {

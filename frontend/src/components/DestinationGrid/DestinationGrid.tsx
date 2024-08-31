@@ -16,6 +16,7 @@ export type Destination = {
   population: number;
   timezone: string;
   timetravel: string;
+  travelers: number;
 }
 
 function DestinationGrid() {

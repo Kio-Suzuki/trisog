@@ -1,32 +1,37 @@
 import prisma from "../../prisma/prismaClient";
 
 interface FindToursParams {
-  search?: string;      
-  type?: string;    
-  date?: string;    
-  guests?: number;   
-  skip: number;         
-  take: number;  
-  price?: number;
-  order?: string;   
-  reviews?: boolean;    
+  search?: string;  // Pesquisa por país ou localização
+  type?: string[];  // Tipos de tour
+  date?: string;    // Data do tour
+  guests?: number;  // Número de convidados
+  skip: number;     // Número de registros a serem pulados
+  take: number;     // Número de registros a serem retornados
+  price?: number;   // Preço máximo do tour
+  order?: string;   // Ordenação
+  rating?: number;  // Avaliação mínima
+  continentId?: number; // Filtro por continente
 }
 
 class FindToursService {
-  async execute({ search, type, date, guests, skip, take, price, order }: FindToursParams) {
+  async execute({ search, type, date, guests, skip, take, price, order, rating, continentId }: FindToursParams) {
+    const filters: any = {};
 
-    const filters: any = {
-      country: {
+    // Filtrar por nome de país ou localização, se especificado
+    if (search) {
+      filters.country = {
         contains: search,
-      }
-    };
-
-    if (type) {
-      filters.type = {
-        equals: type,
       };
     }
 
+    // Filtrar por tipo de tour, se especificado
+    if (type) {
+      filters.type = {
+        in: type,
+      };
+    }
+
+    // Filtrar por data, se especificado
     if (date) {
       const dateUser = new Date(date);
       const formattedDate = dateUser.toISOString().split('T')[0];
@@ -38,12 +43,14 @@ class FindToursService {
       };
     }
 
+    // Filtrar por número de convidados, se especificado
     if (guests !== undefined) {
       filters.maxPeople = {
         gte: guests, 
       };
     }
 
+    // Filtrar por preço, se especificado
     if (price) {
       filters.price = {
         lte: price,
@@ -60,16 +67,17 @@ class FindToursService {
         orderBy.price = 'desc';
         break;
       case 'titleAZ':
-        orderBy.country = 'asc';
+        orderBy.title = 'asc';
         break;
       case 'titleZA':
-        orderBy.country = 'desc';
+        orderBy.title = 'desc';
         break;
       default:
-        orderBy.country = 'asc';
+        orderBy.title = 'asc';
         break;
     }
 
+    // Buscar tours da base de dados
     const tours = await prisma.tour.findMany({
       where: filters,
       skip: skip,
@@ -92,10 +100,11 @@ class FindToursService {
       },
     });
 
-    const toursOverall = tours.map(tour => {
+    const toursAverage = tours.map(tour => {
       const reviewsCount = tour.reviews.length;
-      const average =
-        tour.reviews.length > 0 ? tour.reviews.reduce((sum, review) => sum + review.overall, 0) / reviewsCount : null;
+      const average = reviewsCount > 0 
+        ? tour.reviews.reduce((sum, review) => sum + review.overall, 0) / reviewsCount 
+        : null;
 
       return {
         ...tour,
@@ -103,12 +112,18 @@ class FindToursService {
         reviewsCount,
       };
     });
-    
+
+    const filteredTours = rating
+      ? toursAverage.filter(tour => tour.average !== null && tour.average >= rating) : toursAverage;
+
     const toursCount = await prisma.tour.count({
       where: filters,
     });
 
-    return { tours: toursOverall, toursCount };
+    console.log('Tours Average:', toursAverage);
+    console.log('Rating Filter:', rating);
+
+    return { tours: filteredTours, toursCount };
   }
 }
 

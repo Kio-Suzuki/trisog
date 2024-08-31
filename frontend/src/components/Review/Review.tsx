@@ -26,7 +26,7 @@ const Review: FC<ReviewProps> = ({ name, comment, overall, user, createdAt, user
   return (
     <div className={style.reviewContainer}>
       <div className={style.reviewImage}>
-        <img src={name.toLowerCase() !== user.firstname.toLowerCase() ? 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png' : user.image} alt="" />
+        <img src={name.toLowerCase() !== user.firstname.toLowerCase() ? 'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Fuser_default3.png?alt=media&token=88603352-3bb1-4292-8a8c-261ad65736e4' : user.image} alt="" />
       </div>
       <div className={style.reviewData}>
         <span className={style.reviewDate}>{dateFormatted}</span>
