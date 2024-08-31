@@ -33,7 +33,6 @@ function PopularTours() {
           slidesPerView={4}
           spaceBetween={38}
           pagination={{ clickable: true }}
-          loop={true}
         >
           {tours.map((tour) => (
             <SwiperSlide key={tour.id}>

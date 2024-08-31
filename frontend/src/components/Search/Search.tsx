@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import style from './Search.module.css';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import style from './Search.module.css';
 
 function Search() {
 
@@ -69,6 +69,7 @@ function Search() {
             required
           >
           </input>
+          <span className={style.iconPosition1}><img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Fsearchbar1.svg?alt=media&token=485d1e70-73a8-4bb2-8011-9396d4cff831'} alt="" /> </span>
         </div>
         <div className={style.searchField}>
           <label>Type</label>
@@ -83,6 +84,7 @@ function Search() {
               <option key={tour.type}>{tour.type}</option>
             ))}
           </select>
+          <span className={style.iconPosition2}><img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Fsearchbar2.svg?alt=media&token=61618c97-6935-47e0-a1a8-b9da8a095031'} alt="" /> </span>
         </div>
         <div className={style.searchField}>
           <label>When</label>
@@ -95,6 +97,7 @@ function Search() {
             required
           />
         </div>
+        <span className={style.iconPosition3}><img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Fsearchbar3.svg?alt=media&token=3c467bc9-fb1a-4cef-93c1-20f525433c89'} alt="" /> </span>
         <div className={style.searchField}>
           <label>Guests</label>
           <input 
@@ -105,6 +108,7 @@ function Search() {
             required
           >
           </input>
+          <span className={style.iconPosition4}><img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Fsearchbar4.svg?alt=media&token=b3616424-bbdc-4db0-b186-81de63faa41e'} alt="" /> </span>
         </div>
         <div className={style.buttonContainer}>
           <button 

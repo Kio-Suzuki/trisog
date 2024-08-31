@@ -4,6 +4,8 @@ import { IoStar } from "react-icons/io5";
 import { GrFavorite } from "react-icons/gr";
 import style from './Card.module.css';
 import { useTourContext } from '../../context/TourContext';
+import { toast } from 'react-toastify';	
+import 'react-toastify/dist/ReactToastify.css';
 
 export type Tour = {
   id: number;
@@ -24,13 +26,31 @@ type CardProps = {
 
 function Card({ tour }: CardProps) {
 
+  const handleFavorite = (e) => {
+    e.preventDefault();
+    console.log('Favorite clicked');
+    toast.success('Tour added to favorites', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const { tours } = useTourContext();
   
   return (
     <Link to={`/tours/${tour.id}`}>
       <div className={style.cardContainer}>
         <div className={style.cardImage}>
-          <div className={style.iconFavorite}>
+          <div 
+            className={style.iconFavorite}
+            onClick={handleFavorite}
+          >
             <GrFavorite className={style.favorite} />
           </div>
           <img src={tour.image} alt={tour.title} />

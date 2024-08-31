@@ -6,6 +6,7 @@ import { FaTwitter, FaLinkedinIn, FaGoogle, FaPinterestP } from "react-icons/fa"
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { toast } from 'react-toastify';
+
 import style from './Header.module.css';
 
 function Header() {

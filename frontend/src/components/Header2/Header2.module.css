@@ -91,3 +91,18 @@ ul a {
 .login {
   color: #6b7087;  
 }
+
+.backHome {
+  margin-right: 4em;
+}
+
+.backIcon {
+  position: absolute;
+  top: 4.5em;
+  right: 2.5em;
+}
+
+.backHomeLink {
+  text-decoration: none;
+  color: #6b7087;
+}

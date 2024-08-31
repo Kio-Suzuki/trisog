@@ -104,12 +104,9 @@ class FindToursService {
       };
     });
     
-
     const toursCount = await prisma.tour.count({
       where: filters,
     });
-
-    
 
     return { tours: toursOverall, toursCount };
   }

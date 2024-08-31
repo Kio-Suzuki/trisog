@@ -18,13 +18,11 @@
   justify-content: center;
   align-items: center;
   gap: 2em;
-  
 }
 
 .searchField {
   display: flex;
   flex-direction: column;
-  
 }
 
 .searchField label {
@@ -38,7 +36,7 @@
   border: 1px solid #e0e0e0;
   height: 4vh;
   width: 13.5vw;
-  padding-left: 1em;
+  padding-left: 2.5em;
   outline: none;
 }
 
@@ -63,4 +61,48 @@
 
 .searchButton:hover {
   background-color: #ff393f;
+}
+
+.iconPosition1 {
+  position: absolute;
+  top: 5.2vh;
+  left: 2.6vw;
+}
+
+.iconPosition1 img {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.iconPosition2 {
+  position: absolute;
+  top: 5.2vh;
+  left: 17.8vw;
+}
+
+.iconPosition2 img {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.iconPosition3 {
+  position: absolute;
+  top: 5.2vh;
+  left: 33vw;
+}
+
+.iconPosition3 img {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.iconPosition4 {
+  position: absolute;
+  top: 5.2vh;
+  left: 48.1vw;
+}
+
+.iconPosition4 img {
+  width: 1.2em;
+  height: 1.2em;
 }

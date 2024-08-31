@@ -105,7 +105,10 @@
   font-size: 0.8em;
 }
 
-.iconFavorite:hover {
+.iconFavorite:hover, .favorite:hover{
   background-color: #FC5056;  
   color: #FFF;
+  color: #000000; 
 }
+
+

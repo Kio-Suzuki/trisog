@@ -6,8 +6,8 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import PopularTours from '../../components/PopularTours/PopularTours';
 import TourInfoComponent from '../../components/TourInfo/TourInfo';
-import style from './TourInfo.module.css';
 import { ToastContainer } from 'react-toastify';
+import style from './TourInfo.module.css';
 
 function TourInfo() {
 

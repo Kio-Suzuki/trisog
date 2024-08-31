@@ -1,10 +1,11 @@
-import TitleBar from '../TitleBar/TitleBar';
-
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../services/firebase';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import TitleBar from '../TitleBar/TitleBar';
 import style from './SignUpForm.module.css';
 
 const SignUpForm = () => {
@@ -12,8 +13,7 @@ const SignUpForm = () => {
   const [lastname, setLastname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [image, setImage] = useState<string>('');
-
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -25,7 +25,7 @@ const SignUpForm = () => {
           email: user.email,
           firstname: firstname,
           lastname: lastname,
-          image: 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png',
+          image: 'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Fuser_default3.png?alt=media&token=88603352-3bb1-4292-8a8c-261ad65736e4',
         };
 
         console.log(userCredential);
@@ -34,8 +34,32 @@ const SignUpForm = () => {
           try {
             const response = await axios.post('http://localhost:3333/user', userObj);
             console.log(response.data);
+            toast.success("Signed up successfully", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            setFirstname('');
+            setLastname('');
+            setEmail('');
+            setPassword('');
           } catch (error) {
             console.error("Error saving user", error);
+            toast.error("Failed to create user", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         };
 

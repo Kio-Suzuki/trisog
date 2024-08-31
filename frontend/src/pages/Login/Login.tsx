@@ -7,10 +7,10 @@ import { ToastContainer } from 'react-toastify';
 function Login() {
   return (
     <div className={style.loginContainer}>
-      <ToastContainer />
       <Header2 />
       <Bannerlogin /> 
       <LoginForm />  
+      <ToastContainer />
     </div>
   )
 }

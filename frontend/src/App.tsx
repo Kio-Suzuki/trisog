@@ -7,10 +7,8 @@ import SignUp from './pages/SignUp/SignUp';
 import Destination from './pages/Destination/Destination';
 import DestinationInfo from './pages/DestinationInfo/DestinationInfo';
 import { Protected } from './pages/ProtectedRoute/ProtectedRoute';
-
-
 import './App.css'
-import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   
@@ -31,7 +29,6 @@ function App() {
       <Route path='/destination' element={ <Destination /> } />
       <Route path='/destination/:id' element={ <DestinationInfo /> } />
     </Routes>
-    <ToastContainer />
     </>
   )
 }

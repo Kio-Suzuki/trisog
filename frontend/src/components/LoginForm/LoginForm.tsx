@@ -40,7 +40,16 @@ function LoginForm() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        toast.error("Failed to sign in");
+        toast.error("Failed to sign in", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
   }
 

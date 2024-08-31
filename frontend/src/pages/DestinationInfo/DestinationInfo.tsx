@@ -62,8 +62,6 @@ function DestinationInfo() {
           const apiWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${destination.capital}&units=metric&appid=${apiWeatherKey}`;
           const response = await axios.get(apiWeatherURL);
           const data = response.data;
-          console.log('Weather data:', data);
-  
           const dailyData = data.list.reduce((acc: any, forecast: any) => {
             const date = format(new Date(forecast.dt * 1000), 'eee dd, MMMM', { locale: enGB });
             if (!acc[date]) {
