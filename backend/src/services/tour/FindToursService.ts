@@ -8,7 +8,8 @@ interface FindToursParams {
   skip: number;         
   take: number;  
   price?: number;
-  order?: string;       
+  order?: string;   
+  reviews?: boolean;    
 }
 
 class FindToursService {
@@ -74,13 +75,43 @@ class FindToursService {
       skip: skip,
       take: take,
       orderBy: orderBy,
+      select: {
+        id: true,
+        location: true,
+        country: true,
+        continent: true,
+        title: true,
+        days: true,
+        price: true,
+        image: true,
+        reviews: {
+          select: {
+            overall: true,
+          },
+        },
+      },
     });
+
+    const toursOverall = tours.map(tour => {
+      const reviewsCount = tour.reviews.length;
+      const average =
+        tour.reviews.length > 0 ? tour.reviews.reduce((sum, review) => sum + review.overall, 0) / reviewsCount : null;
+
+      return {
+        ...tour,
+        average,
+        reviewsCount,
+      };
+    });
+    
 
     const toursCount = await prisma.tour.count({
       where: filters,
     });
 
-    return { tours, toursCount };
+    
+
+    return { tours: toursOverall, toursCount };
   }
 }
 
