@@ -3,7 +3,7 @@ import { FindToursService } from '../../services/tour/FindToursService';
 
 class FindToursController {
   async handle(request: Request, response: Response) {
-    const { search, type, date, guests, page = '1', limit = '9', price, order, rating } = request.query;
+    const { search, type, date, guests, page = '1', limit = '9', price, order, rating, countries } = request.query;
     
     try {
       console.log(request.query);
@@ -15,6 +15,7 @@ class FindToursController {
       const skip = (pageNumber - 1) * limitNumber;
       const typesArray = type ? (type as string).split(',') : [];
       const ratingNumber = rating ? parseFloat(rating as string) : undefined;
+      const countriesArray = countries ? (countries as string).split(',') : [];
 
       const result = await findToursService.execute({
         search: search as string,
@@ -23,6 +24,7 @@ class FindToursController {
         guests: guests ? parseInt(guests as string, 10) : undefined,
         price: price ? parseFloat(price as string) : undefined,
         rating: ratingNumber,
+        countries: countriesArray.length > 0 ? countriesArray : undefined,
         skip,
         take: limitNumber,
         order: order as string | undefined,

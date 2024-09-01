@@ -8,8 +8,9 @@ import axios from 'axios';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
-import PopularTours from '../../components/PopularTours/PopularTours';
 import { FaArrowRight } from "react-icons/fa6";
+import PopularToursByCountry from '../../components/PopularToursByCountry/PopularToursByCountry';
+import { useNavigate } from 'react-router-dom';
 
 export type Destination = {
   id: number;
@@ -31,6 +32,8 @@ function DestinationInfo() {
   const { id } = useParams<{ id: string }>();
   const [destination, setDestination] = useState<Destination | null>(null);
   const [weather, setWeather] = useState<any>(null);
+  const navigate = useNavigate();
+  
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyBkYwyHygzVcR0PJdMSXj8gwZIPYqhCP0o"
@@ -42,7 +45,7 @@ function DestinationInfo() {
     const fetchDestination = async () => {
       try {
         const response = await axios.get(`http://localhost:3333/destinations/${id}`);
-        setDestination(response.data);  
+        setDestination(response.data); 
       } catch (error) {
         console.error("Error fetching destination", error);
       }
@@ -94,6 +97,11 @@ function DestinationInfo() {
 
   if (!destination) {
     return <div>Loading...</div>; 
+  }
+
+  const handleSeeAll = () => {
+    window.scrollTo(0, 0);
+    navigate(`/tours?search=${encodeURIComponent(destination.country)}`);
   }
 
   return (
@@ -176,10 +184,9 @@ function DestinationInfo() {
       </div>
       <div className={style.popularContainer}>
         <h1>Popular Tours in {destination.country}</h1>
-        <button>See All <span className={style.buttonPadding}><FaArrowRight /></span></button>
+        <button onClick={handleSeeAll}>See All <span className={style.buttonPadding}><FaArrowRight /></span></button>
       </div>
-      
-      <PopularTours />
+      <PopularToursByCountry />
       <Footer />
     </div>
   );

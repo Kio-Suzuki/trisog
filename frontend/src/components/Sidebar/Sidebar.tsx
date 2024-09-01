@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import style from './Sidebar.module.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
 export type TourType = {
   id: number;
@@ -13,41 +10,27 @@ export type TourType = {
 
 function Sidebar() {
 
-  const [africaTours, setAfricaTours] = useState<Tour[]>([]);
-  const [asiaTours, setAsiaTours] = useState<Tour[]>([]);
-  const [europeTours, setEuropeTours] = useState<Tour[]>([]);
-  const [northAmericaTours, setNorthAmericaTours] = useState<Tour[]>([]);
-  const [oceaniaTours, setOceaniaTours] = useState<Tour[]>([]);
-  const [southAmericaTours, setSouthAmericaTours] = useState<Tour[]>([]);
-
   const [toursTypes, setToursTypes] = useState<Tour[]>([]);
   const [tours, setTours] = useState<Tour[]>([]);
-
   const [search, setSearch] = useState<string>('');
   const [price, setPrice] = useState<number>(0.00);
-  
   const [min, setMin] = useState<number>(0.00);
   const [max, setMax] = useState<number>(3000.00);
   const [value, setValue] = useState<number>(0.00);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
+  const navigate = useNavigate();
+  const location = useLocation(); 
+  const [continentMap, setContinentMap] = useState<Map<string, Set<string>>>(new Map());
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+  const [selectedStars, setSelectedStars] = useState<string[]>([]);
+  const [toursDistinations, setToursDistinations] = useState<Tour[]>([]);
 
   const handleTypeChange = (type: string) => {
     setSelectedTypes(prev => 
       prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
     );
   };
-  
-  const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
-  
-  
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [toursTypes, setToursTypes] = useState<Tour[]>([]);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
-  const [selectedStars, setSelectedStars] = useState<string[]>([]);
-  const [toursDistinations, setToursDistinations] = useState<Tour[]>([]);
-
  
   // AGRUPA OS TOURS POR CATEGORIA (TYPE)
 
@@ -69,8 +52,16 @@ function Sidebar() {
     const fetchTours = async () => {
       try {
         const response = await axios.get('http://localhost:3333/toursgroup');
-        setToursDistinations(response.data);
-        
+        const mapaContinentes = new Map<string, Set<string>>();
+        response.data.continentTours.forEach((tour: { continent: string; country: string }) => {
+          const { continent, country } = tour;
+          if (!mapaContinentes.has(continent)) {
+            mapaContinentes.set(continent, new Set<string>());
+          }
+          mapaContinentes.get(continent)?.add(country);
+        });
+        setContinentMap(mapaContinentes);
+        console.log(mapaContinentes);
       } catch (error) {
         console.error("Error fetching tours", error);
       }
@@ -105,10 +96,10 @@ function Sidebar() {
       inputElement.style.background = `linear-gradient(to right, #FC5056 ${percentage}%, #ddd ${percentage}%)`;
     }
   };
+  
   const handlePrice = (e: React.FormEvent) => {
     e.preventDefault();
     const queryParams = new URLSearchParams(location.search);
-    console.log(queryParams);
     queryParams.set('price', price.toString());
     navigate(`/tours?${queryParams.toString()}`);
   };
@@ -118,35 +109,15 @@ function Sidebar() {
       const updatedTypes = prevState.includes(category)
         ? prevState.filter(c => c !== category)
         : [...prevState, category];
-      if (updatedTypes.length === 0) {
-        navigate(`/tours?price=${price}`);
-      } else {
-        navigate(`/tours?${new URLSearchParams({ type: updatedTypes.join(','), price: price.toString() }).toString()}`);
-      }
-  
-      return updatedTypes;
-    });
-  };
 
-  const handleType = (category: string) => {
-    setSelectedTypes(prevState => {
-      const updatedTypes = prevState.includes(category)
-        ? prevState.filter(c => c !== category)
-        : [...prevState, category];
-
-      // Pegue os parâmetros atuais da URL
       const searchParams = new URLSearchParams(location.search);
       console.log(searchParams);
-      // Atualize o filtro de tipo na URL
+      
       if (updatedTypes.length === 0) {
         searchParams.delete('type');
-        console.log('sem type');
       } else {
         searchParams.set('type', updatedTypes.join(','));
-        console.log('com type');
       }
-
-      // Atualize a URL com os filtros atuais (inclusive preço)
       navigate(`/tours?${searchParams.toString()}`);
 
       return updatedTypes;
@@ -157,15 +128,15 @@ function Sidebar() {
     const fetchFilteredTours = async () => {
       if (selectedTypes.length > 0) {
         try {
-          const query = new URLSearchParams({
-            type: selectedTypes.join(',')
-          }).toString();
-          navigate(`/tours?${query}`);
+          const searchParams = new URLSearchParams(window.location.search);
+          searchParams.set('type', selectedTypes.join(','));
+          navigate(`/tours?${searchParams.toString()}`);
         } catch (error) {
           console.error("Error fetching filtered tours", error);
         }
       }
     };
+  
     fetchFilteredTours();
   }, [selectedTypes]);
 
@@ -187,8 +158,7 @@ function Sidebar() {
       return updatedStars;
     });
   };
-  
-  // Remova o navigate de dentro do useEffect
+
   useEffect(() => {
     const fetchFilteredTours = async () => {
       if (selectedStars.length > 0) {
@@ -197,7 +167,7 @@ function Sidebar() {
             rating: selectedStars.join(',')
           }).toString();
           console.log(query);
-          // O fetch de tours filtrados ocorreria aqui
+          navigate(`/tours?${query}`);
         } catch (error) {
           console.error("Error fetching filtered tours", error);
         }
@@ -205,6 +175,44 @@ function Sidebar() {
     };
     fetchFilteredTours();
   }, [selectedStars]);
+
+  useEffect(() => {
+    console.log('Continent Map:', Array.from(continentMap.entries()));
+  }, [continentMap]);
+  
+  // FILTRO POR PAÍSES
+
+  const handleCountries = (e: React.ChangeEvent<HTMLInputElement>, country: string) => {
+    setSelectedCountries(prevState => {
+      const updatedCountries = e.target.checked
+        ? [...prevState, country]
+        : prevState.filter(c => c !== country);
+      const searchParams = new URLSearchParams(location.search);
+      if (updatedCountries.length === 0) {
+        searchParams.delete('countries');
+      } else {
+        searchParams.set('countries', updatedCountries.join(','));
+      }
+      navigate(`/tours?${searchParams.toString()}`);
+      return updatedCountries;
+    });
+  };
+
+  useEffect(() => {
+    const fetchFilteredTours = async () => {
+      if (selectedCountries.length > 0) {
+        try {
+          const query = new URLSearchParams({
+            countries: selectedCountries.join(',')
+          }).toString();
+          navigate(`/tours?${query}`);
+        } catch (error) {
+          console.error("Error fetching filtered tours", error);
+        }
+      }
+    };
+    fetchFilteredTours();
+  }, [selectedCountries]);
 
   
   return (
@@ -255,56 +263,26 @@ function Sidebar() {
         </form>
       </div>
       <div className={style.sidebarDestinations}>
-        <h3>Destinations</h3>
-        <form className={style.checkCategories}>
-          {toursDistinations.map((tour) => (
-            <label key={tour.id} className={style.crwrapper}>
-              <input type="checkbox" />
-              <div className={style.crinput}></div>
-              <span>{tour.country}</span>
-            </label>
-          ))}
-          <h4>Asia</h4>
-          {asiaTours.map((tour) => (
-            <label key={tour.id} className={style.crwrapper}>
-              <input type="checkbox" />
-              <div className={style.crinput}></div>
-              <span>{tour.country}</span>
-            </label>
-          ))}
-          <h4>Europe</h4>
-          {europeTours.map((tour) => (
-            <label key={tour.id} className={style.crwrapper}>
-              <input type="checkbox" />
-              <div className={style.crinput}></div>
-              <span>{tour.country}</span>
-            </label>
-          ))}
-          <h4>North America</h4>
-          {northAmericaTours.map((tour) => (
-            <label key={tour.id} className={style.crwrapper}>
-              <input type="checkbox" />
-              <div className={style.crinput}></div>
-              <span>{tour.country}</span>
-            </label>
-          ))}
-          <h4>Oceania</h4>
-          {oceaniaTours.map((tour) => (
-            <label key={tour.id} className={style.crwrapper}>
-              <input type="checkbox" />
-              <div className={style.crinput}></div>
-              <span>{tour.country}</span>
-            </label>
-          ))}
-          <h4>South America</h4>
-          {southAmericaTours.map((tour) => (
-            <label key={tour.id} className={style.crwrapper}>
-              <input type="checkbox" />
-              <div className={style.crinput}></div>
-              <span>{tour.country}</span>
-            </label>
-          ))}
-        </form>
+      <h3>Destinations</h3>
+      <form className={style.checkCategories}>
+        {Array.from(continentMap.entries()).map(([continent, countries]) => (
+          <div key={continent}>
+            <h4>{continent}</h4>
+            {Array.from(countries).map(country => (
+              <label key={country} className={style.crwrapper}>
+                <input 
+                  type="checkbox"
+                  value={country}
+                  onChange={(e) => handleCountries(e, country)}
+                  checked={selectedCountries.includes(country)}
+                />
+                <div className={style.crinput}></div>
+                <span>{country}</span>
+              </label>
+            ))}
+          </div>
+        ))}
+      </form>
       </div>
       <div className={style.sidebarReviews}>
         <h3>Reviews</h3>

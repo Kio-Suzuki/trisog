@@ -33,6 +33,7 @@ export interface TourContextType {
   priceQuery: number | null;
   orderQuery: string | null;
   ratingQuery: number | null;
+  countriesQuery: string | null;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   setTypeQuery: React.Dispatch<React.SetStateAction<string | null>>;
   setDateQuery: React.Dispatch<React.SetStateAction<string | null>>;
@@ -40,6 +41,7 @@ export interface TourContextType {
   setOrderQuery: React.Dispatch<React.SetStateAction<string>>;
   setPriceQuery: React.Dispatch<React.SetStateAction<number | null>>;
   setRatingQuery: React.Dispatch<React.SetStateAction<number | null>>;
+  setCountriesQuery: React.Dispatch<React.SetStateAction<string | null>>;
   fetchTours: () => Promise<void>;
 }
 
@@ -55,6 +57,7 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
   const [priceQuery, setPriceQuery] = useState<number | null>(null);
   const [orderQuery, setOrderQuery] = useState<string>('asc');
   const [ratingQuery, setRatingQuery] = useState<number | null>(null);
+  const [countriesQuery, setCountriesQuery] = useState<string | null>(null);
 
   const fetchTours = async () => {
     try {
@@ -67,6 +70,7 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
           price: priceQuery,
           order: orderQuery,
           rating: ratingQuery,
+          countries: countriesQuery
         }
       });
       setTours(response.data.tours);
@@ -95,7 +99,9 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
         orderQuery,
         setOrderQuery,
         ratingQuery,
-        setRatingQuery
+        setRatingQuery,
+        countriesQuery,
+        setCountriesQuery
       }}>
       {children}
     </TourContext.Provider>

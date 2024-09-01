@@ -29,6 +29,7 @@ function Tours() {
   const price = query.get('price') || '';
   const order = orderQuery || 'asc';
   const rating = query.get('rating') || '';
+  const countries = query.get('countries') || '';
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -41,6 +42,7 @@ function Tours() {
             guests,
             price,
             rating,
+            countries,
             page,
             order,
             take: itemsPerPage
@@ -55,7 +57,7 @@ function Tours() {
     };
 
     fetchTours();
-  }, [search, type, date, guests, page, price, order, rating, orderQuery]);
+  }, [search, type, date, guests, page, price, order, rating, countries, orderQuery]);
 
   const handleSearch = (search: string) => {
     navigate(`/tours?search=${search}&page=1`);

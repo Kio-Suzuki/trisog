@@ -12,6 +12,7 @@ import { CountReviewUserController } from './controllers/user/CountReviewUserCon
 import { CountReviewController } from './controllers/review/CountReviewController';
 import { GroupToursController } from './controllers/tour/GroupToursController';
 import { FindToursController } from './controllers/tour/FindToursController';
+import { ToursByCountryController } from './controllers/tour/ToursByCountryController';
 
 const router = Router();
 
@@ -21,6 +22,7 @@ router.get('/tours/:id', new TourInfoController().handle);
 router.get('/tourstypes', new TypesTourController().handle);
 router.get('/toursgroup', new GroupToursController().handle);
 router.get('/tours', new FindToursController().handle);
+router.get('/tourscountry/:id', new ToursByCountryController().handle);
 
 //-- ROTAS DESTINATIONS
 router.get('/destinations', new ListDestinationController().handle);

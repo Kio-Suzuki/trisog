@@ -8,25 +8,27 @@ datasource db {
 }
 
 model Tour {
-  id        Int       @id @default(autoincrement())
-  location  String
-  country   String
-  continent String
-  title     String
-  startDate String
-  endDate   String
-  days      Int
-  price     Float
-  image     String
-  maxPeople Int
-  minAge    Int
-  type      String
-  overview  String
-  latitude  Float
-  longitude Float
-  reviews   Review[]
-  updatedAt DateTime? @default(now())
-  createdAt DateTime? @default(now())
+  id            Int          @id @default(autoincrement())
+  location      String
+  country       String
+  continent     String
+  title         String
+  startDate     String
+  endDate       String
+  days          Int
+  price         Float
+  image         String
+  maxPeople     Int
+  minAge        Int
+  type          String
+  overview      String
+  latitude      Float
+  longitude     Float
+  reviews       Review[]
+  updatedAt     DateTime?    @default(now())
+  createdAt     DateTime?    @default(now())
+  Destination   Destination @relation(fields: [destinationId], references: [id])
+  destinationId Int
 
   @@map("tours")
 }
@@ -46,6 +48,7 @@ model Destination {
   timetravel String
   travelers  Int
   capital    String
+  tours      Tour[]
   updatedAt  DateTime? @default(now())
   createdAt  DateTime? @default(now())
 
