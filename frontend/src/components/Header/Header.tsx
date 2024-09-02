@@ -87,7 +87,11 @@ function Header() {
           <a href="https://x.com/" target='_blank' rel='noopener noreferrer'><FaTwitter /></a>
           <a href="https://www.google.com.br/?hl=pt-BR" target='_blank' rel='noopener noreferrer'><FaGoogle /></a>
           <a href="https://br.pinterest.com/" target='_blank' rel='noopener noreferrer'><FaPinterestP /></a>
-          <span>| EUR </span>
+          <select name="" id="" className={style.selectContainer}>
+            <option value="eur">EUR</option>
+            <option value="usd">USD</option>
+            <option value="gpb">GPB</option>
+          </select>
         </div>
       </div>
       <div className={style.header2}>

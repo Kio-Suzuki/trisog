@@ -21,7 +21,7 @@ export function Protected({ children }: { children: React.ReactNode }) {
         setTimeout(() => {
           toast.error('You must be logged in to access Tours Pages', {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 2500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -29,7 +29,7 @@ export function Protected({ children }: { children: React.ReactNode }) {
             progress: undefined,
             theme: "light",
           });
-        }, 1000);
+        }, 500);
         showToast.current = true;
       }
     }

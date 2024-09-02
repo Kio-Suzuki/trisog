@@ -1,9 +1,17 @@
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 import style from './Footer.module.css';
 
 function Footer() {
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
   return (
     <div className={style.footerContainer}>
       <div className={style.footer}>
@@ -46,8 +54,14 @@ function Footer() {
         </div>
         <div className={style.footerNewsletter}>
           <p className={style.footerFont}>Sing up Newsletter</p>
-          <input type="text" placeholder='Enter email...'/>
-          <button>Submit</button>
+          <form onSubmit={handleSubmit(onSubmit)} className={style.formFooter}>
+            <input 
+              type="email"
+              {...register("email", { required: true , pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,}$/i })}
+              placeholder='Enter email...'/>
+            <button type="submit">Submit</button>
+          </form>
+          {errors!.email ? (<p className={style.error}>Please enter a valid email</p>) : <p>Success!</p>}
           <span className={style.footerEnd}>© 2023 Trisog All Right Reserved</span> 
         </div>
       </div>

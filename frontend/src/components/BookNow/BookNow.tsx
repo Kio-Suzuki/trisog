@@ -131,25 +131,26 @@ function BookNow({ tour }: TourProps) {
         <div className={style.ticketContainer}>
           <p>Adults (18+ years)</p>
           <div className={style.counter}>
-            <button onClick={handleIncrementAdults}>+</button>
-            <p>{countAdults}</p>
             <button onClick={handleDecrementAdults}>-</button>
+            <p>{countAdults}</p>
+            <button onClick={handleIncrementAdults}>+</button>
           </div>
         </div>
         <div className={style.ticketContainer}>
           <p>Kids (12+ years)</p>
           <div className={style.counter}>
-            <button onClick={handleIncrementKids}>+</button>
-            <p>{countKids}</p>
             <button onClick={handleDecrementKids}>-</button>
+            <p>{countKids}</p>
+            <button onClick={handleIncrementKids}>+</button>
           </div>
         </div>
         <div className={style.ticketContainer}>
           <p>Children (3+ years)</p>
           <div className={style.counter}>
-            <button onClick={handleIncrementChildren}>+</button>
-            <p>{countChildren}</p>
+            
             <button onClick={handleDecrementChildren}>-</button>
+            <p>{countChildren}</p>
+            <button onClick={handleIncrementChildren}>+</button>
           </div>
         </div>
       </div> 

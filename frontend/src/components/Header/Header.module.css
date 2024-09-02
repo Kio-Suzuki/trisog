@@ -158,3 +158,10 @@ ul a {
   width: 8vw;
   opacity: 1; 
 }
+
+.selectContainer {
+  border: none;
+  color:#6b7087;
+  background-color: #f3f3f5;
+  outline: none;
+}

@@ -19,9 +19,18 @@ class FindToursService {
     const filters: any = {};
 
     if (search) {
-      filters.country = {
-        contains: search,
-      };
+      filters.OR = [
+        {
+          country: {
+            contains: search,
+          },
+        },
+        {
+          location: {
+            contains: search,
+          },
+        },
+      ]
     }
 
     if (type) {

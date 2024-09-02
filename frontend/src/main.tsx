@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext.tsx'
 import App from './App.tsx'
 import { TourProvider } from './context/TourContext.tsx';
+import { ToastContainer } from 'react-toastify';
 import './index.css'
 
 
@@ -17,5 +18,6 @@ createRoot(document.getElementById('root')!).render(
         </AuthProvider>
       </BrowserRouter>
     </TourProvider>
+    <ToastContainer />
   </StrictMode>
 )

@@ -1,5 +1,4 @@
 import style from './Banner.module.css';
-import banner from '../../assets/banner.png';
 import Search from '../Search/Search';
 
 function Banner() {

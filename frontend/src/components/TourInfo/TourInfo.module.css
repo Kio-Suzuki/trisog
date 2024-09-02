@@ -10,6 +10,7 @@
   height: 50vh;
   overflow: hidden;
   margin-bottom: 2vh;
+  position: relative;
 }
 
 .tourImage img {
@@ -17,6 +18,28 @@
   height: 100%;
   object-fit: cover;
 }
+
+.buttonsImage {
+  position: absolute;
+  z-index: 1000;
+  right: 1vw;
+  bottom: 2vh;
+  display: flex;
+  gap: 1em;
+}
+
+.buttonsImage1, .buttonsImage2 {
+  background-color: #FFF;
+  border-radius: 5px;
+  color: #051036;
+  padding: 0.3em 1em;
+  cursor: pointer;
+  display: flex;
+  gap: 0.2em;
+  align-items: center;
+  border: 1px solid rgb(224, 224, 224);
+}
+
 
 .tourTitle {
   margin-top: 1vh;
@@ -75,10 +98,12 @@
   color: #6b7087;  
 }
 
-.tourReviewContainer {
+.tourAverageReview {
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 1em;
+  color: #051036;
 }
 
 .noReview {
@@ -96,4 +121,27 @@
 
 .showReviewCount {
   margin-top: 2em;
+}
+
+.tourLocation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkMap {
+  color: #FC5056;
+  padding-left: 1em;
+  cursor: pointer;
+}
+
+.icon1Color, .icon2Color {
+  color: #6b7087;
+}
+
+.icon1Color {
+  margin-right: 0.5em;
+}
+
+.icon1Color:hover, .icon2Color:hover {
+  color: #FC5056;
 }

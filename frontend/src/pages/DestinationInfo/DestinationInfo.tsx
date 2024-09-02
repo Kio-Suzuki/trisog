@@ -1,16 +1,15 @@
-import { useParams } from 'react-router-dom';
-import Banner2 from '../../components/Banner2/Banner2';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import style from './DestinationInfo.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams, useNavigate  } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
-import { FaArrowRight } from "react-icons/fa6";
+import Banner2 from '../../components/Banner2/Banner2';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 import PopularToursByCountry from '../../components/PopularToursByCountry/PopularToursByCountry';
-import { useNavigate } from 'react-router-dom';
+import { FaArrowRight } from "react-icons/fa6";
+import style from './DestinationInfo.module.css';
 
 export type Destination = {
   id: number;
@@ -151,7 +150,13 @@ function DestinationInfo() {
         <img src={destination.img} className={style.img4}/>
         <img src={destination.img} className={style.img5}/>
         <img src={destination.img} className={style.img6}/>
-        <img src={destination.img} className={style.img7}/>
+        <div className={style.img7}>
+          <img src={destination.img}/>
+          <div className={style.imageText}>
+            <p className={style.imageText1}>12+</p>
+            <p className={style.imageText2}>More photo</p>
+          </div>
+        </div>
       </div>
       <div className={style.containerAbout}>
         <h2>About {destination.country}</h2>
@@ -188,6 +193,7 @@ function DestinationInfo() {
       </div>
       <PopularToursByCountry />
       <Footer />
+      
     </div>
   );
 }

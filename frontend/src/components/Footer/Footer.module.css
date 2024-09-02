@@ -28,8 +28,8 @@
   border-right: 1px solid #fdfdfd;
   display: flex;
   flex-direction: row;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding-left: 4vw;
+  padding-right: 4vw;
 }
 
 .footerList ul {
@@ -129,4 +129,15 @@ a {
 
 .footerEnd {
   margin-top: 1em;
+}
+
+.formFooter {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 0.7em;
 }

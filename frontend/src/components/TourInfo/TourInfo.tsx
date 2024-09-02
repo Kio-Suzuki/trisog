@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { IoLocationOutline } from "react-icons/io5";
 import AverageReview from '../AverageReview/AverageReview';
@@ -7,6 +7,10 @@ import AddReview from '../AddReview/AddReview';
 import { IoStar } from "react-icons/io5";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from 'react-router-dom';
+import { IoShareSocialOutline } from "react-icons/io5";
+import { GrFavorite } from "react-icons/gr";
+import { PiVideoCamera } from "react-icons/pi";
+import { GoImage } from "react-icons/go";
 import style from './TourInfo.module.css';
 
 export type Tour = {
@@ -48,6 +52,8 @@ function TourInfo({ tour }: TourProps) {
   const [overallRooms, setOverallRooms] = useState<number>(0);
   const [reviewsCount, setReviewsCount] = useState<number>(0);
   const { id } = useParams<{ id: string }>();
+  
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   
   const fetchReviews = async () => {
@@ -70,6 +76,15 @@ function TourInfo({ tour }: TourProps) {
     }
   };
 
+  const scrollToMap = () => {
+    if (mapContainerRef.current) {
+      mapContainerRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
+
   useEffect(() => {
     fetchReviews();
   }, [id]);
@@ -83,10 +98,15 @@ function TourInfo({ tour }: TourProps) {
        
       <div className={style.tourImage}>
         <img src={tour?.image} alt="card1" />
+        <div className={style.buttonsImage}>
+          <div className={style.buttonsImage1}><p>Video</p> <PiVideoCamera /></div>
+          <div className={style.buttonsImage2}><p>Gallery</p> <GoImage /></div>
+        </div>
       </div>
       <div className={style.tourInfo}>
       <div className={style.tourLocation}>
-          <span className={style.locationColor}><IoLocationOutline />{tour?.location}, {tour?.country}</span>
+          <p className={style.locationColor}><IoLocationOutline />{tour?.location}, {tour?.country} <span className={style.linkMap} onClick={scrollToMap}>View on map</span></p>
+          <span><IoShareSocialOutline className={style.icon1Color}/> <GrFavorite className={style.icon2Color}/></span>
         </div>
         <div className={style.tourTitle}>
           <h1>{tour?.title}</h1>
@@ -121,7 +141,7 @@ function TourInfo({ tour }: TourProps) {
           <h3>Overview</h3>
           <p>{tour?.overview}</p>
         </div>
-        <div className={style.tourMap}>
+        <div className={style.tourMap} ref={mapContainerRef}>
           <h3>Map</h3>
           <div className={style.mapContainer}> 
             {isLoaded ? (
@@ -131,13 +151,16 @@ function TourInfo({ tour }: TourProps) {
                   lat: tour?.latitude,
                   lng: tour?.longitude, 
                 }}
-                zoom={10}
+                zoom={7}
               >
               </GoogleMap>
             ) : null}
           </div>
         </div>
         <div className={style.tourAverageReview}>
+          <div>
+          <h3>Average Review</h3>
+          </div>
           <AverageReview 
             overallAverage={overallAverage}
             overallLocation={overallLocation}
