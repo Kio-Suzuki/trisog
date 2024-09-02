@@ -27,7 +27,8 @@ function DestinationGrid() {
     const fetchTour = async () => {
       try {
         const response = await axios.get('http://localhost:3333/destinations');
-        setDestinations(response.data); 
+        let destinationgrid = response.data.slice(0, 12);
+        setDestinations(destinationgrid); 
       } catch (error) {
         console.error("Error fetching tour", error);
       }

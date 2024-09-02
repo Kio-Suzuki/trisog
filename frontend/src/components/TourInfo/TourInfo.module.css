@@ -136,6 +136,7 @@
 
 .icon1Color, .icon2Color {
   color: #6b7087;
+  cursor: pointer;
 }
 
 .icon1Color {

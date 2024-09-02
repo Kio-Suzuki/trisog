@@ -28,7 +28,6 @@ function Card({ tour }: CardProps) {
 
   const handleFavorite = (e) => {
     e.preventDefault();
-    console.log('Favorite clicked');
     toast.success('Tour added to favorites', {
       position: "top-center",
       autoClose: 1000,

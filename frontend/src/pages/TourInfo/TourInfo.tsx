@@ -39,6 +39,7 @@ function TourInfo() {
       <h2>You may also like...</h2>
       <PopularTours />
       <Footer />
+      <ToastContainer />
     </div>
   )
 }

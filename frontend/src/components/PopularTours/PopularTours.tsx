@@ -14,8 +14,10 @@ function PopularTours() {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/tours');
+        const response = await axios.get('http://localhost:3333/toursall');
+        console.log('data:', response.data);
         const shuffledTours = response.data.tours.sort(() => 0.5 - Math.random());
+        console.log('shufle: ', shuffledTours);
         const carouselTours = shuffledTours.slice(0, 8); 
         setTours(carouselTours);
       } catch (error) {

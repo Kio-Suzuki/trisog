@@ -10,6 +10,7 @@ import style from './Tours.module.css';
 import ReactPaginate from 'react-paginate';
 import { AiOutlineSortAscending } from "react-icons/ai";
 import { useTourContext } from '../../context/TourContext';
+import { ToastContainer } from 'react-toastify';
 
 function Tours() {
   const [tours, setTours] = useState<Tour[]>([]);
@@ -121,6 +122,7 @@ function Tours() {
         </div>
       </div>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

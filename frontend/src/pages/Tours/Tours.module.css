@@ -75,6 +75,11 @@
   color: var(--activeTextColor);
 }
 
+.pagination .active {
+  background-color: #FC5056;
+  color: #FFF;
+}
+
 .pagination li {
   display: flex;
   justify-content: center;
@@ -85,7 +90,6 @@
   list-style: none;
   border-radius: 50%;
   border: 1px solid #f3f3f5;
-
 }
 
 .pagination a:hover {

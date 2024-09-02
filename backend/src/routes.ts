@@ -17,7 +17,7 @@ import { ToursByCountryController } from './controllers/tour/ToursByCountryContr
 const router = Router();
 
 //-- ROTAS TOURS
-// router.get('/tours', new ListTourController().handle);
+router.get('/toursall', new ListTourController().handle);
 router.get('/tours/:id', new TourInfoController().handle);
 router.get('/tourstypes', new TypesTourController().handle);
 router.get('/toursgroup', new GroupToursController().handle);

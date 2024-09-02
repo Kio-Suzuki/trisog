@@ -11,6 +11,7 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { GrFavorite } from "react-icons/gr";
 import { PiVideoCamera } from "react-icons/pi";
 import { GoImage } from "react-icons/go";
+import { toast } from 'react-toastify';
 import style from './TourInfo.module.css';
 
 export type Tour = {
@@ -52,10 +53,8 @@ function TourInfo({ tour }: TourProps) {
   const [overallRooms, setOverallRooms] = useState<number>(0);
   const [reviewsCount, setReviewsCount] = useState<number>(0);
   const { id } = useParams<{ id: string }>();
-  
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
-  
   const fetchReviews = async () => {
     try {
       const response = await axios.get(`http://localhost:3333/reviews/tour/${id}`);
@@ -93,6 +92,20 @@ function TourInfo({ tour }: TourProps) {
     await fetchReviews();  
   };
 
+  const handleNotification = (e) => {
+    e.preventDefault();
+    toast.success('Tour added to favorites', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <div className={style.tourInfoContainer}>
        
@@ -106,7 +119,7 @@ function TourInfo({ tour }: TourProps) {
       <div className={style.tourInfo}>
       <div className={style.tourLocation}>
           <p className={style.locationColor}><IoLocationOutline />{tour?.location}, {tour?.country} <span className={style.linkMap} onClick={scrollToMap}>View on map</span></p>
-          <span><IoShareSocialOutline className={style.icon1Color}/> <GrFavorite className={style.icon2Color}/></span>
+          <div onClick={handleNotification}><IoShareSocialOutline className={style.icon1Color}/> <GrFavorite className={style.icon2Color}/></div>
         </div>
         <div className={style.tourTitle}>
           <h1>{tour?.title}</h1>
