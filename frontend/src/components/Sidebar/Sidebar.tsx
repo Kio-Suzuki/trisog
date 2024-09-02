@@ -61,7 +61,6 @@ function Sidebar() {
           mapaContinentes.get(continent)?.add(country);
         });
         setContinentMap(mapaContinentes);
-        console.log(mapaContinentes);
       } catch (error) {
         console.error("Error fetching tours", error);
       }
@@ -176,9 +175,7 @@ function Sidebar() {
     fetchFilteredTours();
   }, [selectedStars]);
 
-  useEffect(() => {
-    console.log('Continent Map:', Array.from(continentMap.entries()));
-  }, [continentMap]);
+ 
   
   // FILTRO POR PAÍSES
 

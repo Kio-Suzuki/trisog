@@ -55,7 +55,6 @@ function TourInfo({ tour }: TourProps) {
       const response = await axios.get(`http://localhost:3333/reviews/tour/${id}`);
 
       if (response.data) {
-        console.log('Reviews: ', response.data);
         setReviews(response.data.reviews);
         setOverallAverage((response.data.overallAverage).toFixed(1));
         setOverallService((response.data.overallService).toFixed(1));

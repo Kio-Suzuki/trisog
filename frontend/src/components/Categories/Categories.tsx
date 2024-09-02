@@ -17,7 +17,6 @@ function Categories() {
       try {
         const response = await axios.get('http://localhost:3333/tourstypes');
         setTours(response.data);
-        console.log(responseSize)
       } catch (error) {
         console.error("Error fetching tours", error);
       }

@@ -39,7 +39,7 @@ function Footer() {
               <li>Tokyo</li>
               <li>Sydney</li>
               <li>Melbourne</li>
-              <li>Bubai</li>
+              <li>Dubai</li>
             </ul>
           </div>
           

@@ -8,7 +8,8 @@ function SignUp() {
     <div>
       <Header2 />
       <Bannerlogin />
-      <SignUpForm />  
+      <SignUpForm /> 
+      <footer className={style.footerContainer}>© 2023 Trisog All Right Reserved</footer> 
     </div>
   )
 }

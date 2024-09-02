@@ -11,6 +11,7 @@ function Login() {
       <Bannerlogin /> 
       <LoginForm />  
       <ToastContainer />
+      <footer className={style.footerContainer}>© 2023 Trisog All Right Reserved</footer>
     </div>
   )
 }

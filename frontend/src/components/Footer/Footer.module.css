@@ -50,6 +50,7 @@
 .footerFontStyle {
   font-size: 1.2em;
   font-weight: 700;
+  margin-bottom: 1em;
 }
 
 .footerFontColor {
@@ -124,4 +125,8 @@ a {
 .footerList li:hover {
   color: #FC5056;
   cursor: pointer;  
+}
+
+.footerEnd {
+  margin-top: 1em;
 }

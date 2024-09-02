@@ -15,8 +15,7 @@ function PopularToursByCountry() {
     const fetchTours = async () => {
       try {
         const id = (location.pathname.split("/")[2]);
-        const response = await axios.get(`http://localhost:3333/tourscountry/${id}`);
-        console.log('DATA TOUR BY COUNTRY: ', response.data); 
+        const response = await axios.get(`http://localhost:3333/tourscountry/${id}`); 
         let carouselTours = response.data.tours;
         if (carouselTours.length < 8) {
           const repeatedTours = [];
@@ -25,7 +24,6 @@ function PopularToursByCountry() {
           }
           carouselTours = repeatedTours;
         }
-
         setTours(carouselTours);
       } catch (error) {
         console.error("Error fetching tours", error);
@@ -41,12 +39,10 @@ function PopularToursByCountry() {
           modules={[Pagination]}
           slidesPerView={4}
           spaceBetween={38}
-          loop={true}
           pagination={{ clickable: true }}
-          
         >
-          {tours.map((tour) => (
-            <SwiperSlide key={tour.id}>
+          {tours.map((tour, index) => (
+            <SwiperSlide key={`${tour.id}-${index}`}>
               <Card tour={tour} />
             </SwiperSlide>
           ))}

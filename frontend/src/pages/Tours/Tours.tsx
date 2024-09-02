@@ -32,6 +32,10 @@ function Tours() {
   const countries = query.get('countries') || '';
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchTours = async () => {
       try {
         const response = await axios.get('http://localhost:3333/tours', {
