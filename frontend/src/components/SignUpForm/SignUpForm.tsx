@@ -83,7 +83,7 @@ const SignUpForm = () => {
             });
             break;
           case 'auth/weak-password':
-            toast.error("Weak password", {
+            toast.error("Weak password, Password should be at least 6 characters", {
               position: "top-center",
               autoClose: 2000,
               hideProgressBar: false,

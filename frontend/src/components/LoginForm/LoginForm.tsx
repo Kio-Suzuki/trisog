@@ -23,7 +23,6 @@ function LoginForm() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
         toast.success("Signed in successfully", {
           position: "top-center",
           autoClose: 1000,
@@ -39,16 +38,32 @@ function LoginForm() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        toast.error("Failed to sign in", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        switch (errorCode) {
+          case 'auth/invalid-credential':
+            toast.error("Invalid email or password. Please try again", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            break;
+          default:
+            toast.error("Failed to sign up", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            break;
+        }
       });
   }
 
