@@ -9,7 +9,7 @@
 [Firebase]: https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34
 [Google Cloud]: https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
-[PROJECT__URL]: https://github.com/Kio-Suzuki/Challenge-1
+[PROJECT__URL]: https://github.com/Kio-Suzuki/trisog
 
 <h1 align="center" style="font-weight: bold;">Trisog ✈️</h1>
 
@@ -32,10 +32,10 @@
 </p>
 
 <p align="center">
-  <img src="https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Readme%2FHome1.png?alt=media&token=0966a6ab-f747-4d55-ab64-37c8543bf5f1" alt="Image Example" width="500px">
-  <img src="https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Readme%2FHome2.png?alt=media&token=8b56f689-007a-4fdc-b722-fb1deefca72f" alt="Image Example" width="500px">
-  <img src="https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Readme%2FTours.png?alt=media&token=450b7595-5be8-4d15-a0ea-2e73602bd5d6" alt="Image Example" width="500px">
-  <img src="https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Readme%2FTourinfo.png?alt=media&token=14d021bc-be55-45dc-ba1d-f62d046422e9" alt="Image Example" width="500px">
+  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Home1.png?raw=true" alt="Image Example" width="500px">
+  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Home2.png?raw=true" alt="Image Example" width="500px">
+  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Tours.png?raw=true" alt="Image Example" width="500px">
+  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Tourinfo.png?raw=true" alt="Image Example" width="500px">
 </p>
 
 <h2 id="started">📌 About</h2>
