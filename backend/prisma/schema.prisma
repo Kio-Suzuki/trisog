@@ -21,6 +21,7 @@ model Tour {
   maxPeople     Int
   minAge        Int
   type          String
+  iconimg       String
   overview      String
   latitude      Float
   longitude     Float

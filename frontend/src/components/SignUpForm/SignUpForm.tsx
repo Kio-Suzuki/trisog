@@ -69,6 +69,44 @@ const SignUpForm = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(`Error [${errorCode}]: ${errorMessage}`);
+        switch (errorCode) {
+          case 'auth/email-already-in-use':
+            toast.error("Email already in use", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            break;
+          case 'auth/weak-password':
+            toast.error("Weak password", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            break;
+          default:
+            toast.error("Failed to sign up", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            break;
+        }
       });
   };
 

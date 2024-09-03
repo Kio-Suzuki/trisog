@@ -15,11 +15,8 @@ function PopularTours() {
     const fetchTours = async () => {
       try {
         const response = await axios.get('http://localhost:3333/toursall');
-        console.log('data:', response.data);
-        const shuffledTours = response.data.tours.sort(() => 0.5 - Math.random());
-        console.log('shufle: ', shuffledTours);
-        const carouselTours = shuffledTours.slice(0, 8); 
-        setTours(carouselTours);
+        const shuffledTours = response.data.tours.sort(() => 0.5 - Math.random()).slice(0, 8);
+        setTours(shuffledTours);
       } catch (error) {
         console.error("Error fetching tours", error);
       }

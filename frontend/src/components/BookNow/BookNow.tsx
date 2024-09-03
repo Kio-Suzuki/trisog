@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import style from './BookNow.module.css';
+import { set } from 'date-fns';
 
 export type Tour = {
   id: number;
@@ -55,7 +56,15 @@ function BookNow({ tour }: TourProps) {
         updateTotalPrice(newCount, countKids, countChildren);
         return newCount;
       } else {
-        toast.warning('Número mínimo');
+        toast.warning('Invalid number of people. You cannot book for less than one person.', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         return prevCountAdults;
       }
     });
@@ -76,7 +85,15 @@ function BookNow({ tour }: TourProps) {
         updateTotalPrice(countAdults, newCount, countChildren);
         return newCount;
       } else {
-        toast.warning('Número mínimo');
+        toast.warning('Invalid number of people. You cannot book for less than one person.', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         return prevCountKids;
       }
     });
@@ -97,13 +114,35 @@ function BookNow({ tour }: TourProps) {
         updateTotalPrice(countAdults, countKids, newCount);
         return newCount;
       } else {
-        toast.warning('Número mínimo');
+        toast.warning('Invalid number of people. You cannot book for less than one person.', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         return prevCountChildren;
       }
     });
   };
   
-  
+  const handleNotification = () => {
+    toast.success('Your reservation is confirmed!', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setCountAdults(0);
+    setCountKids(0);
+    setCountChildren(0);
+    setTotalPrice(0);
+  };
 
   return (
     <div className={style.bookNowContainer}>
@@ -159,7 +198,7 @@ function BookNow({ tour }: TourProps) {
           <p className={style.value}>${totalPrice}</p>
         </div>
         <div className={style.buttonContainer}>
-          <button>Book now</button>
+          <button onClick={handleNotification}>Book now</button>
         </div> 
     </div>
   )

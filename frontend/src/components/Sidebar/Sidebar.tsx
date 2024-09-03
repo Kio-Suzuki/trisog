@@ -211,7 +211,6 @@ function Sidebar() {
     fetchFilteredTours();
   }, [selectedCountries]);
 
-  
   return (
     <div className={style.sidebarContainer}>
       <div className={style.sidebarSearch}>

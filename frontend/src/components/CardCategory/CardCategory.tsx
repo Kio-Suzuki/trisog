@@ -7,6 +7,7 @@ export type TourType = {
   type: string;
   minPrice: number;
   count: number;
+  iconimg: string;
 }
 
 function CardCategory({ tour }: { tour: TourType }) {
@@ -15,7 +16,7 @@ function CardCategory({ tour }: { tour: TourType }) {
     <Link to={`/tours?type=${tour.type}`}>
       <div className={style.cardCategorieContainer}>
         <div className={style.cardIcon}>
-          <BsSuitcase />
+          <img src={tour.iconimg} />
           <div className={style.iconBackground}></div>
         </div>
         <div className={style.cardInfo}>

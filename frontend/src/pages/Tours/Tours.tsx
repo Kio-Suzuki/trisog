@@ -55,6 +55,7 @@ function Tours() {
         });
         setTours(response.data.tours);
         setToursCount(response.data.toursCount);
+        console.log(response.data.toursCount);
         setPageCount(Math.ceil(response.data.toursCount / itemsPerPage));
       } catch (error) {
         console.error("Error fetching tours", error);
@@ -71,6 +72,11 @@ function Tours() {
   const handlePageClick = (e: { selected: number }) => {
     const newPage = e.selected + 1;
     navigate(`/tours?search=${search}&page=${newPage}`);
+    window.scrollTo({
+      top: 500,
+      left: 0,
+      behavior: 'smooth'
+    });
   };
 
   return (
@@ -89,10 +95,8 @@ function Tours() {
                 <option value="titleZA">Country: Z to A</option>
                 <option value="lowPrice">Price: Low to High</option>
                 <option value="highPrice">Price: High to Low</option>
-               
               </select>
             </div>
-           
           </div>
           {tours.length > 0 ? (
             <div className={style.cardContainer}>
@@ -103,7 +107,6 @@ function Tours() {
           ) : (
             <p className={style.result}>No tours available.</p>
           )}
-
           <div className={style.paginateContainer}>
             <ReactPaginate
               previousLabel={'<'}
