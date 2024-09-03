@@ -9,7 +9,7 @@
 [Firebase]: https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34
 [Google Cloud]: https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
-[PROJECT__URL]: https://github.com/Kio-Suzuki/Challenge-1
+[PROJECT__URL]: https://github.com/Kio-Suzuki/trisog
 
 <h1 align="center" style="font-weight: bold;">Trisog ✈️</h1>
 
