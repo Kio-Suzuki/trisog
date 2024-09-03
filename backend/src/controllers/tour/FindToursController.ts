@@ -6,10 +6,7 @@ class FindToursController {
     const { search, type, date, guests, page = '1', limit = '9', price, order, rating, countries } = request.query;
     
     try {
-      console.log(request.query);
-
       const findToursService = new FindToursService();
-
       const pageNumber = parseInt(page as string, 10);
       const limitNumber = parseInt(limit as string, 10);
       const skip = (pageNumber - 1) * limitNumber;
