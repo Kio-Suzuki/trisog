@@ -28,8 +28,8 @@
   border-right: 1px solid #fdfdfd;
   display: flex;
   flex-direction: row;
-  padding-left: 4vw;
-  padding-right: 4vw;
+  padding-left: 3vw;
+  padding-right: 3vw;
 }
 
 .footerList ul {
@@ -69,6 +69,7 @@
 }
 
 .footerNewsletter {
+  width: 22vw;
   display: flex;
   flex-direction: column;
   padding-left: 6vw;
@@ -98,6 +99,12 @@
 
 .footerNewsletter button:hover {
   background-color: #ff393f;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  height: 1.5em;
 }
 
 .list {

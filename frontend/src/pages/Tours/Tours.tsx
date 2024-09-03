@@ -20,7 +20,6 @@ function Tours() {
   const navigate = useNavigate();
   const [toursCount, setToursCount] = useState<number>(0);
   const { orderQuery, setOrderQuery, fetchTours } = useTourContext();
-  
   const query = new URLSearchParams(location.search);
   const search = query.get('search') || '';
   const type = query.get('type') || '';
@@ -55,7 +54,6 @@ function Tours() {
         });
         setTours(response.data.tours);
         setToursCount(response.data.toursCount);
-        console.log(response.data.toursCount);
         setPageCount(Math.ceil(response.data.toursCount / itemsPerPage));
       } catch (error) {
         console.error("Error fetching tours", error);

@@ -20,9 +20,7 @@ function Contact() {
         </ul>
         <button className={style.contactButton}>Contact Us</button>
       </div>
-      
     </div>
-    
   )
 }
 

@@ -19,6 +19,7 @@ export type Tour = {
   overview: string;
   latitude: number;
   longitude: number;
+  startDate: string;
 }
 
 type TourProps = {
@@ -27,32 +28,32 @@ type TourProps = {
 
 function BookNow({ tour }: TourProps) {
 
-  const [countAdults, setCountAdults] = useState(0);
-  const [countKids, setCountKids] = useState(0);
-  const [countChildren, setCountChildren] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [countAdults, setCountAdults] = useState<number>(0);
+  const [countKids, setCountKids] = useState<number>(0);
+  const [countChildren, setCountChildren] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  const updateTotalPrice = (adults, kids, children) => {
+  const updateTotalPrice = (adults: number, kids: number, children: number) => {
     const newTotal = (
       adults * parseFloat(tour.price.toString()) +
       kids * parseFloat(tour.price.toString()) +
       children * parseFloat(tour.price.toString())
     ).toFixed(2);
-    setTotalPrice(newTotal);
+    setTotalPrice(parseFloat(newTotal));
   };
 
   const handleIncrementAdults = () => {
-    setCountAdults((prevCountAdults) => {
-      const newCount = prevCountAdults + 1;
+    setCountAdults((prevAdults) => {
+      const newCount = prevAdults + 1;
       updateTotalPrice(newCount, countKids, countChildren);
       return newCount;
     });
   };
 
   const handleDecrementAdults = () => {
-    setCountAdults((prevCountAdults) => {
-      if (prevCountAdults > 0) {
-        const newCount = prevCountAdults - 1;
+    setCountAdults((prevAdults) => {
+      if (prevAdults > 0) {
+        const newCount = prevAdults - 1;
         updateTotalPrice(newCount, countKids, countChildren);
         return newCount;
       } else {
@@ -65,23 +66,23 @@ function BookNow({ tour }: TourProps) {
           draggable: true,
           progress: undefined,
         });
-        return prevCountAdults;
+        return prevAdults;
       }
     });
   };
 
   const handleIncrementKids = () => {
-    setCountKids((prevCountKids) => {
-      const newCount = prevCountKids + 1;
+    setCountKids((prevKids) => {
+      const newCount = prevKids + 1;
       updateTotalPrice(countAdults, newCount, countChildren);
       return newCount;
     });
   };
 
   const handleDecrementKids = () => {
-    setCountKids((prevCountKids) => {
-      if (prevCountKids > 0) {
-        const newCount = prevCountKids - 1;
+    setCountKids((prevKids) => {
+      if (prevKids > 0) {
+        const newCount = prevKids - 1;
         updateTotalPrice(countAdults, newCount, countChildren);
         return newCount;
       } else {
@@ -94,23 +95,23 @@ function BookNow({ tour }: TourProps) {
           draggable: true,
           progress: undefined,
         });
-        return prevCountKids;
+        return prevKids;
       }
     });
   };
 
   const handleIncrementChildren = () => {
-    setCountChildren((prevCountChildren) => {
-      const newCount = prevCountChildren + 1;
+    setCountChildren((prevChildren) => {
+      const newCount = prevChildren + 1;
       updateTotalPrice(countAdults, countKids, newCount);
       return newCount;
     });
   };
 
   const handleDecrementChildren = () => {
-    setCountChildren((prevCountChildren) => {
-      if (prevCountChildren > 0) {
-        const newCount = prevCountChildren - 1;
+    setCountChildren((prevChildren) => {
+      if (prevChildren > 0) {
+        const newCount = prevChildren - 1;
         updateTotalPrice(countAdults, countKids, newCount);
         return newCount;
       } else {
@@ -123,7 +124,7 @@ function BookNow({ tour }: TourProps) {
           draggable: true,
           progress: undefined,
         });
-        return prevCountChildren;
+        return prevChildren;
       }
     });
   };
@@ -156,13 +157,10 @@ function BookNow({ tour }: TourProps) {
         <h4>Time</h4>
         <select>         
           <option>Select </option>
-          <option value="Time 1">Time 1</option>
-          <option value="Time 2">Time 2</option>
-          <option value="Time 3">Time 3</option>
-          <option value="Time 4">Time 4</option>
-          <option value="Time 5">Time 5</option>
-          <option value="Time 6">Time 6</option>
-          <option value="Time 7">Time 7</option>
+          <option value="Time1">{tour?.days} days</option>
+          <option value="Time2">{tour?.days + 1} days</option>
+          <option value="Time3">{tour?.days + 2} days</option>
+          <option value="Time4">{tour?.days + 3} days</option>
       </select>
       </div> 
       <div className={style.ticket}>
@@ -186,7 +184,6 @@ function BookNow({ tour }: TourProps) {
         <div className={style.ticketContainer}>
           <p>Children (3+ years)</p>
           <div className={style.counter}>
-            
             <button onClick={handleDecrementChildren}>-</button>
             <p>{countChildren}</p>
             <button onClick={handleIncrementChildren}>+</button>

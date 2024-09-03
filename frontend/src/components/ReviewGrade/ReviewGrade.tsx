@@ -1,5 +1,4 @@
 import styles from './ReviewGrade.module.css';
-import { IoStarOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
 
 function ReviewGrade() {

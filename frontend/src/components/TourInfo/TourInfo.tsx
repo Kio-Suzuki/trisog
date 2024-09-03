@@ -29,7 +29,6 @@ export type Tour = {
   overview: string;
   latitude: number;
   longitude: number;
-
 }
 
 type TourProps = {
@@ -92,7 +91,7 @@ function TourInfo({ tour }: TourProps) {
     await fetchReviews();  
   };
 
-  const handleNotification = (e) => {
+  const handleNotification = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     toast.success('Tour added to favorites', {
       position: "top-center",

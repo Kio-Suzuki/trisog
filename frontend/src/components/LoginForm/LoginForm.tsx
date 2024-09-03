@@ -77,10 +77,6 @@ function LoginForm() {
       const user = result.user;
       const credential = FacebookAuthProvider.credentialFromResult(result);
       const accessToken = credential?.accessToken;
-
-      console.log('User:', user);
-      console.log('Credential:', credential);
-
       const [name, last_name] = user.displayName?.split(" ", 2) || [];
       const userPhoto = user.photoURL;
       const userObj = {
@@ -91,12 +87,9 @@ function LoginForm() {
           image: userPhoto || "",
           accessToken: accessToken || "",
       };
-
       try {
         const response = await axios.get(`http://localhost:3333/user/${user.uid}`);
-
         if (response.data) {
-          console.log('User already exists in the database:', response.data);
           toast.success("Signed in successfully", {
             position: "top-center",
             autoClose: 1000,
@@ -123,11 +116,9 @@ function LoginForm() {
             setTimeout(() => navigate('/'), 2000);
         }
       } catch (error) {
-          console.log(error);
           toast.error("Signed in, but failed to save user to database");
       }
     } catch (error) {
-        console.log(error);
         toast.error("Failed to sign in");
     }
   }
@@ -148,12 +139,9 @@ function LoginForm() {
         lastname: last_name || "",
         image: userPhoto || "",
       };
-  
       try {
         const response = await axios.get(`http://localhost:3333/user/${user.uid}`);
-        
         if (response.data) {
-          console.log('User already exists in the database:', response.data);
           toast.success("Signed in successfully", {
             position: "top-center",
             autoClose: 1000,
@@ -167,7 +155,6 @@ function LoginForm() {
           setTimeout(() => navigate('/'), 2000);
         } else {
           await axios.post("http://localhost:3333/user", userObj);
-          console.log('User save in database:', response.data);
           toast.success("Signed in successfully", {
             position: "top-center",
             autoClose: 1000,
@@ -181,10 +168,8 @@ function LoginForm() {
           setTimeout(() => navigate('/'), 2000);
         }
       } catch (error) {
-        console.log('Error fetching user from database:', error);
         toast.error("Failed to check user in database");
       }
-  
     } catch (error) {
       console.log(error);
       toast.error("Failed to sign in");

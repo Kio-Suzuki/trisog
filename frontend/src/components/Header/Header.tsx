@@ -69,7 +69,6 @@ function Header() {
       }
       setSearch('');
     }
-    
   };
 
   const handleSearch = () => {

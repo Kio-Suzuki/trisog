@@ -34,7 +34,6 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [image, setImage] = useState<string>('');
-
   const [comment, setComment] = useState<string>('');
   const [services, setServices] = useState<number>(0);
   const [locations, setLocations] = useState<number>(0);
@@ -42,7 +41,6 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
   const [prices, setPrices] = useState<number>(0);
   const [food, setFood] = useState<number>(0);
   const [rooms, setRooms] = useState<number>(0);
-
   const [servicesStars, setServicesStars] = useState<number>(0);
   const [locationStars, setLocationStars] = useState<number>(0);
   const [amenitiesStars, setAmenitiesStars] = useState<number>(0);
@@ -139,14 +137,12 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
       setName('');
       setEmail('');
       setComment('');
-
       setServicesStars(0);
       setLocationStars(0);
       setAmenitiesStars(0);
       setPricesStars(0);
       setFoodStars(0);
       setRoomsStars(0);
-      
       setServices(0);
       setLocations(0);
       setAmenities(0);
@@ -155,7 +151,6 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
       setRooms(0);
     } catch (error) {
       toast.error('Error adding review');
-      console.log(error);
     } 
   }
 

@@ -32,8 +32,6 @@ function Sidebar() {
     );
   };
  
-  // AGRUPA OS TOURS POR CATEGORIA (TYPE)
-
   useEffect(() => {
     const fetchTours = async () => {
       try {
@@ -45,8 +43,6 @@ function Sidebar() {
     };
     fetchTours();
   }, []);
-
-  // AGRUPA OS TOURS POR CONTINENTE
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -67,7 +63,6 @@ function Sidebar() {
     };
     fetchTours();
   }, []);
-
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -110,7 +105,6 @@ function Sidebar() {
         : [...prevState, category];
 
       const searchParams = new URLSearchParams(location.search);
-      console.log(searchParams);
       
       if (updatedTypes.length === 0) {
         searchParams.delete('type');
@@ -138,8 +132,6 @@ function Sidebar() {
   
     fetchFilteredTours();
   }, [selectedTypes]);
-
-  // FILTRO POR ESTRELAS
 
   const handleStarFilter = (star: string) => {
     setSelectedStars(prevState => {
@@ -174,10 +166,6 @@ function Sidebar() {
     };
     fetchFilteredTours();
   }, [selectedStars]);
-
- 
-  
-  // FILTRO POR PAÍSES
 
   const handleCountries = (e: React.ChangeEvent<HTMLInputElement>, country: string) => {
     setSelectedCountries(prevState => {

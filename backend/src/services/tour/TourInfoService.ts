@@ -18,6 +18,7 @@ class TourInfoService {
         overview: true,
         latitude: true,
         longitude: true,
+        startDate: true,
       },
     });
     return tour;

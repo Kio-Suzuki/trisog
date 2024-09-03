@@ -13,8 +13,6 @@ export type AverageReviewProps = {
 
 function AverageReview({ overallAverage, overallService, overallLocation, overallAmenities, overallPrices, overallFood, overallRooms } : AverageReviewProps ) {
 
-  
-
   return (
     <div className={style.averageReviewContainer}>
       <div className={style.score}>
@@ -33,7 +31,6 @@ function AverageReview({ overallAverage, overallService, overallLocation, overal
             </div>
             <p>{overallService}</p>
           </div>
-          
           <h3>Locations</h3>
           <div className={style.chartContainer}>
             <div className={style.serviceChart}>
@@ -43,7 +40,6 @@ function AverageReview({ overallAverage, overallService, overallLocation, overal
             </div>
             <p>{overallLocation}</p>
           </div>
-
           <h3>Amenities</h3>
           <div className={style.chartContainer}>
             <div className={style.serviceChart}>
@@ -53,7 +49,6 @@ function AverageReview({ overallAverage, overallService, overallLocation, overal
             </div>
             <p>{overallAmenities}</p>
           </div>
-          
         </div>
         <div className={style.details2}>
           <h3>Prices</h3>
@@ -65,7 +60,6 @@ function AverageReview({ overallAverage, overallService, overallLocation, overal
             </div>
             <p>{overallPrices}</p>
           </div>
-          
           <h3>Food</h3>
           <div className={style.chartContainer}>
             <div className={style.serviceChart}>
@@ -75,7 +69,6 @@ function AverageReview({ overallAverage, overallService, overallLocation, overal
             </div>
             <p>{overallFood}</p>
           </div>
-          
           <h3>Rooms</h3>
           <div className={style.chartContainer}>
             <div className={style.serviceChart}>
@@ -85,7 +78,6 @@ function AverageReview({ overallAverage, overallService, overallLocation, overal
             </div>
             <p>{overallRooms}</p>
           </div>
-    
         </div>
       </div>
     </div>

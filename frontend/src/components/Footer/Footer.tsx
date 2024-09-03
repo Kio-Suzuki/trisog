@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaFacebookSquare, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import style from './Footer.module.css';
@@ -8,7 +8,6 @@ function Footer() {
   const [successMessage, setSuccessMessage] = useState('');
 
   const onSubmit = (data) => {
-    console.log(data);
     setSuccessMessage('Thank you for subscribing to our newsletter!');
     reset()
     setTimeout(() => setSuccessMessage(''), 3000);
@@ -71,8 +70,10 @@ function Footer() {
             />
             <button type="submit">Submit</button>
           </form>
-          {errors.email && <span className={style.error}>{errors.email.message}</span>}
-          {successMessage && <span className={style.success}>{successMessage}</span>}
+          <div className={style.messages}>
+            {errors.email && <span className={style.error}>{errors.email.message}</span>}
+            {successMessage && <span className={style.success}>{successMessage}</span>}
+          </div>
           <span className={style.footerEnd}>© 2023 Trisog All Right Reserved</span> 
         </div>
       </div>
