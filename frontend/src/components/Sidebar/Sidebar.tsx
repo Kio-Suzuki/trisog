@@ -15,7 +15,7 @@ function Sidebar() {
   const [search, setSearch] = useState<string>('');
   const [price, setPrice] = useState<number>(0.00);
   const [min, setMin] = useState<number>(0.00);
-  const [max, setMax] = useState<number>(3000.00);
+  const [max, setMax] = useState<number>(3200.00);
   const [value, setValue] = useState<number>(0.00);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
@@ -82,7 +82,7 @@ function Sidebar() {
 
   const updateRangeBackground = (value: number) => {
     const min = 0;
-    const max = 3000;
+    const max = 3200;
     const percentage = ((value - min) / (max - min)) * 100;
 
     const inputElement = document.querySelector<HTMLInputElement>('input[type="range"]');

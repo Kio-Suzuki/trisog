@@ -17,7 +17,31 @@ function AverageReview({ overallAverage, overallService, overallLocation, overal
     <div className={style.averageReviewContainer}>
       <div className={style.score}>
         <h1>{overallAverage}</h1>
-        <p><IoStar /> Excelent</p>
+        {overallAverage == 0 ? (
+            <p>
+              <IoStar /> No Reviews
+            </p>
+          ): overallAverage < 1.9 ? (
+            <p>
+              <IoStar /> Poor
+            </p>
+          ) : overallAverage < 2.9 ? (
+            <p>
+              <IoStar /> Fair
+            </p>
+          ) : overallAverage < 3.9 ? (
+            <p>
+              <IoStar /> Good
+            </p>
+          ) : overallAverage < 4.9 ? (
+            <p>
+              <IoStar /> Very Good
+            </p>
+          ) : (
+            <p>
+              <IoStar /> Excellent
+            </p>
+          )}
       </div> 
       <div className={style.details}>
         <div className={style.details1}>

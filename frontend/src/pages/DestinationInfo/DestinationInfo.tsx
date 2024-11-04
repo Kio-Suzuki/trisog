@@ -35,11 +35,11 @@ function DestinationInfo() {
   
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyBkYwyHygzVcR0PJdMSXj8gwZIPYqhCP0o"
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ""
   });
 
-  const apiWeatherKey = "68165e7c26ea619effd50e6f47dccc90";
-
+  const apiWeatherKey = import.meta.env.VITE_WEATHER_API_KEY || "";
+  
   useEffect(() => {
     const fetchDestination = async () => {
       try {
@@ -106,7 +106,7 @@ function DestinationInfo() {
   return (
     <div className={style.destinationInfoContainer}>
       <Header />
-      <Banner2 />
+      <Banner2 title1={destination.country} title2='Home / Destination' title3={destination.country}/>
       <div className={style.container}>
         <img src={destination.img} alt="Destination" className={style.img1}/>
         <div className={style.mapContainer}> 

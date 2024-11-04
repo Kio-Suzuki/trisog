@@ -68,6 +68,7 @@ function Footer() {
               })}
               placeholder='Enter email...'
             />
+            <span className={style.iconPosition1}><img src={'https://firebasestorage.googleapis.com/v0/b/trisog-3db22.appspot.com/o/Assets%2Fsearchbar1.svg?alt=media&token=485d1e70-73a8-4bb2-8011-9396d4cff831'} alt="" /> </span>
             <button type="submit">Submit</button>
           </form>
           <div className={style.messages}>
