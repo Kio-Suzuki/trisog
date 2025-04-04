@@ -18,19 +18,20 @@ export type Destination = {
   timezone: string;
   timetravel: string;
   travelers: number;
-}
+};
 function Destination() {
-
   const [destinations, setDestinations] = useState<Destination[] | null>(null);
 
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/destinations');
+        const response = await axios.get(
+          'http://trisog-production.up.railway.app/destinations'
+        );
         const sixDestinations = response.data.slice(0, 6);
-        setDestinations(sixDestinations); 
+        setDestinations(sixDestinations);
       } catch (error) {
-        console.error("Error fetching tour", error);
+        console.error('Error fetching tour', error);
       }
     };
     fetchTour();
@@ -39,27 +40,27 @@ function Destination() {
   }, []);
 
   if (!destinations) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   return (
     <div className={style.destinationContainer}>
       <div>
-        <TitleBar title1="Destination" title2="Top Attractions Destinations"/>
+        <TitleBar title1="Destination" title2="Top Attractions Destinations" />
       </div>
       <div className={style.gridContainer}>
         {destinations.map((destination, index) => (
-          <Link 
-            key={destination.id} 
+          <Link
+            key={destination.id}
             to={`/destination/${destination.id}`}
             className={`${style.imageBase} ${style[`img${(index % 6) + 1}`]}`}
           >
-            <img 
-              src={destination.img}
-              alt={`image-${index + 1}`} 
-            />
+            <img src={destination.img} alt={`image-${index + 1}`} />
             <div className={style.destinationCountry}>
-              <p>{new Intl.NumberFormat('en-US').format(destination.travelers)} Travelers</p>
+              <p>
+                {new Intl.NumberFormat('en-US').format(destination.travelers)}{' '}
+                Travelers
+              </p>
               <h2>{destination.country}</h2>
             </div>
           </Link>
@@ -69,6 +70,4 @@ function Destination() {
   );
 }
 
-export default Destination
-
-
+export default Destination;

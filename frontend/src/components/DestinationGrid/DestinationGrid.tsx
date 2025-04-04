@@ -17,20 +17,21 @@ export type Destination = {
   timezone: string;
   timetravel: string;
   travelers: number;
-}
+};
 
 function DestinationGrid() {
-
   const [destinations, setDestinations] = useState<Destination[] | null>(null);
 
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/destinations');
+        const response = await axios.get(
+          'http://trisog-production.up.railway.app/destinations'
+        );
         let destinationgrid = response.data.slice(0, 12);
-        setDestinations(destinationgrid); 
+        setDestinations(destinationgrid);
       } catch (error) {
-        console.error("Error fetching tour", error);
+        console.error('Error fetching tour', error);
       }
     };
     fetchTour();
@@ -39,29 +40,29 @@ function DestinationGrid() {
   }, []);
 
   if (!destinations) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   return (
     <div className={style.destinationGridContainer}>
       {destinations.map((destination, index) => (
-          <Link 
-            key={destination.id} 
-            to={`/destination/${destination.id}`}
-            className={`${style.imageBase} ${style[`img${(index % 12) + 1}`]}`}
-          >
-            <img 
-              src={destination.img}
-              alt={`image-${index + 1}`} 
-            />
-            <div className={style.destinationCountry}>
-              <p>{new Intl.NumberFormat('en-US').format(destination.travelers)} Travelers</p>
-              <h2>{destination.country}</h2>
-            </div>
-          </Link>
-        ))}
+        <Link
+          key={destination.id}
+          to={`/destination/${destination.id}`}
+          className={`${style.imageBase} ${style[`img${(index % 12) + 1}`]}`}
+        >
+          <img src={destination.img} alt={`image-${index + 1}`} />
+          <div className={style.destinationCountry}>
+            <p>
+              {new Intl.NumberFormat('en-US').format(destination.travelers)}{' '}
+              Travelers
+            </p>
+            <h2>{destination.country}</h2>
+          </div>
+        </Link>
+      ))}
     </div>
-  )
+  );
 }
 
-export default DestinationGrid
+export default DestinationGrid;

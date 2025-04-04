@@ -10,17 +10,18 @@ import { ToastContainer } from 'react-toastify';
 import style from './TourInfo.module.css';
 
 function TourInfo() {
-
   const [tours, setTours] = useState<Tour | null>(null);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const response = await axios.get(`http://localhost:3333/tours/${id}`);  
+        const response = await axios.get(
+          `http://trisog-production.up.railway.app/tours/${id}`
+        );
         setTours(response.data);
       } catch (error) {
-        console.error("Error fetching tour", error);
+        console.error('Error fetching tour', error);
       }
     };
     fetchTour();
@@ -41,7 +42,7 @@ function TourInfo() {
       <Footer />
       <ToastContainer />
     </div>
-  )
+  );
 }
 
 export default TourInfo;

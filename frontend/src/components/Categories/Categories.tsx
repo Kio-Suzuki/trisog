@@ -9,16 +9,17 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Categories() {
-
   const [tours, setTours] = useState<Tour[]>([]);
 
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/tourstypes');
+        const response = await axios.get(
+          'http://trisog-production.up.railway.app/tourstypes'
+        );
         setTours(response.data);
       } catch (error) {
-        console.error("Error fetching tours", error);
+        console.error('Error fetching tours', error);
       }
     };
     fetchTours();
@@ -27,11 +28,11 @@ function Categories() {
   return (
     <div className={style.categoriesContainer}>
       <div>
-        <TitleBar title1="Browse by Category" title2="Pick A Tour Type"/>
+        <TitleBar title1="Browse by Category" title2="Pick A Tour Type" />
       </div>
       <div className={style.carousel}>
         <Swiper
-          modules={[ Pagination ]}
+          modules={[Pagination]}
           slidesPerView={6}
           pagination={{ clickable: true }}
         >
@@ -43,7 +44,7 @@ function Categories() {
         </Swiper>
       </div>
     </div>
-  )
+  );
 }
 
-export default Categories
+export default Categories;

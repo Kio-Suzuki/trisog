@@ -14,18 +14,22 @@ function PopularTours() {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/toursall');
-        const shuffledTours = response.data.tours.sort(() => 0.5 - Math.random()).slice(0, 8);
+        const response = await axios.get(
+          'http://trisog-production.up.railway.app/toursall'
+        );
+        const shuffledTours = response.data.tours
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 8);
         setTours(shuffledTours);
       } catch (error) {
-        console.error("Error fetching tours", error);
+        console.error('Error fetching tours', error);
       }
     };
     fetchTours();
   }, []);
 
   return (
-    <div className={style.popularToursContainer}> 
+    <div className={style.popularToursContainer}>
       <div className={style.carousel}>
         <Swiper
           modules={[Pagination]}

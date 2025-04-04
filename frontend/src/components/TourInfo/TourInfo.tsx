@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { IoLocationOutline } from "react-icons/io5";
+import { IoLocationOutline } from 'react-icons/io5';
 import AverageReview from '../AverageReview/AverageReview';
 import Review from '../Review/Review';
 import AddReview from '../AddReview/AddReview';
-import { IoStar } from "react-icons/io5";
+import { IoStar } from 'react-icons/io5';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from 'react-router-dom';
-import { IoShareSocialOutline } from "react-icons/io5";
-import { GrFavorite } from "react-icons/gr";
-import { PiVideoCamera } from "react-icons/pi";
-import { GoImage } from "react-icons/go";
+import { IoShareSocialOutline } from 'react-icons/io5';
+import { GrFavorite } from 'react-icons/gr';
+import { PiVideoCamera } from 'react-icons/pi';
+import { GoImage } from 'react-icons/go';
 import { toast } from 'react-toastify';
 import style from './TourInfo.module.css';
 
@@ -29,17 +29,16 @@ export type Tour = {
   overview: string;
   latitude: number;
   longitude: number;
-}
+};
 
 type TourProps = {
   tour: Tour;
-}
+};
 
 function TourInfo({ tour }: TourProps) {
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ""
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
   });
 
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -56,21 +55,23 @@ function TourInfo({ tour }: TourProps) {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`http://localhost:3333/reviews/tour/${id}`);
+      const response = await axios.get(
+        `http://trisog-production.up.railway.app/reviews/tour/${id}`
+      );
 
       if (response.data) {
         setReviews(response.data.reviews);
-        setOverallAverage((response.data.overallAverage).toFixed(1));
-        setOverallService((response.data.overallService).toFixed(1));
-        setOverallLocation((response.data.overallLocation).toFixed(1));
-        setOverallAmenities((response.data.overallAmenities).toFixed(1));
-        setOverallPrices((response.data.overallPrices).toFixed(1));
-        setOverallFood((response.data.overallFood).toFixed(1));
-        setOverallRooms((response.data.overallRooms).toFixed(1));
+        setOverallAverage(response.data.overallAverage.toFixed(1));
+        setOverallService(response.data.overallService.toFixed(1));
+        setOverallLocation(response.data.overallLocation.toFixed(1));
+        setOverallAmenities(response.data.overallAmenities.toFixed(1));
+        setOverallPrices(response.data.overallPrices.toFixed(1));
+        setOverallFood(response.data.overallFood.toFixed(1));
+        setOverallRooms(response.data.overallRooms.toFixed(1));
         setReviewsCount(response.data.reviewsCount);
       }
     } catch (error) {
-      console.error("Error fetching reviews", error);
+      console.error('Error fetching reviews', error);
     }
   };
 
@@ -88,37 +89,49 @@ function TourInfo({ tour }: TourProps) {
   }, [id]);
 
   const handleReviewAdded = async () => {
-    await fetchReviews();  
+    await fetchReviews();
   };
 
   const handleNotification = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     toast.success('Tour added to favorites', {
-      position: "top-center",
+      position: 'top-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "light",
+      theme: 'light',
     });
   };
 
   return (
     <div className={style.tourInfoContainer}>
-       
       <div className={style.tourImage}>
         <img src={tour?.image} alt="card1" />
         <div className={style.buttonsImage}>
-          <div className={style.buttonsImage1}><p>Video</p> <PiVideoCamera /></div>
-          <div className={style.buttonsImage2}><p>Gallery</p> <GoImage /></div>
+          <div className={style.buttonsImage1}>
+            <p>Video</p> <PiVideoCamera />
+          </div>
+          <div className={style.buttonsImage2}>
+            <p>Gallery</p> <GoImage />
+          </div>
         </div>
       </div>
       <div className={style.tourInfo}>
-      <div className={style.tourLocation}>
-          <p className={style.locationColor}><IoLocationOutline />{tour?.location}, {tour?.country} <span className={style.linkMap} onClick={scrollToMap}>View on map</span></p>
-          <div onClick={handleNotification}><IoShareSocialOutline className={style.icon1Color}/> <GrFavorite className={style.icon2Color}/></div>
+        <div className={style.tourLocation}>
+          <p className={style.locationColor}>
+            <IoLocationOutline />
+            {tour?.location}, {tour?.country}{' '}
+            <span className={style.linkMap} onClick={scrollToMap}>
+              View on map
+            </span>
+          </p>
+          <div onClick={handleNotification}>
+            <IoShareSocialOutline className={style.icon1Color} />{' '}
+            <GrFavorite className={style.icon2Color} />
+          </div>
         </div>
         <div className={style.tourTitle}>
           <h1>{tour?.title}</h1>
@@ -146,7 +159,12 @@ function TourInfo({ tour }: TourProps) {
           </div>
           <div className={style.tourReview}>
             <h6>Reviews</h6>
-            <p><IoStar className={style.starColor}/> {overallAverage} <span className={style.reviewCounter}>({reviewsCount} reviews)</span></p>
+            <p>
+              <IoStar className={style.starColor} /> {overallAverage}{' '}
+              <span className={style.reviewCounter}>
+                ({reviewsCount} reviews)
+              </span>
+            </p>
           </div>
         </div>
         <div className={style.tourOverview}>
@@ -155,25 +173,24 @@ function TourInfo({ tour }: TourProps) {
         </div>
         <div className={style.tourMap} ref={mapContainerRef}>
           <h3>Map</h3>
-          <div className={style.mapContainer}> 
+          <div className={style.mapContainer}>
             {isLoaded ? (
               <GoogleMap
                 mapContainerStyle={{ width: '100%', height: '100%' }}
                 center={{
                   lat: tour?.latitude,
-                  lng: tour?.longitude, 
+                  lng: tour?.longitude,
                 }}
                 zoom={7}
-              >
-              </GoogleMap>
+              ></GoogleMap>
             ) : null}
           </div>
         </div>
         <div className={style.tourAverageReview}>
           <div>
-          <h3>Average Review</h3>
+            <h3>Average Review</h3>
           </div>
-          <AverageReview 
+          <AverageReview
             overallAverage={overallAverage}
             overallLocation={overallLocation}
             overallService={overallService}
@@ -183,19 +200,24 @@ function TourInfo({ tour }: TourProps) {
             overallRooms={overallRooms}
           />
         </div>
-        {reviews.length > 0 ? <h4 className={style.showReviewCount}>Showing {reviewsCount} review</h4> : null }
+        {reviews.length > 0 ? (
+          <h4 className={style.showReviewCount}>
+            Showing {reviewsCount} review
+          </h4>
+        ) : null}
         <div className={style.tourReviewContainer}>
-          {reviews.length > 0 ? (reviews.map((review) => (
-              <Review key={review.id} {...review} />
-            ))
+          {reviews.length > 0 ? (
+            reviews.map((review) => <Review key={review.id} {...review} />)
           ) : (
-            <p className={style.noReview}>No reviews available for this tour.</p>
+            <p className={style.noReview}>
+              No reviews available for this tour.
+            </p>
           )}
         </div>
-        <AddReview onReviewAdded={handleReviewAdded}/>
+        <AddReview onReviewAdded={handleReviewAdded} />
       </div>
     </div>
-  )
+  );
 }
 
-export default TourInfo
+export default TourInfo;

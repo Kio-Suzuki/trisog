@@ -2,7 +2,7 @@ import { useState, SetStateAction } from 'react';
 import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
-import { IoStar } from "react-icons/io5";
+import { IoStar } from 'react-icons/io5';
 import style from './AddReview.module.css';
 
 export type Review = {
@@ -24,13 +24,12 @@ export type Review = {
     firstname: string;
     lastname: string;
     email: string;
-  }
+  };
   overallAverage: number;
   reviewsCount: number;
-}
+};
 
 function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
-
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [image, setImage] = useState<string>('');
@@ -87,9 +86,8 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
         return user;
       }
     } catch (error) {
-      console.error("Error getting token:", error);
+      console.error('Error getting token:', error);
     }
-    
   }
   getTokenId();
 
@@ -99,7 +97,7 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
     const token = await getTokenId();
 
     const urlSegments = window.location.pathname.split('/');
-    const tourId = parseInt(urlSegments[urlSegments.length - 1]); 
+    const tourId = parseInt(urlSegments[urlSegments.length - 1]);
 
     const review = {
       name: name,
@@ -113,25 +111,35 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
       food,
       rooms,
       tourId: tourId,
-      userId: token?.uid
+      userId: token?.uid,
     };
 
-    if (services === 0 || locations === 0 || amenities === 0 || prices === 0 || food === 0 || rooms === 0) {
+    if (
+      services === 0 ||
+      locations === 0 ||
+      amenities === 0 ||
+      prices === 0 ||
+      food === 0 ||
+      rooms === 0
+    ) {
       toast.error('Please select a rating for each category, at least 1 star');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:3333/reviews', review);
-      toast.success("Review added successfully", {
-        position: "top-center",
+      const response = await axios.post(
+        'http://trisog-production.up.railway.app/reviews',
+        review
+      );
+      toast.success('Review added successfully', {
+        position: 'top-center',
         autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
       onReviewAdded();
       setName('');
@@ -151,8 +159,8 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
       setRooms(0);
     } catch (error) {
       toast.error('Error adding review');
-    } 
-  }
+    }
+  };
 
   return (
     <div className={style.addReviewContainer}>
@@ -164,9 +172,13 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IoStar
                 key={star}
-                className={servicesStars >= star ? `${style.star} ${style.clicked}` : style.star}
+                className={
+                  servicesStars >= star
+                    ? `${style.star} ${style.clicked}`
+                    : style.star
+                }
                 onClick={() => handleServices(star)}
-                values='services'
+                values="services"
               />
             ))}
           </div>
@@ -177,7 +189,11 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IoStar
                 key={star}
-                className={locationStars >= star ? `${style.star} ${style.clicked}` : style.star}
+                className={
+                  locationStars >= star
+                    ? `${style.star} ${style.clicked}`
+                    : style.star
+                }
                 onClick={() => handleLocations(star)}
               />
             ))}
@@ -189,7 +205,11 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IoStar
                 key={star}
-                className={amenitiesStars >= star ? `${style.star} ${style.clicked}` : style.star}
+                className={
+                  amenitiesStars >= star
+                    ? `${style.star} ${style.clicked}`
+                    : style.star
+                }
                 onClick={() => handleAmenities(star)}
               />
             ))}
@@ -201,7 +221,11 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IoStar
                 key={star}
-                className={pricesStars >= star ? `${style.star} ${style.clicked}` : style.star}
+                className={
+                  pricesStars >= star
+                    ? `${style.star} ${style.clicked}`
+                    : style.star
+                }
                 onClick={() => handlePrices(star)}
               />
             ))}
@@ -213,7 +237,11 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IoStar
                 key={star}
-                className={foodStars >= star ? `${style.star} ${style.clicked}` : style.star}
+                className={
+                  foodStars >= star
+                    ? `${style.star} ${style.clicked}`
+                    : style.star
+                }
                 onClick={() => handleFood(star)}
               />
             ))}
@@ -225,7 +253,11 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IoStar
                 key={star}
-                className={roomsStars >= star ? `${style.star} ${style.clicked}` : style.star}
+                className={
+                  roomsStars >= star
+                    ? `${style.star} ${style.clicked}`
+                    : style.star
+                }
                 onClick={() => handleRooms(star)}
               />
             ))}
@@ -234,37 +266,36 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
       </div>
       <form onSubmit={handleSubmit}>
         <div className={style.formInfo}>
-          <input 
-            type="text" 
-            placeholder='Your name' 
+          <input
+            type="text"
+            placeholder="Your name"
             onChange={(e) => setName(e.target.value)}
             value={name}
             required
           />
-          <input 
-            type="email" 
-            placeholder='Email address' 
+          <input
+            type="email"
+            placeholder="Email address"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             required
           />
         </div>
         <div className={style.formText}>
-          <textarea 
-            typeof='text'
-            placeholder='Write your comment' 
+          <textarea
+            typeof="text"
+            placeholder="Write your comment"
             onChange={(e) => setComment(e.target.value)}
             value={comment}
             required
-          >
-          </textarea>
+          ></textarea>
         </div>
         <div className={style.formButton}>
           <button type="submit">Submit review</button>
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default AddReview
+export default AddReview;
