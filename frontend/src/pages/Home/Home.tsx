@@ -16,7 +16,7 @@ import { ToastContainer } from 'react-toastify';
 function Home() {
 
   return (
-    <div style={{height: '200vh'}} >
+    <div style={{height: '200vh'}}>
       <Header />
       <Banner />
       <TitleBar title1="Tours" title2="Most Popular Tours"/>
