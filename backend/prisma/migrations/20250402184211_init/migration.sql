@@ -13,11 +13,14 @@ CREATE TABLE "tours" (
     "maxPeople" INTEGER NOT NULL,
     "minAge" INTEGER NOT NULL,
     "type" TEXT NOT NULL,
+    "iconimg" TEXT NOT NULL,
     "overview" TEXT NOT NULL,
     "latitude" REAL NOT NULL,
     "longitude" REAL NOT NULL,
     "updatedAt" DATETIME DEFAULT CURRENT_TIMESTAMP,
-    "createdAt" DATETIME DEFAULT CURRENT_TIMESTAMP
+    "createdAt" DATETIME DEFAULT CURRENT_TIMESTAMP,
+    "destinationId" INTEGER NOT NULL,
+    CONSTRAINT "tours_destinationId_fkey" FOREIGN KEY ("destinationId") REFERENCES "destinations" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
