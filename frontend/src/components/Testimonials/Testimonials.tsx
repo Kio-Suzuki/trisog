@@ -1,5 +1,5 @@
 import TitleBar from '../TitleBar/TitleBar';
-import style from './testimonials.module.css';
+import style from './Testimonials.module.css';
 
 function Testimonials() {
   return (
