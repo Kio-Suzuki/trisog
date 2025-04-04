@@ -16,7 +16,7 @@ function PopularToursByCountry() {
       try {
         const id = location.pathname.split('/')[2];
         const response = await axios.get(
-          `http://trisog-production.up.railway.app/tourscountry/${id}`
+          `https://trisog-production.up.railway.app/tourscountry/${id}`
         );
         let carouselTours = response.data.tours;
         if (carouselTours.length < 8) {

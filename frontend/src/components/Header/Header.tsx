@@ -30,7 +30,7 @@ function Header() {
         (async function fetchUserData() {
           try {
             const response = await axios.get(
-              `http://trisog-production.up.railway.app/user/${user.uid}`
+              `https://trisog-production.up.railway.app/user/${user.uid}`
             );
             if (response.data) {
               setUserName(response.data.firstname);

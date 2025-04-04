@@ -26,7 +26,7 @@ function DestinationGrid() {
     const fetchTour = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/destinations'
+          'https://trisog-production.up.railway.app/destinations'
         );
         let destinationgrid = response.data.slice(0, 12);
         setDestinations(destinationgrid);

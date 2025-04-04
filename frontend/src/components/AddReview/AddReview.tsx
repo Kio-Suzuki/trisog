@@ -128,7 +128,7 @@ function AddReview({ onReviewAdded }: { onReviewAdded: () => void }) {
 
     try {
       const response = await axios.post(
-        'http://trisog-production.up.railway.app/reviews',
+        'https://trisog-production.up.railway.app/reviews',
         review
       );
       toast.success('Review added successfully', {

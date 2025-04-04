@@ -15,7 +15,7 @@ function Categories() {
     const fetchTours = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/tourstypes'
+          'https://trisog-production.up.railway.app/tourstypes'
         );
         setTours(response.data);
       } catch (error) {

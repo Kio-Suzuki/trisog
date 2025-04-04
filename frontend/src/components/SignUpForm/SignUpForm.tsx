@@ -34,7 +34,7 @@ const SignUpForm = () => {
         const saveUser = async () => {
           try {
             const response = await axios.post(
-              'http://trisog-production.up.railway.app/user',
+              'https://trisog-production.up.railway.app/user',
               userObj
             );
             console.log(response.data);

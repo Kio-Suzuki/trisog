@@ -39,7 +39,7 @@ function Tours() {
     const fetchTours = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/tours',
+          'https://trisog-production.up.railway.app/tours',
           {
             params: {
               search,

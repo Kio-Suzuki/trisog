@@ -17,7 +17,7 @@ function Search() {
     const fetchTours = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/tourstypes'
+          'https://trisog-production.up.railway.app/tourstypes'
         );
         setTypes(response.data);
       } catch (error) {

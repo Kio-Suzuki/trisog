@@ -88,7 +88,7 @@ function LoginForm() {
       };
       try {
         const response = await axios.get(
-          `http://trisog-production.up.railway.app/user/${user.uid}`
+          `https://trisog-production.up.railway.app/user/${user.uid}`
         );
         if (response.data) {
           toast.success('Signed in successfully', {
@@ -104,7 +104,7 @@ function LoginForm() {
           setTimeout(() => navigate('/'), 2000);
         } else {
           await axios.post(
-            'http://trisog-production.up.railway.app/user',
+            'https://trisog-production.up.railway.app/user',
             userObj
           );
           toast.success('Signed in successfully', {
@@ -145,7 +145,7 @@ function LoginForm() {
       };
       try {
         const response = await axios.get(
-          `http://trisog-production.up.railway.app/user/${user.uid}`
+          `https://trisog-production.up.railway.app/user/${user.uid}`
         );
         if (response.data) {
           toast.success('Signed in successfully', {
@@ -161,7 +161,7 @@ function LoginForm() {
           setTimeout(() => navigate('/'), 2000);
         } else {
           await axios.post(
-            'http://trisog-production.up.railway.app/user',
+            'https://trisog-production.up.railway.app/user',
             userObj
           );
           toast.success('Signed in successfully', {

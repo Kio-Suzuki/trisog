@@ -26,7 +26,7 @@ function Destination() {
     const fetchTour = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/destinations'
+          'https://trisog-production.up.railway.app/destinations'
         );
         const sixDestinations = response.data.slice(0, 6);
         setDestinations(sixDestinations);

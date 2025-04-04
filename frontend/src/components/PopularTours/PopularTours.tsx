@@ -15,7 +15,7 @@ function PopularTours() {
     const fetchTours = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/toursall'
+          'https://trisog-production.up.railway.app/toursall'
         );
         const shuffledTours = response.data.tours
           .sort(() => 0.5 - Math.random())

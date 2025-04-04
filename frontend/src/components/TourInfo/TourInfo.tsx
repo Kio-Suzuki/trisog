@@ -56,7 +56,7 @@ function TourInfo({ tour }: TourProps) {
   const fetchReviews = async () => {
     try {
       const response = await axios.get(
-        `http://trisog-production.up.railway.app/reviews/tour/${id}`
+        `https://trisog-production.up.railway.app/reviews/tour/${id}`
       );
 
       if (response.data) {

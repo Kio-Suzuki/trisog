@@ -37,7 +37,7 @@ function Sidebar() {
     const fetchTours = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/tourstypes'
+          'https://trisog-production.up.railway.app/tourstypes'
         );
         setToursTypes(response.data);
       } catch (error) {
@@ -51,7 +51,7 @@ function Sidebar() {
     const fetchTours = async () => {
       try {
         const response = await axios.get(
-          'http://trisog-production.up.railway.app/toursgroup'
+          'https://trisog-production.up.railway.app/toursgroup'
         );
         const mapaContinentes = new Map<string, Set<string>>();
         response.data.continentTours.forEach(

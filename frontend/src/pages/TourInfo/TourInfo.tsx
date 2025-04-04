@@ -17,7 +17,7 @@ function TourInfo() {
     const fetchTour = async () => {
       try {
         const response = await axios.get(
-          `http://trisog-production.up.railway.app/tours/${id}`
+          `https://trisog-production.up.railway.app/tours/${id}`
         );
         setTours(response.data);
       } catch (error) {
