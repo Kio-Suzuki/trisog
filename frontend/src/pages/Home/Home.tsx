@@ -1,4 +1,4 @@
-import style from './home.module.css';
+
 import Header from '../../components/Header/Header';
 import Banner from '../../components/Banner/Banner';
 import PopularTours from '../../components/PopularTours/PopularTours';
@@ -16,7 +16,7 @@ import { ToastContainer } from 'react-toastify';
 function Home() {
 
   return (
-    <div className={style.home}>
+    <div style={{height: '200vh'}}>
       <Header />
       <Banner />
       <TitleBar title1="Tours" title2="Most Popular Tours"/>
