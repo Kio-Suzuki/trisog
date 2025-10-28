@@ -23,36 +23,33 @@
 ![Google Cloud][Google Cloud]
 
 <p align="center">
- <a href="#about">About</a> • 
- <a href="#started">Getting Started</a> • 
-  <a href="#started">App Routes</a> • 
+  <a href="#about">About</a> • 
+  <a href="#started">Getting Started</a> • 
   <a href="#colab">Author</a> •
- <a href="#contribute">Contribute</a>
+  <a href="#contribute">Contribute</a>
 </p>
 
 <p align="center">
-  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Home1.png?raw=true" alt="Image Example" width="500px">
-  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Home2.png?raw=true" alt="Image Example" width="500px">
-  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Tours.png?raw=true" alt="Image Example" width="500px">
-  <img src="https://github.com/Kio-Suzuki/trisog/blob/main/frontend/public/Tourinfo.png?raw=true" alt="Image Example" width="500px">
+  <img src="https://cdn.jsdelivr.net/gh/Kio-Suzuki/trisog@main/frontend/public/Home1.png" alt="Image Example" width="500px">
+  <img src="https://cdn.jsdelivr.net/gh/Kio-Suzuki/trisog@main/frontend/public/Home2.png" alt="Image Example" width="500px">
+  <img src="https://cdn.jsdelivr.net/gh/Kio-Suzuki/trisog@main/frontend/public/Tours.png" alt="Image Example" width="500px">
+  <img src="https://cdn.jsdelivr.net/gh/Kio-Suzuki/trisog@main/frontend/public/Tourinfo.png" alt="Image Example" width="500px">
 </p>
 
-<h2 id="started">📌 About</h2>
+<h2 id="about">📌 About</h2>
 
 This project is a comprehensive Tour Commerce Platform designed to connect travelers with a wide range of tours and travel experiences. The platform allows users to explore, book, and review tours. Key features include detailed tour descriptions and user reviews. The goal of this platform is to make it easier for travelers to find and book their ideal tours.
 
 [![project][PROJECT__BADGE]][PROJECT__URL]
 
-<h2 id="started">🚀 Getting started</h2>
-
-Here you describe how to run your project locally
+<h2 id="started">📌 Getting Started</h2>
 
 <h3>Prerequisites</h3>
 
 Here you list all prerequisites necessary for running your project. For example:
 
-- [NodeJS](https://github.com/)
-- [Git 2](https://github.com)
+- [NodeJS](https://nodejs.org/)
+- [Git](https://git-scm.com/)
 
 <h3>Cloning</h3>
 
@@ -87,7 +84,7 @@ npm start
 
 <h2 id="contribute">📫 Contribute</h2>
 
-1. `git clone https://github.com/Kio-Suzuki/Challenge-1.git`
+1. `git clone https://github.com/Kio-Suzuki/trisog.git`
 2. `git checkout -b feature/NAME`
 3. Follow commit patterns
 4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
